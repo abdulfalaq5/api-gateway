@@ -24,9 +24,9 @@ services:
       KONG_PG_USER: falaqmsi
       KONG_PG_PASSWORD: Rubysa179596
       KONG_PG_DATABASE: kong
-      KONG_PROXY_LISTEN: 0.0.0.0:8000
-      KONG_ADMIN_LISTEN: 0.0.0.0:8001
-      KONG_ADMIN_GUI_LISTEN: 0.0.0.0:8002
+      KONG_PROXY_LISTEN: 0.0.0.0:9545
+      KONG_ADMIN_LISTEN: 0.0.0.0:9546
+      KONG_ADMIN_GUI_LISTEN: 0.0.0.0:9547
       KONG_PROXY_ACCESS_LOG: /dev/stdout
       KONG_ADMIN_ACCESS_LOG: /dev/stdout
       KONG_PROXY_ERROR_LOG: /dev/stderr
@@ -36,9 +36,9 @@ services:
       kong-migrations:
         condition: service_completed_successfully
     ports:
-      - "8000:8000"
-      - "8001:8001"
-      - "8002:8002"
+      - "9545:9545"
+      - "9546:9546"
+      - "9547:9547"
     healthcheck:
       test: ["CMD", "kong", "health"]
       interval: 10s

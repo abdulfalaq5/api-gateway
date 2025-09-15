@@ -14,12 +14,12 @@ if kong health --conf /Users/falaqmsi/Documents/GitHub/kong-api-gateway/config/k
     kong version
     echo ""
     echo "🌐 Endpoints yang tersedia:"
-    echo "   - Kong Admin API: http://localhost:8001"
-    echo "   - Kong Admin GUI: http://localhost:8002"
-    echo "   - Kong Proxy: http://localhost:8000"
+    echo "   - Kong Admin API: http://localhost:9546"
+    echo "   - Kong Admin GUI: http://localhost:9547"
+    echo "   - Kong Proxy: http://localhost:9545"
     echo ""
     echo "🔗 Test Admin API:"
-    curl -s http://localhost:8001/ | jq . 2>/dev/null || echo "   Admin API tidak dapat diakses"
+    curl -s http://localhost:9546/ | jq . 2>/dev/null || echo "   Admin API tidak dapat diakses"
 else
     echo "❌ Kong tidak sedang berjalan"
     echo ""
