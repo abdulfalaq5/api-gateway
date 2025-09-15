@@ -77,7 +77,7 @@ pg_isready -h localhost -p 5432 -U falaqmsi
 
 Setelah Kong berjalan, endpoint berikut akan tersedia:
 
-- **Kong Proxy**: http://localhost:8000
+- **Kong Proxy**: http://localhost:9545
 - **Kong Admin API**: http://localhost:8001
 - **Kong Admin GUI**: http://localhost:8002
 
@@ -103,7 +103,7 @@ pg_password = Rubysa179596
 pg_database = kong
 
 # Kong configuration
-proxy_listen = 0.0.0.0:8000
+proxy_listen = 0.0.0.0:9545
 admin_listen = 0.0.0.0:8001
 admin_gui_listen = 0.0.0.0:8002
 
@@ -135,7 +135,7 @@ curl http://localhost:8001/
 
 ### Test Kong Proxy
 ```bash
-curl http://localhost:8000/
+curl http://localhost:9545/
 ```
 
 ### Test dengan Service
@@ -150,7 +150,7 @@ curl -i -X POST http://localhost:8001/services/example-service/routes \
   --data "paths[]=/test"
 
 # Test route
-curl -i http://localhost:8000/test
+curl -i http://localhost:9545/test
 ```
 
 ## 🛠️ Troubleshooting
@@ -185,7 +185,7 @@ curl -i http://localhost:8000/test
 ### Port sudah digunakan
 1. Cek port yang digunakan:
    ```bash
-   lsof -i :8000
+   lsof -i :9545
    lsof -i :8001
    lsof -i :8002
    ```

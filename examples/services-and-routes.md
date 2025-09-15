@@ -15,7 +15,7 @@ curl -i -X POST http://localhost:8001/services/user-service/routes \
   --data "strip_path=true"
 
 # Test service
-curl -i http://localhost:8000/api/v1/users
+curl -i http://localhost:9545/api/v1/users
 ```
 
 ### 2. Service untuk API Product Management
@@ -31,7 +31,7 @@ curl -i -X POST http://localhost:8001/services/product-service/routes \
   --data "strip_path=true"
 
 # Test service
-curl -i http://localhost:8000/api/v1/products
+curl -i http://localhost:9545/api/v1/products
 ```
 
 ### 3. Service untuk API Order Management
@@ -47,7 +47,7 @@ curl -i -X POST http://localhost:8001/services/order-service/routes \
   --data "strip_path=true"
 
 # Test service
-curl -i http://localhost:8000/api/v1/orders
+curl -i http://localhost:9545/api/v1/orders
 ```
 
 ## 🔐 Authentication Examples
@@ -68,7 +68,7 @@ curl -i -X POST http://localhost:8001/services/user-service/plugins \
   --data "name=key-auth"
 
 # Test dengan API key
-curl -i http://localhost:8000/api/v1/users \
+curl -i http://localhost:9545/api/v1/users \
   -H "apikey: sk-1234567890abcdef"
 ```
 
@@ -88,7 +88,7 @@ curl -i -X POST http://localhost:8001/services/product-service/plugins \
   --data "name=jwt"
 
 # Test dengan JWT token
-curl -i http://localhost:8000/api/v1/products \
+curl -i http://localhost:9545/api/v1/products \
   -H "Authorization: Bearer YOUR_JWT_TOKEN"
 ```
 
@@ -177,17 +177,17 @@ echo "Testing Kong API Gateway..."
 
 # Test user service
 echo "Testing user service..."
-curl -i http://localhost:8000/api/v1/users \
+curl -i http://localhost:9545/api/v1/users \
   -H "apikey: sk-1234567890abcdef"
 
 # Test product service
 echo "Testing product service..."
-curl -i http://localhost:8000/api/v1/products \
+curl -i http://localhost:9545/api/v1/products \
   -H "Authorization: Bearer YOUR_JWT_TOKEN"
 
 # Test order service
 echo "Testing order service..."
-curl -i http://localhost:8000/api/v1/orders \
+curl -i http://localhost:9545/api/v1/orders \
   -H "apikey: sk-1234567890abcdef"
 
 echo "Testing completed!"

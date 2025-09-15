@@ -1,0 +1,2281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+
+  
+  <title>Cloudsmith - Repositories
+
+  - Kong Inc. (kong)
+
+ - List Repositories</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="pinterest" content="nopin">
+  <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=3.0, minimum-scale=0.86">
+
+  
+  
+  
+  <meta name="description" content="Get better DevOps with secure software delivery for: Alpine, Cargo, CocoaPods, Composer, Conan, Conda, CRAN, Dart, Debian, Docker, Go, Helm, Hex, HuggingFace, LuaRocks, Maven, npm, NuGet, P2, Python, RedHat, Ruby, Swift, Terraform, Vagrant, Raw & More!">
+
+  
+  <meta name="keywords" content="cloudsmith,secure,software,delivery,package,management,cocoapod,hex,ivy,deb,asset,wheel,csharp,miniconda,cargo,raw,r,vst,pip,gradle,binary,conan,dnf,rubygem,maven,leiningen,gem,dart,apk,python,elixir,c#,conan,chart,egg,k8,sbt,npm,composer,objective-c,vagrant,yarn,cocoapod,luarock,node,rpm,ios,hex,conda,yum,debian,flutter,golang,lua,helm,p2,rust,alpine,java,ant,zypper,node.j,mono,conda,go,cran,swift,terraform,dotnet,.net,apt,nuget,grape,docker,dart,huggingface,redhat,dpkg,swift,ruby,pypi,php,anaconda,box,erlang,dataset,huggingface">
+  <meta name="robots" content="index,follow">
+
+  <link rel="shortcut icon" href="https://assets.cloudsmith.media/icon/favicon.f6cc10f69392.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://assets.cloudsmith.media/icon/favicon-32x32.8fefd1d2181f.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://assets.cloudsmith.media/icon/favicon-16x16.34a8f090a8ea.png">
+  <link rel="canonical" href="https://cloudsmith.io/~kong/repos/">
+
+  
+    <link rel="dns-prefetch" href="https://users.cloudsmith.media">
+  
+    <link rel="dns-prefetch" href="https://assets.cloudsmith.media">
+  
+
+  
+    <link rel="dns-prefetch" href="https://js.intercomcdn.com">
+    <link rel="dns-prefetch" href="https://api-iam.intercom.io">
+    <link rel="dns-prefetch" href="https://nexus-websocket-a.intercom.io">
+    <link rel="dns-prefetch" href="https://nexus-websocket-b.intercom.io">
+    <link rel="dns-prefetch" href="https://widget.intercom.io">
+  
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+  
+  
+    <link rel="dns-prefetch" href="https://sentry.io">
+
+    
+    
+    
+
+    
+    <script
+      src="https://browser.sentry-cdn.com/7.24.2/bundle.min.js"
+      integrity="sha384-9uapQGwcpfQ0MhBPF9K0kJQcSl6WlSXljCtI/zMwbz8mDaI+FgInHBwR+MNVz+h+"
+      crossorigin="anonymous"
+    ></script>
+
+    <script nonce="QuyK9/y2XoiBA/MVeZNk2w==">
+      Sentry.onLoad(function() {
+        Sentry.init({
+          dsn: 'https://85cf84319e204994878d7afb03753450@o89590.ingest.sentry.io/195170',
+          environment: 'production',
+          release: '1.806.1',
+        });
+      });
+    </script>
+  
+  
+  <script nonce="QuyK9/y2XoiBA/MVeZNk2w==">
+    var stripeScriptLoad = new Promise((resolve, reject) => {
+      var script = document.createElement("script");
+      script.src = "https://js.stripe.com/v3";
+      script.addEventListener("load", () => {
+        resolve(script);
+      }, false);
+      script.addEventListener("error", () => {
+        reject(script);
+      }, false);
+
+      document.head.appendChild(script);
+    });
+  </script>
+  
+
+  <script nonce="QuyK9/y2XoiBA/MVeZNk2w==">
+    ace_base_path = "https://assets.cloudsmith.media/ace-builds/src";
+    module = {};
+
+    FontAwesomeConfig = {
+      autoAddCss: false,
+      autoReplaceSvg: 'nest'
+    };
+
+    if (sessionStorage.fonts) {
+      font_classname = 'wf-active';
+      document.documentElement.className += font_classname;
+    }
+
+    if (window.dataLayer === undefined) {
+      window.dataLayer = [];
+    }
+
+    window.dataLayer.push({
+      csp_nonce: "QuyK9/y2XoiBA/MVeZNk2w=="
+    });
+
+    
+
+    
+
+    
+
+  </script>
+
+  
+  
+    
+      
+<link href="https://assets.cloudsmith.media/css/bootstrap.381169e36845.css" rel="stylesheet" type="text/css" />
+
+      
+<link href="https://assets.cloudsmith.media/css/bootstrap_extra.da5d10a2cc2a.css" rel="stylesheet" type="text/css" />
+
+    
+
+    
+<link href="https://assets.cloudsmith.media/css/fonts.2f67e506f283.css" rel="stylesheet" type="text/css" />
+
+    
+<link href="https://assets.cloudsmith.media/css/fontawesome.62c40e426f23.css" rel="stylesheet" type="text/css" />
+
+
+    
+    
+      
+<link href="https://assets.cloudsmith.media/css/animate.dc34d099fcf0.css" rel="stylesheet" type="text/css" />
+
+    
+
+    <link href="https://assets.cloudsmith.media/admin/css/vendor/select2/select2.min.9f54e6414f87.css" media="screen" rel="stylesheet">
+<link href="https://assets.cloudsmith.media/autocomplete/css/select2-bootstrap.04e5591b2b37.css" media="screen" rel="stylesheet">
+<link href="https://assets.cloudsmith.media/admin/css/autocomplete.4a81fc4242d0.css" media="screen" rel="stylesheet">
+<link href="https://assets.cloudsmith.media/autocomplete_light/select2.a2fdafb163ba.css" media="screen" rel="stylesheet">
+
+    
+<link href="https://assets.cloudsmith.media/css/application.8b3035b9daa6.css" rel="stylesheet" type="text/css" />
+
+  
+  
+<link href="https://assets.cloudsmith.media/css/flags.7616f8ce2192.css" rel="stylesheet" type="text/css" />
+
+
+
+  
+    <script nonce="QuyK9/y2XoiBA/MVeZNk2w==">
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-564RFVD');
+    </script>
+  
+
+  
+<script src="https://assets.cloudsmith.media/js/dynamic.203c247c199f.js"></script>
+
+
+</head>
+
+
+<body>
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-564RFVD"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+
+
+
+<div id="body">
+  
+  
+  <header style="position: fixed; width: 100vw; background-color: #092F45;">
+    
+<nav class="navbar navbar-inverse hide-external">
+  <div class="block">
+    
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed"
+        data-toggle="collapse" data-target="#main-navbar" aria-expanded="false"
+        style="padding: 5px;">
+        
+      
+    
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fas fa-fw fa-lg fa-bars"></i>
+      </button>
+      <a class="navbar-brand" href="/">
+        <img src="https://assets.cloudsmith.media/images/cloudsmith-logo-dark.d567c3790bbb.svg" width="228" />
+      </a>
+    </div>
+    <div class="navbar-collapse collapse navbar-right" id="main-navbar">
+      <ul class="nav navbar-nav">
+      
+      
+        
+        <li>
+          <a href="https://cloudsmith.com/product/pricing/">
+            Pricing
+          </a>
+        </li>
+        
+        <li>
+          <a href="https://help.cloudsmith.io">
+            Documentation
+          </a>
+        </li>
+        <li class="divider-vertical hidden-xs hidden-sm"></li>
+      
+      
+      <li>
+        <a href="/user/login/">
+          Sign In
+        </a>
+      </li>
+      <li class="frost">
+        <a href="/user/signup/">
+          <i class="fas fa-fw fa-check"></i>
+          Signup
+        </a>
+      </li>
+      
+      </ul>
+    </div>
+    
+  </div>
+</nav>
+
+    
+    
+  </header>
+  
+
+  <div class="content-container" id="content" style="margin-top: 80px;">
+    
+      
+        
+        
+        <div class="content-prefix">
+          
+          <div class="block">
+            <div class="row">
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                
+<form  id="form_repository_switch"
+    method="post"
+    
+    action="/repo/switch/"
+    
+    data-protect-post="true"
+  ><input type="hidden" name="csrfmiddlewaretoken" value="cAARmbWCLJ6udtbdSwlZrigRoNLhqcdoAJUFN2lkp1jnSWLZ7dllgAcy3WemPl0D"><div id="div_id_switch" class="form-group"><div class="controls "><select name="switch" data-allow-clear="true" data-autosubmit="true" data-dropdown-auto-width="true" data-minimum-input-length="0" data-minimum-results-for-search="0" data-placeholder="Switch to ..." data-theme="bootstrap" data-width="100%" data-validate="true" data-html="true" data-language-no-results="Organization/repository not found!" class="autocompletewidget" id="id_switch" data-autocomplete-light-url="/repo/switch-autocomplete/eOF8Kp2Qx6fJ/" data-autocomplete-light-function="select2" data-autocomplete-light-language="en"><option value="" selected>Switch to ...</option></select></div></div><div class="clearfix"></div></form>
+
+
+              </div>
+              <div class="col-md-8 col-sm-6 col-xs-12">
+                
+<form method="get" action="/~kong/packages/"><div class="form-group"><div class="input-group"><span class="input-group-btn"><button type="submit" class="btn btn-primary"><i class="fas fa-fw fa-search"></i></button></span><input type="text" class="form-control"
+           placeholder="Search all packages ..."
+           name="q"
+      
+     ><span class="input-group-addon" data-toggle="collapse" href="#package-search-help" aria-expanded="false" aria-controls=""><span data-toggle="tooltip" data-placement="bottom" data-container="body" title="Click here for search help"><i class="fas fa-fw fa-question-circle"></i></span></span></div></div></form>
+
+              </div>
+            </div>
+            <div class="collapse" id="package-search-help">
+              
+
+<div class="panel panel-default search-help-panel">
+  <div class="panel-heading help-panel-heading"><b>Package Search Help</b></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p>
+          
+            You can use boolean logic (e.g. AND/OR/NOT) for complex search queries.
+          
+          
+            
+              For more help and examples, see the <a href="https://help.cloudsmith.io/docs/search-packages">search documentation</a>.
+            
+          
+        </p>
+      </div>
+    </div>
+    
+  <div class="row">
+    <div class="col-md-3">
+      <p>
+        Search by <b>package name</b>:<br>
+        <code>my-package</code>&nbsp;<sub>(implicit)</sub><br>
+        <code>name:my-package</code>&nbsp;<sub>(explicit)</sub>
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>package filename</b>:<br>
+        
+        <code>filename:my-package.ext</code>&nbsp;
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>package tag</b>:<br>
+        
+        <code>tag:latest</code>&nbsp;
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>package version</b>:<br>
+        
+        <code>version:1.0.0</code>&nbsp;
+        <code>prerelease:true</code>&nbsp;<sub>(prereleases)</sub><br>
+        <code>prerelease:false</code>&nbsp;<sub>(no prereleases)</sub>
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>package architecture</b>:<br>
+        <code>architecture:x86_64</code>&nbsp;
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>package distribution</b>:<br>
+        <code>distribution:el</code>&nbsp;
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>package license</b>:<br>
+        <code>license:MIT</code>&nbsp;<br>
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>package format</b>:<br>
+        <code>format:deb</code>&nbsp;
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>package status</b>:<br>
+        <code>status:in_progress</code>&nbsp;
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>package file checksum</b>:<br>
+        <code>checksum:5afba</code>&nbsp;
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>package security status</b>:<br>
+        <code>severity:critical</code>&nbsp;
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>package vulnerabilities</b>:<br>
+        <code>vulnerabilities:&gt;1</code>&nbsp;<br>
+        <code>vulnerabilities:&lt;1000</code>&nbsp;
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b># of package downloads</b>:<br>
+        <code>downloads:&gt;8</code>&nbsp;<br>
+        <code>downloads:&lt;100</code>&nbsp;
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>package type</b>:<br>
+        <code>type:binary</code>&nbsp;<br>
+        <code>type:source</code>&nbsp;
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>package size (bytes)</b>:<br>
+        <code>size:&gt;50000</code>&nbsp;<br>
+        <code>size:&lt;10000</code>&nbsp;
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>dependency name/version</b>:<br>
+        <code>dependency:log4j</code>&nbsp;<br>
+        <code>dependency:log4j=1.0.0</code>&nbsp;<br>
+        <code>dependency:log4j&gt;1.0.0</code>&nbsp;
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>uploaded date</b>:<br>
+        <code>uploaded:&gt;"1 day ago"</code>&nbsp;<br>
+        <code>uploaded:&lt;"August 14, 2022 EST"</code>&nbsp;
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>entitlement token</b> (identifier):<br>
+        <code>entitlement:3lKPVJPosCsY</code>&nbsp;<br>
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>policy violation</b>:<br>
+        <code>policy_violated:true</code>
+        <br>
+        <code>deny_policy_violated:true</code>
+        <br>
+        <code>license_policy_violated:true</code>
+        <br>
+        <code>vulnerability_policy_violated:true</code>
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>repository</b>:<br>
+        <code>repository:repo-name</code>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p>
+        <b>Search queries for all Debian-specific (and related) package types</b>
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>component</b>:<br>
+        <code>deb_component:unstable</code>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p>
+        <b>Search queries for all Maven-specific (and related) package types</b>
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>group ID</b>:<br>
+        <code>maven_group_id:org.apache</code>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p>
+        <b>Search queries for all Docker-specific (and related) package types</b>
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>image digest</b>:<br>
+        <code>docker_image_digest:sha256:7c5..6d4</code><br>
+        <span class="small">(full hashref only)</span>
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Search by <b>layer digest</b>:<br>
+        <code>docker_layer_digest:sha256:4c4..ae4</code><br>
+        <span class="small">(full hashref only)</span>
+      </p>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <p>
+          <b>Field type modifiers (depending on the type, you can influence behaviour)</b>
+        </p>
+      </div>
+      <div class="col-md-3">
+        <p>
+          For all queries, you can use:<br>
+          <code>~foo</code> for <b>negation</b>
+        </p>
+      </div>
+      <div class="col-md-3">
+        <p>
+          For string queries, you can use:<br>
+          <code>^foo</code> to anchor to <b>start of term</b><br>
+          <code>foo$</code> to anchor to <b>end of term</b><br>
+          <code>foo*bar</code> for <b>fuzzy matching</b>
+        </p>
+      </div>
+      <div class="col-md-3">
+        <p>
+          For number/date or version queries, you can use:<br>
+          <code>&gt;foo</code> for values <b>greater than</b><br>
+          <code>&gt;=foo</code> for values <b>greater / equal</b><br>
+          <code>&lt;foo</code> for values <b>less than</b><br>
+          <code>&lt;=foo</code> for values <b>less / equal</b>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+            </div>
+          </div>
+          
+          <div class="block">
+    
+
+
+  
+  
+  
+
+
+
+  </div>
+        </div>
+        
+      
+
+      
+
+      
+
+      
+        
+
+        <div class="content block-content">
+          <div class="block container-fluid">
+            <div class="nag">
+    <a href="#" class="nag-dismiss"
+      data-toggle="tooltip"
+      data-placement="bottom"
+      data-container="body"
+      title="Got it, thanks!"
+      >
+      <i class="fas fa-fw fa-window-close"></i>
+    </a>
+    <p class="nag-text">
+      
+      Need a <b>secure</b> and <b>centralised</b> artifact repository to deliver <b>Alpine</b>,
+        
+        <b>Cargo</b>,
+        
+        <b>CocoaPods</b>,
+        
+        <b>Composer</b>,
+        
+        <b>Conan</b>,
+        
+        <b>Conda</b>,
+        
+        <b>CRAN</b>,
+        
+        <b>Dart</b>,
+        
+        <b>Debian</b>,
+        
+        <b>Docker</b>,
+        
+        <b>Go</b>,
+        
+        <b>Helm</b>,
+        
+        <b>Hex</b>,
+        
+        <b>HuggingFace</b>,
+        
+        <b>LuaRocks</b>,
+        
+        <b>Maven</b>,
+        
+        <b>npm</b>,
+        
+        <b>NuGet</b>,
+        
+        <b>P2</b>,
+        
+        <b>Python</b>,
+        
+        <b>RedHat</b>,
+        
+        <b>Ruby</b>,
+        
+        <b>Swift</b>,
+        
+        <b>Terraform</b>,
+        
+        <b>Vagrant</b>,
+        
+        <b>Raw</b> &amp; <b>More</b> packages?
+      <br><br>
+      
+        <i class="fab fa-fw fa-cloudsmith"></i><b>Cloudsmith</b> is the new standard in Package / Artifact Management and Software Distribution.
+      
+      <br><br>
+      <small>
+        
+          With support for all major package formats, you can trust us to manage your software supply chain.
+        
+      </small>
+    </p>
+    <a href="/user/signup/" class="btn btn-md btn-popout nag-cta">
+      <i class="fas fa-fw fa-check"></i>
+      
+        Start My Free Trial
+      
+    </a>
+  </div>
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+        
+  
+
+  
+  <div id="repositories">
+    <div class="namespace-row">
+      
+
+      
+      <div class="row spaced-row">
+        
+        
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="card" data-match-height="repo-cards">
+              <div class="title text-center" data-match-height="repo-cards-title">
+                <a href="/~kong/repos/crates-io/packages/" class="repository-link">
+                  crates-io
+                </a>
+
+                
+              </div>
+              <div class="icons text-center">
+                <span
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="A certifiably-awesome public package repository curated by Kong Inc., hosted by Cloudsmith.">
+                    <i class="fas fa-fw fa-question-circle"></i>
+                </span>
+
+                <span
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Public Repository">
+                  <span
+  
+    class="text-success"
+  
+> <i class="fas fa-fw fa-unlock-alt" ></i> </span>
+                </span>
+
+                
+
+                
+                
+                  <span
+                    class="fleg"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Storage Region: Default Region">
+                    <span
+  
+> </span>
+                  </span>
+                
+                
+
+                <a href="/~kong/repos/crates-io/packages/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the packages for this repository.">
+                    <i class="fas fa-fw fa-cube"></i>
+                </a>
+
+                <a href="/~kong/repos/crates-io/groups/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the package groups for this repository.">
+                    <i class="fas fa-fw fa-cubes"></i>
+                </a>
+
+                
+              </div>
+              <div class="attrs">
+                <div class="row border-between-dark">
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      <span class="numeric-values">
+                      
+                        <span
+                          class="numeric-value"
+                          data-toggle="tooltip"
+                          data-container="body"
+                          data-placement="bottom"
+                          title="No packages in this repository yet"
+                        >0</span>
+                      
+                      </span>
+                    </div>
+                    <sub>Packages</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      10
+                    </div>
+                    <sub>Downloads</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      0 bytes
+                    </div>
+                    <sub>Total Size</sub>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="card" data-match-height="repo-cards">
+              <div class="title text-center" data-match-height="repo-cards-title">
+                <a href="/~kong/repos/docker-etc/packages/" class="repository-link">
+                  docker-etc
+                </a>
+
+                
+              </div>
+              <div class="icons text-center">
+                <span
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="A certifiably-awesome public package repository curated by Kong Inc., hosted by Cloudsmith.">
+                    <i class="fas fa-fw fa-question-circle"></i>
+                </span>
+
+                <span
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Public Repository">
+                  <span
+  
+    class="text-success"
+  
+> <i class="fas fa-fw fa-unlock-alt" ></i> </span>
+                </span>
+
+                
+
+                
+                
+                  <span
+                    class="fleg"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Storage Region: Default Region">
+                    <span
+  
+> </span>
+                  </span>
+                
+                
+
+                <a href="/~kong/repos/docker-etc/packages/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the packages for this repository.">
+                    <i class="fas fa-fw fa-cube"></i>
+                </a>
+
+                <a href="/~kong/repos/docker-etc/groups/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the package groups for this repository.">
+                    <i class="fas fa-fw fa-cubes"></i>
+                </a>
+
+                
+              </div>
+              <div class="attrs">
+                <div class="row border-between-dark">
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      <span class="numeric-values">
+                      
+                        <a href="/~kong/repos/docker-etc/packages/?q=status%3Acompleted"
+                            class="numeric-value text-success"
+                            data-toggle="tooltip"
+                            data-container="body"
+                            data-placement="bottom"
+                            title="1 package completed in repository"
+                            >1</a>
+                      
+                      </span>
+                    </div>
+                    <sub>Package</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      56
+                    </div>
+                    <sub>Downloads</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      118.6 MB
+                    </div>
+                    <sub>Total Size</sub>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="card" data-match-height="repo-cards">
+              <div class="title text-center" data-match-height="repo-cards-title">
+                <a href="/~kong/repos/gateway-28/packages/" class="repository-link">
+                  gateway-28
+                </a>
+
+                
+              </div>
+              <div class="icons text-center">
+                <span
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="The Cloud-Native API Gateway.">
+                    <i class="fas fa-fw fa-question-circle"></i>
+                </span>
+
+                <span
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Public Repository">
+                  <span
+  
+    class="text-success"
+  
+> <i class="fas fa-fw fa-unlock-alt" ></i> </span>
+                </span>
+
+                
+
+                
+                
+                  <span
+                    class="fleg"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Storage Region: Default Region">
+                    <span
+  
+> </span>
+                  </span>
+                
+                
+
+                <a href="/~kong/repos/gateway-28/packages/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the packages for this repository.">
+                    <i class="fas fa-fw fa-cube"></i>
+                </a>
+
+                <a href="/~kong/repos/gateway-28/groups/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the package groups for this repository.">
+                    <i class="fas fa-fw fa-cubes"></i>
+                </a>
+
+                
+              </div>
+              <div class="attrs">
+                <div class="row border-between-dark">
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      <span class="numeric-values">
+                      
+                        <a href="/~kong/repos/gateway-28/packages/?q=status%3Acompleted"
+                            class="numeric-value text-success"
+                            data-toggle="tooltip"
+                            data-container="body"
+                            data-placement="bottom"
+                            title="342 packages completed in repository"
+                            >342</a>
+                      
+                      </span>
+                    </div>
+                    <sub>Packages</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      2653425
+                    </div>
+                    <sub>Downloads</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      16.5 GB
+                    </div>
+                    <sub>Total Size</sub>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="card" data-match-height="repo-cards">
+              <div class="title text-center" data-match-height="repo-cards-title">
+                <a href="/~kong/repos/gateway-30/packages/" class="repository-link">
+                  gateway-30
+                </a>
+
+                
+              </div>
+              <div class="icons text-center">
+                <span
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="The Cloud-Native API Gateway.">
+                    <i class="fas fa-fw fa-question-circle"></i>
+                </span>
+
+                <span
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Public Repository">
+                  <span
+  
+    class="text-success"
+  
+> <i class="fas fa-fw fa-unlock-alt" ></i> </span>
+                </span>
+
+                
+
+                
+                
+                  <span
+                    class="fleg"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Storage Region: Default Region">
+                    <span
+  
+> </span>
+                  </span>
+                
+                
+
+                <a href="/~kong/repos/gateway-30/packages/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the packages for this repository.">
+                    <i class="fas fa-fw fa-cube"></i>
+                </a>
+
+                <a href="/~kong/repos/gateway-30/groups/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the package groups for this repository.">
+                    <i class="fas fa-fw fa-cubes"></i>
+                </a>
+
+                
+              </div>
+              <div class="attrs">
+                <div class="row border-between-dark">
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      <span class="numeric-values">
+                      
+                        <a href="/~kong/repos/gateway-30/packages/?q=status%3Acompleted"
+                            class="numeric-value text-success"
+                            data-toggle="tooltip"
+                            data-container="body"
+                            data-placement="bottom"
+                            title="72 packages completed in repository"
+                            >72</a>
+                      
+                      </span>
+                    </div>
+                    <sub>Packages</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      425710
+                    </div>
+                    <sub>Downloads</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      3.5 GB
+                    </div>
+                    <sub>Total Size</sub>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="card" data-match-height="repo-cards">
+              <div class="title text-center" data-match-height="repo-cards-title">
+                <a href="/~kong/repos/gateway-31/packages/" class="repository-link">
+                  gateway-31
+                </a>
+
+                
+              </div>
+              <div class="icons text-center">
+                <span
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="The Cloud-Native API Gateway.">
+                    <i class="fas fa-fw fa-question-circle"></i>
+                </span>
+
+                <span
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Public Repository">
+                  <span
+  
+    class="text-success"
+  
+> <i class="fas fa-fw fa-unlock-alt" ></i> </span>
+                </span>
+
+                
+
+                
+                
+                  <span
+                    class="fleg"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Storage Region: Default Region">
+                    <span
+  
+> </span>
+                  </span>
+                
+                
+
+                <a href="/~kong/repos/gateway-31/packages/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the packages for this repository.">
+                    <i class="fas fa-fw fa-cube"></i>
+                </a>
+
+                <a href="/~kong/repos/gateway-31/groups/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the package groups for this repository.">
+                    <i class="fas fa-fw fa-cubes"></i>
+                </a>
+
+                
+              </div>
+              <div class="attrs">
+                <div class="row border-between-dark">
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      <span class="numeric-values">
+                      
+                        <a href="/~kong/repos/gateway-31/packages/?q=status%3Acompleted"
+                            class="numeric-value text-success"
+                            data-toggle="tooltip"
+                            data-container="body"
+                            data-placement="bottom"
+                            title="119 packages completed in repository"
+                            >119</a>
+                      
+                      </span>
+                    </div>
+                    <sub>Packages</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      860453
+                    </div>
+                    <sub>Downloads</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      6.2 GB
+                    </div>
+                    <sub>Total Size</sub>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="card" data-match-height="repo-cards">
+              <div class="title text-center" data-match-height="repo-cards-title">
+                <a href="/~kong/repos/gateway-310/packages/" class="repository-link">
+                  gateway-310
+                </a>
+
+                
+              </div>
+              <div class="icons text-center">
+                <span
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="A certifiably-awesome public package repository curated by Kong Inc., hosted by Cloudsmith.">
+                    <i class="fas fa-fw fa-question-circle"></i>
+                </span>
+
+                <span
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Public Repository">
+                  <span
+  
+    class="text-success"
+  
+> <i class="fas fa-fw fa-unlock-alt" ></i> </span>
+                </span>
+
+                
+
+                
+                
+                  <span
+                    class="fleg"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Storage Region: Default Region">
+                    <span
+  
+> </span>
+                  </span>
+                
+                
+
+                <a href="/~kong/repos/gateway-310/packages/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the packages for this repository.">
+                    <i class="fas fa-fw fa-cube"></i>
+                </a>
+
+                <a href="/~kong/repos/gateway-310/groups/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the package groups for this repository.">
+                    <i class="fas fa-fw fa-cubes"></i>
+                </a>
+
+                
+              </div>
+              <div class="attrs">
+                <div class="row border-between-dark">
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      <span class="numeric-values">
+                      
+                        <a href="/~kong/repos/gateway-310/packages/?q=status%3Acompleted"
+                            class="numeric-value text-success"
+                            data-toggle="tooltip"
+                            data-container="body"
+                            data-placement="bottom"
+                            title="127 packages completed in repository"
+                            >127</a>
+                      
+                      </span>
+                    </div>
+                    <sub>Packages</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      1093571
+                    </div>
+                    <sub>Downloads</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      10.6 GB
+                    </div>
+                    <sub>Total Size</sub>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="card" data-match-height="repo-cards">
+              <div class="title text-center" data-match-height="repo-cards-title">
+                <a href="/~kong/repos/gateway-311/packages/" class="repository-link">
+                  gateway-311
+                </a>
+
+                
+              </div>
+              <div class="icons text-center">
+                <span
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="The Cloud-Native API Gateway.">
+                    <i class="fas fa-fw fa-question-circle"></i>
+                </span>
+
+                <span
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Public Repository">
+                  <span
+  
+    class="text-success"
+  
+> <i class="fas fa-fw fa-unlock-alt" ></i> </span>
+                </span>
+
+                
+
+                
+                
+                  <span
+                    class="fleg"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Storage Region: Default Region">
+                    <span
+  
+> </span>
+                  </span>
+                
+                
+
+                <a href="/~kong/repos/gateway-311/packages/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the packages for this repository.">
+                    <i class="fas fa-fw fa-cube"></i>
+                </a>
+
+                <a href="/~kong/repos/gateway-311/groups/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the package groups for this repository.">
+                    <i class="fas fa-fw fa-cubes"></i>
+                </a>
+
+                
+              </div>
+              <div class="attrs">
+                <div class="row border-between-dark">
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      <span class="numeric-values">
+                      
+                        <a href="/~kong/repos/gateway-311/packages/?q=status%3Acompleted"
+                            class="numeric-value text-success"
+                            data-toggle="tooltip"
+                            data-container="body"
+                            data-placement="bottom"
+                            title="88 packages completed in repository"
+                            >88</a>
+                      
+                      </span>
+                    </div>
+                    <sub>Packages</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      433125
+                    </div>
+                    <sub>Downloads</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      6.3 GB
+                    </div>
+                    <sub>Total Size</sub>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="card" data-match-height="repo-cards">
+              <div class="title text-center" data-match-height="repo-cards-title">
+                <a href="/~kong/repos/gateway-312/packages/" class="repository-link">
+                  gateway-312
+                </a>
+
+                
+              </div>
+              <div class="icons text-center">
+                <span
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="The Cloud-Native API Gateway.">
+                    <i class="fas fa-fw fa-question-circle"></i>
+                </span>
+
+                <span
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Public Repository">
+                  <span
+  
+    class="text-success"
+  
+> <i class="fas fa-fw fa-unlock-alt" ></i> </span>
+                </span>
+
+                
+
+                
+                
+                  <span
+                    class="fleg"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Storage Region: Default Region">
+                    <span
+  
+> </span>
+                  </span>
+                
+                
+
+                <a href="/~kong/repos/gateway-312/packages/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the packages for this repository.">
+                    <i class="fas fa-fw fa-cube"></i>
+                </a>
+
+                <a href="/~kong/repos/gateway-312/groups/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the package groups for this repository.">
+                    <i class="fas fa-fw fa-cubes"></i>
+                </a>
+
+                
+              </div>
+              <div class="attrs">
+                <div class="row border-between-dark">
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      <span class="numeric-values">
+                      
+                        <span
+                          class="numeric-value"
+                          data-toggle="tooltip"
+                          data-container="body"
+                          data-placement="bottom"
+                          title="No packages in this repository yet"
+                        >0</span>
+                      
+                      </span>
+                    </div>
+                    <sub>Packages</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      0
+                    </div>
+                    <sub>Downloads</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      0 bytes
+                    </div>
+                    <sub>Total Size</sub>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="card" data-match-height="repo-cards">
+              <div class="title text-center" data-match-height="repo-cards-title">
+                <a href="/~kong/repos/gateway-313/packages/" class="repository-link">
+                  gateway-313
+                </a>
+
+                
+              </div>
+              <div class="icons text-center">
+                <span
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="The Cloud-Native API Gateway.">
+                    <i class="fas fa-fw fa-question-circle"></i>
+                </span>
+
+                <span
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Public Repository">
+                  <span
+  
+    class="text-success"
+  
+> <i class="fas fa-fw fa-unlock-alt" ></i> </span>
+                </span>
+
+                
+
+                
+                
+                  <span
+                    class="fleg"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Storage Region: Default Region">
+                    <span
+  
+> </span>
+                  </span>
+                
+                
+
+                <a href="/~kong/repos/gateway-313/packages/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the packages for this repository.">
+                    <i class="fas fa-fw fa-cube"></i>
+                </a>
+
+                <a href="/~kong/repos/gateway-313/groups/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the package groups for this repository.">
+                    <i class="fas fa-fw fa-cubes"></i>
+                </a>
+
+                
+              </div>
+              <div class="attrs">
+                <div class="row border-between-dark">
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      <span class="numeric-values">
+                      
+                        <span
+                          class="numeric-value"
+                          data-toggle="tooltip"
+                          data-container="body"
+                          data-placement="bottom"
+                          title="No packages in this repository yet"
+                        >0</span>
+                      
+                      </span>
+                    </div>
+                    <sub>Packages</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      0
+                    </div>
+                    <sub>Downloads</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      0 bytes
+                    </div>
+                    <sub>Total Size</sub>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="card" data-match-height="repo-cards">
+              <div class="title text-center" data-match-height="repo-cards-title">
+                <a href="/~kong/repos/gateway-32/packages/" class="repository-link">
+                  gateway-32
+                </a>
+
+                
+              </div>
+              <div class="icons text-center">
+                <span
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="The Cloud-Native API Gateway.">
+                    <i class="fas fa-fw fa-question-circle"></i>
+                </span>
+
+                <span
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Public Repository">
+                  <span
+  
+    class="text-success"
+  
+> <i class="fas fa-fw fa-unlock-alt" ></i> </span>
+                </span>
+
+                
+
+                
+                
+                  <span
+                    class="fleg"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Storage Region: Default Region">
+                    <span
+  
+> </span>
+                  </span>
+                
+                
+
+                <a href="/~kong/repos/gateway-32/packages/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the packages for this repository.">
+                    <i class="fas fa-fw fa-cube"></i>
+                </a>
+
+                <a href="/~kong/repos/gateway-32/groups/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the package groups for this repository.">
+                    <i class="fas fa-fw fa-cubes"></i>
+                </a>
+
+                
+              </div>
+              <div class="attrs">
+                <div class="row border-between-dark">
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      <span class="numeric-values">
+                      
+                        <a href="/~kong/repos/gateway-32/packages/?q=status%3Acompleted"
+                            class="numeric-value text-success"
+                            data-toggle="tooltip"
+                            data-container="body"
+                            data-placement="bottom"
+                            title="136 packages completed in repository"
+                            >136</a>
+                      
+                      </span>
+                    </div>
+                    <sub>Packages</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      1136418
+                    </div>
+                    <sub>Downloads</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      6.0 GB
+                    </div>
+                    <sub>Total Size</sub>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="card" data-match-height="repo-cards">
+              <div class="title text-center" data-match-height="repo-cards-title">
+                <a href="/~kong/repos/gateway-33/packages/" class="repository-link">
+                  gateway-33
+                </a>
+
+                
+              </div>
+              <div class="icons text-center">
+                <span
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="The Cloud-Native API Gateway.">
+                    <i class="fas fa-fw fa-question-circle"></i>
+                </span>
+
+                <span
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Public Repository">
+                  <span
+  
+    class="text-success"
+  
+> <i class="fas fa-fw fa-unlock-alt" ></i> </span>
+                </span>
+
+                
+
+                
+                
+                  <span
+                    class="fleg"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Storage Region: Default Region">
+                    <span
+  
+> </span>
+                  </span>
+                
+                
+
+                <a href="/~kong/repos/gateway-33/packages/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the packages for this repository.">
+                    <i class="fas fa-fw fa-cube"></i>
+                </a>
+
+                <a href="/~kong/repos/gateway-33/groups/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the package groups for this repository.">
+                    <i class="fas fa-fw fa-cubes"></i>
+                </a>
+
+                
+              </div>
+              <div class="attrs">
+                <div class="row border-between-dark">
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      <span class="numeric-values">
+                      
+                        <a href="/~kong/repos/gateway-33/packages/?q=status%3Acompleted"
+                            class="numeric-value text-success"
+                            data-toggle="tooltip"
+                            data-container="body"
+                            data-placement="bottom"
+                            title="73 packages completed in repository"
+                            >73</a>
+                      
+                      </span>
+                    </div>
+                    <sub>Packages</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      5145109
+                    </div>
+                    <sub>Downloads</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      3.0 GB
+                    </div>
+                    <sub>Total Size</sub>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="card" data-match-height="repo-cards">
+              <div class="title text-center" data-match-height="repo-cards-title">
+                <a href="/~kong/repos/gateway-34/packages/" class="repository-link">
+                  gateway-34
+                </a>
+
+                
+              </div>
+              <div class="icons text-center">
+                <span
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="The Cloud-Native API Gateway.">
+                    <i class="fas fa-fw fa-question-circle"></i>
+                </span>
+
+                <span
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Public Repository">
+                  <span
+  
+    class="text-success"
+  
+> <i class="fas fa-fw fa-unlock-alt" ></i> </span>
+                </span>
+
+                
+
+                
+                
+                  <span
+                    class="fleg"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    data-container="body"
+                    title="Storage Region: Default Region">
+                    <span
+  
+> </span>
+                  </span>
+                
+                
+
+                <a href="/~kong/repos/gateway-34/packages/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the packages for this repository.">
+                    <i class="fas fa-fw fa-cube"></i>
+                </a>
+
+                <a href="/~kong/repos/gateway-34/groups/"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  data-container="body"
+                  title="View the package groups for this repository.">
+                    <i class="fas fa-fw fa-cubes"></i>
+                </a>
+
+                
+              </div>
+              <div class="attrs">
+                <div class="row border-between-dark">
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      <span class="numeric-values">
+                      
+                        <a href="/~kong/repos/gateway-34/packages/?q=status%3Acompleted"
+                            class="numeric-value text-success"
+                            data-toggle="tooltip"
+                            data-container="body"
+                            data-placement="bottom"
+                            title="504 packages completed in repository"
+                            >504</a>
+                      
+                      </span>
+                    </div>
+                    <sub>Packages</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      5160166
+                    </div>
+                    <sub>Downloads</sub>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <div class="numeric" data-match-height="repo-stats">
+                      33.4 GB
+                    </div>
+                    <sub>Total Size</sub>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+      </div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div>
+        <div class="pull-left-md pull-left-lg">
+          
+<form  class="form-inline" id="form_paginate_by"
+    method="post"
+    
+    action="/~kong/repos-set-page-size/"
+    
+    data-protect-post="true"
+  ><input type="hidden" name="csrfmiddlewaretoken" value="cAARmbWCLJ6udtbdSwlZrigRoNLhqcdoAJUFN2lkp1jnSWLZ7dllgAcy3WemPl0D"><div class="form-group" ><div class="controls "><div class="input-group"><select name="page_size" class="input-sm select form-control" id="id_page_size"><option value="12" selected>12 per page</option><option value="24">24 per page</option><option value="48">48 per page</option><option value="96">96 per page</option></select><span class="input-group-btn"><input type="submit"
+    name="submit"
+    value="Go"
+    
+        class="btn btn-primary btn-sm"
+        id="submit-id-submit"
+    
+    
+    /></span></div></div></div><input type="hidden" name="next" value="/~kong/repos/"><input type="hidden" name="prev" value="/~kong/repos/"><div class="clearfix"></div></form>
+
+        </div>
+        
+        
+
+<div class="pager text-muted">
+  <div class="small">
+    Showing:
+    
+      
+        1 - 12 (12) of 27 repositories
+      
+    
+  
+  </div>
+  <div>
+  
+    <span>
+      
+        <span >
+          <i class="fas fa-fw fa-arrow-to-left" aria-hidden="true"></i>
+        </span>
+      
+      
+        <span >
+          <i class="fas fa-fw fa-angle-double-left" aria-hidden="true"></i>
+        </span>
+      
+      
+        <span >
+          <i class="fas fa-fw fa-angle-left" aria-hidden="true"></i>
+        </span>
+      
+    </span>
+
+    
+
+    
+    
+      
+        <span>
+          1
+        </span>
+      
+    
+      
+        <a href="?page=2">
+          <span
+            data-toggle="tooltip" data-placement="bottom"
+            data-container="body"
+            title="Go To Page (2/3)"
+           >2</span>
+        </a>
+      
+    
+      
+        <a href="?page=3">
+          <span
+            data-toggle="tooltip" data-placement="bottom"
+            data-container="body"
+            title="Go To Page (3/3)"
+           >3</span>
+        </a>
+      
+    
+    
+    <span>
+      
+        <a href="?page=2">
+      
+        <span 
+          data-toggle="tooltip" data-placement="bottom"
+          data-container="body"
+          title="Next Page (2/3)"
+          >
+          <i class="fas fa-fw fa-angle-right" aria-hidden="true"></i>
+        </span>
+      
+        </a>
+      
+      
+        <span >
+          <i class="fas fa-fw fa-angle-double-right" aria-hidden="true"></i>
+        </span>
+      
+      
+        <a href="?page=3">
+      
+        <span 
+          data-toggle="tooltip" data-placement="bottom"
+          data-container="body"
+          title="Last Page (3/3)"
+          >
+          <i class="fas fa-fw fa-arrow-to-right" aria-hidden="true"></i>
+        </span>
+      
+        </a>
+      
+    </span>
+  </div>
+
+  
+</div>
+
+
+      </div>
+      
+    </div>
+  </div>
+          </div>
+        </div>
+      
+    
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<footer id="footer">
+  
+    
+<div class="hide-external">
+  <div class="block">
+    <div class="copyright pull-left">
+      
+        Made with <i class="fad fa-fw fa-heart text-danger" title="love"></i>
+        by <a href="">Cloudsmith</a>
+      
+
+      <i class="fas fa-copyright"></i> 2025
+
+      
+    </div>
+
+    <div class="links pull-right">
+      <ul class="list-inline">
+        <li>
+          <a href="https://changelog.cloudsmith.com">
+            Version <span class="software-version">1.806.1</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://cloudsmith.com/cookie-declaration/">
+            Cookie Declaration
+          </a>
+        </li>
+        <li>
+          <a href="https://cloudsmith.com/terms-conditions/">
+            Terms &amp; Conditions
+          </a>
+        </li>
+        <li>
+          <a href="https://cloudsmith.com/privacy-policy/">
+            Privacy Policy
+          </a>
+        </li>
+        <li>
+          <a href="https://cloudsmith.com/security-policy/">
+            Security Policy
+          </a>
+        </li>
+        <li>
+          <a href="https://help.cloudsmith.io">
+            Help
+          </a>
+        </li>
+        <li>
+          <a href="https://help.cloudsmith.io/docs/contact-us">
+            Contact Us
+          </a>
+        </li>
+        <li>
+          <a href="https://status.cloudsmith.com/">
+            Service Status
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="trademarks">
+      
+      
+        <a href="https://www.ipo.gov.uk/tmcase/Results/1/UK00003067960"
+            target="_blank" rel="noopener" >
+            Cloudsmith <sup><i class="fas fa-registered"></i></sup>
+            is a registered trademark
+        </a>of
+        <a href="https://cloudsmith.com/company/">Cloudsmith Ltd</a>.
+      
+      
+        Debian is a registered trademark of Software in the Public Interest, Inc.
+        Docker and the Docker logo are trademarks or registered trademarks of
+        Docker, Inc. in the United States and/or other countries. Apache Maven
+        and Maven are trademarks of the Apache Software Foundation. RPM is
+        a trademark of Red Hat, Inc. npm is a trademark of npm, Inc. Other
+        parties, including those previously listed, may have trademark
+        rights in other terms used herein.
+      
+    </div>
+  </div>
+</div>
+
+  
+</footer>
+
+<a href="#"
+  id="backtotop" title="Scroll to Top">Top<span></span></a>
+
+
+
+  
+  
+  
+  
+<script src="https://assets.cloudsmith.media/js/jquery.8c24ba7e9dc8.js"></script>
+
+
+  
+<script src="https://assets.cloudsmith.media/js/jquery_migrate.cf8203a75264.js"></script>
+
+
+  
+<script src="https://assets.cloudsmith.media/js/jquery_plugins.aba707b2d71c.js"></script>
+
+
+  
+<script src="https://assets.cloudsmith.media/js/bootstrap.5dfed85d324d.js"></script>
+
+
+  
+<script src="https://assets.cloudsmith.media/js/bootstrap_validator.3167fb0c8c64.js"></script>
+
+
+  
+<script src="https://assets.cloudsmith.media/js/common.2984feaaeb23.js"></script>
+
+
+  
+<script src="https://assets.cloudsmith.media/js/dialog.59216ab47cc0.js"></script>
+
+
+  
+<script src="https://assets.cloudsmith.media/js/fonts.536bea2d14a6.js"></script>
+
+
+  <script src="https://assets.cloudsmith.media/admin/js/vendor/select2/select2.full.c2afdeda3058.js"></script>
+<script src="https://assets.cloudsmith.media/autocomplete_light/autocomplete_light.min.f9330fe135b1.js"></script>
+<script src="https://assets.cloudsmith.media/autocomplete_light/select2.min.c8cbc27cf9d1.js"></script>
+<script src="https://assets.cloudsmith.media/autocomplete_light/i18n/en.453389283ed0.js"></script>
+
+  
+  
+    
+<script nonce="QuyK9/y2XoiBA/MVeZNk2w==">deferDynamicScript("wow","https://assets.cloudsmith.media/js/wow.beebe97687ec.js");</script>
+
+
+  
+
+  
+<script src="https://assets.cloudsmith.media/js/sticky.3e198c6eadc4.js"></script>
+
+
+
+  
+<script nonce="QuyK9/y2XoiBA/MVeZNk2w==">
+  $(function() {
+    $('.nag-dismiss').on("click", function() {
+      var el = $(this).parent('.nag');
+      var jqxhr = $.post('/package/dismiss-nag/');
+      jqxhr.always(function() {
+        el.hide();
+      });
+    });
+  });
+</script>
+
+
+
+
+  <script nonce="QuyK9/y2XoiBA/MVeZNk2w==">
+    $(function() {
+      $('#repositories .card').on("click", function(e) {
+        var link = $($(this).find('.repository-link').get(0));
+        var target = $($(e.target).get(0));
+        if (target.is('button') || target.is('input')) {
+          return true;
+        }
+
+        if (!target.is('a')) {
+          var parent_target = target.parent('a');
+          if (parent_target && parent_target.is('a')) {
+            target = parent_target;
+          }
+        }
+
+        if (!target.is('a') && target.get(0) != link.get(0)) {
+          window.location.href = link.prop('href');
+          return false;
+        }
+      });
+    });
+  </script>
+
+
+<script nonce="QuyK9/y2XoiBA/MVeZNk2w==">
+  var onLoadAllCaptcha = function() {
+    var captchas = window['captchas'];
+
+    $.each(captchas, function(k, uuid) {
+      var func = window['onLoadCaptcha_' + uuid];
+      func();
+    });
+  };
+
+  waitFor('jquery', function() {
+    $.getScript('https://www.google.com/recaptcha/api.js?onload=onLoadAllCaptcha&render=explicit');
+  });
+</script>
+
+
+
+<script nonce="QuyK9/y2XoiBA/MVeZNk2w==">
+  window.intercomSettings = {
+
+    app_id: "csi561nr",
+    session_duration: 86400
+  };
+
+  (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/csi561nr';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()
+
+  
+  $(function() {
+    Intercom("shutdown");
+    Intercom("boot", "csi561nr");
+  });
+  
+</script>
+
+
+<script nonce="QuyK9/y2XoiBA/MVeZNk2w==">
+  loadDynamicScripts();
+</script>
+
+
+
+  <script nonce="QuyK9/y2XoiBA/MVeZNk2w==">
+    var reactComponentPresent = document.getElementById('react-component-container');
+    if (reactComponentPresent) {
+      var reactScriptLoad = new Promise((resolve, reject) => {
+        var nonce = "QuyK9/y2XoiBA/MVeZNk2w==";
+        var script = document.createElement("script");
+        script.src = "https://assets.cloudsmith.media/js/react/index-bundle.9be6bc1c6464.js";
+        script.setAttribute('nonce', nonce);
+        script.addEventListener("load", () => {
+          resolve(script);
+        }, false);
+        script.addEventListener("error", () => {
+          reject(script);
+        }, false);
+        document.head.appendChild(script);
+      });
+    }
+  </script>
+
+
+<script async defer nonce="QuyK9/y2XoiBA/MVeZNk2w==" src="https://simple.cloudsmith.io/latest.js"></script>
+  <noscript><img src="https://simple.cloudsmith.io/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
+
+<script nonce="QuyK9/y2XoiBA/MVeZNk2w==">
+  _linkedin_partner_id = "5351930";
+  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+  window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+</script>
+
+<script nonce="QuyK9/y2XoiBA/MVeZNk2w==">
+  (function(l) {
+      if (!l) {
+          window.lintrk = function(a, b) {
+              window.lintrk.q.push([a, b])
+          };
+          window.lintrk.q = []
+      }
+      var nonce = "QuyK9/y2XoiBA/MVeZNk2w==";
+      var s = document.getElementsByTagName("script")[0];
+      var b = document.createElement("script");
+      b.setAttribute('nonce', nonce);
+      b.type = "text/javascript";
+      b.async = true;
+      b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+      s.parentNode.insertBefore(b, s);
+  })(window.lintrk);
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=5351930&fmt=gif" />
+</noscript>
+
+</body>
+</html>

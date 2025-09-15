@@ -18,11 +18,11 @@
 curl http://localhost:8001/
 
 # Test Kong Proxy
-curl http://localhost:8000/
+curl http://localhost:9545/
 ```
 
 ## 🌐 Endpoints
-- **Kong Proxy**: http://localhost:8000
+- **Kong Proxy**: http://localhost:9545
 - **Kong Admin API**: http://localhost:8001
 - **Kong Admin GUI**: http://localhost:8002
 
@@ -55,7 +55,7 @@ curl -i -X POST http://localhost:8001/services/my-service/routes \
 
 ### Test the Route
 ```bash
-curl -i http://localhost:8000/my-api
+curl -i http://localhost:9545/my-api
 ```
 
 ## 🔐 Authentication
@@ -77,7 +77,7 @@ curl -i -X POST http://localhost:8001/services/my-service/plugins \
 
 ### Test with API Key
 ```bash
-curl -i http://localhost:8000/my-api \
+curl -i http://localhost:9545/my-api \
   -H "apikey: my-secret-key"
 ```
 

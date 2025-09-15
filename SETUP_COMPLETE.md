@@ -23,31 +23,52 @@ kong-api-gateway/
 
 ## 🚀 Langkah Selanjutnya
 
-### 1. Install Kong
+### 1. Install Kong dengan Docker
 ```bash
 cd /Users/falaqmsi/Documents/GitHub/kong-api-gateway
-./scripts/install-kong.sh
+./scripts/start-kong-docker.sh
 ```
 
-### 2. Start Kong
+### 2. Test Kong
 ```bash
-./scripts/start-kong.sh
+./scripts/test-kong-docker.sh
 ```
 
-### 3. Test Kong
+### 3. Stop Kong (jika diperlukan)
 ```bash
-./scripts/test-kong.sh
+./scripts/stop-kong-docker.sh
 ```
 
 ## 🌐 Endpoints yang Tersedia
-- **Kong Proxy**: http://localhost:8000
-- **Kong Admin API**: http://localhost:8001
-- **Kong Admin GUI**: http://localhost:8002
+- **Kong Proxy**: http://localhost:9545 (Public Access)
+- **Kong Admin API**: http://localhost:9546 (Internal Only)
+- **Kong Admin GUI**: http://localhost:9547 (Internal Only)
+
+## 🖥️ Setup Server Internal
+Untuk setup di server internal dengan PostgreSQL yang sudah ada:
+```bash
+# Setup database Kong
+./scripts/setup-database.sh
+
+# Setup firewall dan konfigurasi server
+sudo ./scripts/setup-server.sh
+
+# Test connectivity
+./scripts/test-server-connectivity.sh
+```
+
+**Port yang perlu didaftarkan:**
+- ✅ **Port 9545** - Kong Proxy (Public Access)
+- ❌ **Port 9546** - Kong Admin API (Internal Only)
+- ❌ **Port 9547** - Kong Admin GUI (Internal Only)
+- ❌ **Port 5432** - PostgreSQL Database (Internal Only)
 
 ## 📚 Dokumentasi
 - **README.md**: Dokumentasi lengkap setup Kong
 - **QUICKSTART.md**: Panduan cepat penggunaan
 - **examples/services-and-routes.md**: Contoh konfigurasi services dan routes
+- **SERVER_SETUP.md**: Panduan setup di server internal
+- **SETUP_GUIDE.md**: Panduan lengkap dari install sampai konfigurasi database
 
 ## 🔧 Konfigurasi Database
 - **Host**: localhost
@@ -70,17 +91,14 @@ cd /Users/falaqmsi/Documents/GitHub/kong-api-gateway
 
 ## 🛠️ Management Commands
 ```bash
-# Start Kong
-./scripts/start-kong.sh
+# Start Kong dengan Docker
+./scripts/start-kong-docker.sh
 
 # Stop Kong
-./scripts/stop-kong.sh
-
-# Check Status
-./scripts/status-kong.sh
+./scripts/stop-kong-docker.sh
 
 # Test Kong
-./scripts/test-kong.sh
+./scripts/test-kong-docker.sh
 ```
 
 ## 📞 Support
