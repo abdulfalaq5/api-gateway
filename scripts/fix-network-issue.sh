@@ -26,7 +26,7 @@ docker network create kong-network 2>/dev/null || true
 
 # Start only Kong (skip migrations for now)
 echo "🚀 Starting Kong only..."
-docker-compose -f docker-compose.server.yml up -d kong --no-deps
+docker-compose -f docker-compose.server.yml up -d kong
 
 # Wait
 echo "⏳ Waiting for Kong..."

@@ -1,84 +1,112 @@
 #!/bin/bash
 
-# Script untuk start Kong di server internal
-# File: scripts/start-kong-server.sh
+# Start Kong Server - Simple and Correct Way
+echo "🚀 Starting Kong Server..."
 
-set -e
+# Colors
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+NC='\033[0m'
 
-echo "🖥️  Starting Kong API Gateway (SERVER Environment)..."
+print_status() {
+    echo -e "${BLUE}[INFO]${NC} $1"
+}
 
-# Switch ke konfigurasi server
-./scripts/switch-kong-config.sh server
+print_success() {
+    echo -e "${GREEN}[SUCCESS]${NC} $1"
+}
 
-# Cek apakah Docker berjalan
-if ! docker info &> /dev/null; then
-    echo "❌ Docker tidak berjalan. Silakan jalankan Docker terlebih dahulu."
-    echo "   sudo systemctl start docker"
-    exit 1
-fi
+print_warning() {
+    echo -e "${YELLOW}[WARNING]${NC} $1"
+}
 
-echo "✅ Docker sudah berjalan"
+print_error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+}
 
-# Test koneksi ke database server
-echo "🔍 Testing database connection..."
-DB_HOST="162.11.0.232"
-DB_PORT="5432"
-DB_USER="sharedpg"
-DB_PASSWORD="pgpass"
-DB_NAME="kong"
+# Step 1: Clean up existing containers
+print_status "Cleaning up existing containers..."
+docker-compose -f docker-compose.server.yml down 2>/dev/null || true
+docker rm -f kong-gateway kong-migrations 2>/dev/null || true
 
-if command -v telnet >/dev/null 2>&1; then
-    if timeout 5 telnet $DB_HOST $DB_PORT </dev/null 2>/dev/null; then
-        echo "✅ Database server accessible"
-    else
-        echo "❌ Database server tidak accessible!"
-        echo "   Host: $DB_HOST:$DB_PORT"
-        echo "   Cek koneksi network dan firewall"
+# Step 2: Clean networks
+print_status "Cleaning Docker networks..."
+docker network prune -f
+
+# Step 3: Start Kong with server configuration
+print_status "Starting Kong with server configuration..."
+docker-compose -f docker-compose.server.yml up -d kong
+
+# Step 4: Wait for Kong to start
+print_status "Waiting for Kong to start..."
+sleep 20
+
+# Step 5: Check if Kong is running
+print_status "Checking Kong status..."
+if docker ps | grep -q kong-gateway; then
+    print_success "Kong container is running"
+    
+    # Check Kong health
+    print_status "Checking Kong health..."
+    health_attempts=0
+    max_attempts=30
+    
+    while [[ $health_attempts -lt $max_attempts ]]; do
+        if curl -s http://localhost:9546/status > /dev/null 2>&1; then
+            print_success "Kong is healthy and responding"
+            break
+        fi
+        
+        print_status "Waiting for Kong health check... (attempt $((health_attempts + 1))/$max_attempts)"
+        sleep 2
+        ((health_attempts++))
+    done
+    
+    if [[ $health_attempts -eq $max_attempts ]]; then
+        print_error "Kong failed to become healthy"
+        print_status "Kong logs:"
+        docker logs kong-gateway --tail 20
         exit 1
     fi
+    
+    # Step 6: Check routes
+    print_status "Checking Kong routes..."
+    routes=$(curl -s http://localhost:9546/routes 2>/dev/null)
+    route_count=$(echo "$routes" | jq '.data | length' 2>/dev/null || echo "0")
+    
+    if [[ "$route_count" -gt 0 ]]; then
+        print_success "Found $route_count routes"
+        echo "$routes" | jq '.data[].name' 2>/dev/null || true
+    else
+        print_warning "No routes found - this is normal for fresh start"
+    fi
+    
+    # Step 7: Test basic connectivity
+    print_status "Testing Kong proxy..."
+    if curl -s http://localhost:9545/ > /dev/null 2>&1; then
+        print_success "Kong proxy is responding"
+    else
+        print_warning "Kong proxy test failed"
+    fi
+    
+    echo ""
+    print_success "✅ Kong Server is now running!"
+    echo ""
+    echo "📍 Kong Endpoints:"
+    echo "   - Proxy: http://localhost:9545"
+    echo "   - Admin API: http://localhost:9546"
+    echo "   - Admin GUI: http://localhost:9547"
+    echo ""
+    echo "🧪 Test SSO endpoint:"
+    echo "   curl -X POST http://localhost:9545/api/auth/sso/login \\"
+    echo "     -H \"Content-Type: application/json\" \\"
+    echo "     -d '{\"email\": \"admin@sso-testing.com\", \"password\": \"admin123\", \"client_id\": \"string\", \"redirect_uri\": \"string\"}'"
+    
 else
-    echo "⚠️  telnet not available, skipping connection test"
-fi
-
-# Stop Kong yang mungkin sedang berjalan
-echo "🛑 Stopping existing Kong containers..."
-docker-compose down 2>/dev/null || true
-
-# Jalankan Kong dengan konfigurasi server
-echo "🚀 Starting Kong with SERVER configuration..."
-docker-compose up -d
-
-echo "⏳ Waiting for Kong to start..."
-sleep 15
-
-# Cek status Kong
-echo "🔍 Checking Kong status..."
-if docker-compose ps | grep -q "kong-gateway.*Up"; then
-    echo "✅ Kong berhasil dijalankan di SERVER environment!"
-    echo ""
-    echo "📋 Endpoints yang tersedia:"
-    echo "   - Kong Proxy: http://localhost:9545"
-    echo "   - Kong Admin API: http://localhost:9546"
-    echo "   - Kong Admin GUI: http://localhost:9547"
-    echo ""
-    echo "🔍 Untuk melihat log Kong:"
-    echo "   docker-compose logs -f kong"
-    echo ""
-    echo "🛑 Untuk menghentikan Kong:"
-    echo "   docker-compose down"
-    echo ""
-    echo "🧪 Untuk test Kong:"
-    echo "   curl http://localhost:9545/"
-    echo ""
-    echo "📝 Deploy konfigurasi:"
-    echo "   ./scripts/deploy-kong-config-db.sh"
-else
-    echo "❌ Kong gagal dijalankan. Cek log untuk detail:"
-    echo "   docker-compose logs kong"
-    echo ""
-    echo "🔧 Troubleshooting:"
-    echo "   1. Cek koneksi database: telnet $DB_HOST $DB_PORT"
-    echo "   2. Cek credentials database"
-    echo "   3. Cek firewall rules"
+    print_error "Kong container failed to start"
+    print_status "Docker Compose logs:"
+    docker-compose -f docker-compose.server.yml logs kong
     exit 1
 fi

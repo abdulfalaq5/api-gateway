@@ -1,34 +1,16 @@
-version: '3.8'
-
 services:
-  kong-migrations:
-    image: kong:3.4
-    container_name: kong-migrations
-    environment:
-      KONG_DATABASE: postgres
-      KONG_PG_HOST: 162.11.0.232
-      KONG_PG_PORT: 5432
-      KONG_PG_USER: sharedpg
-      KONG_PG_PASSWORD: pgpass
-      KONG_PG_DATABASE: kong
-    command: kong migrations bootstrap
-    restart: "no"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-
   kong:
     image: kong:3.4
     container_name: kong-gateway
     environment:
-      KONG_DATABASE: postgres
-      KONG_PG_HOST: 162.11.0.232
-      KONG_PG_PORT: 5432
-      KONG_PG_USER: sharedpg
-      KONG_PG_PASSWORD: pgpass
-      KONG_PG_DATABASE: kong
+      # Use db-less mode for server deployment
+      KONG_DATABASE: "off"
+      KONG_DECLARATIVE_CONFIG: /kong/kong.yml
+      # Listen addresses
       KONG_PROXY_LISTEN: 0.0.0.0:9545
       KONG_ADMIN_LISTEN: 0.0.0.0:9546
       KONG_ADMIN_GUI_LISTEN: 0.0.0.0:9547
+      # Logging
       KONG_PROXY_ACCESS_LOG: /dev/stdout
       KONG_ADMIN_ACCESS_LOG: /dev/stdout
       KONG_PROXY_ERROR_LOG: /dev/stderr
@@ -41,17 +23,12 @@ services:
       KONG_UPSTREAM_CONNECT_TIMEOUT: 60000
       KONG_UPSTREAM_SEND_TIMEOUT: 60000
       KONG_UPSTREAM_READ_TIMEOUT: 60000
-      # Declarative config
-      KONG_DECLARATIVE_CONFIG: /usr/local/kong/kong.yml
-    depends_on:
-      kong-migrations:
-        condition: service_completed_successfully
     ports:
       - "9545:9545"
       - "9546:9546"
       - "9547:9547"
     volumes:
-      - ./config/kong.yml:/usr/local/kong/kong.yml:ro
+      - ./config/kong.yml:/kong/kong.yml:ro
     healthcheck:
       test: ["CMD", "kong", "health"]
       interval: 10s
