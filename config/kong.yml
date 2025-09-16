@@ -16,7 +16,7 @@ services:
         strip_path: true
 
   - name: sso-service
-    url: http://host.docker.internal:9518
+    url: http://162.11.0.232:9518
     routes:
       - name: sso-login-routes
         paths:
