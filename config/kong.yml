@@ -16,7 +16,7 @@ services:
         strip_path: true
 
   - name: sso-service
-    url: http://172.17.0.1:9588
+    url: https://api-gate.motorsights.com
     routes:
       - name: sso-login-routes
         paths:
