@@ -40,7 +40,7 @@ services:
         strip_path: false
       - name: sso-profile-routes
         paths:
-          - /auth/sso/profil
+          - /api/auth/sso/profil
         methods:
           - GET
           - PUT
