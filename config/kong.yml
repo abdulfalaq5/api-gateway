@@ -37,7 +37,14 @@ services:
         methods:
           - GET
           - OPTIONS
-        strip_path: true
+        strip_path: false
+      - name: sso-profile-routes
+        paths:
+          - /auth/sso/profil
+        methods:
+          - GET
+          - PUT
+        strip_path: false
       - name: sso-menus-routes
         paths:
           - /api/menus
@@ -47,7 +54,7 @@ services:
           - PUT
           - DELETE
           - OPTIONS
-        strip_path: true
+        strip_path: false
     plugins:
       - name: rate-limiting
         config:
