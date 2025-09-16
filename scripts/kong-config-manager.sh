@@ -73,14 +73,47 @@ deploy_config() {
     # Copy kong.yml to server
     copy_to_server "config/kong.yml" "$SERVER_DIR/config/kong.yml"
     
-    # Restart Kong to load new config
-    print_status "Restarting Kong to load new configuration..."
-    execute_remote "docker-compose -f docker-compose.server.yml restart kong"
+    # Clean restart Kong to avoid cache issues
+    print_status "Performing clean restart to avoid cache issues..."
+    
+    # Stop Kong container
+    execute_remote "docker-compose -f docker-compose.server.yml stop kong"
+    
+    # Remove Kong container completely
+    execute_remote "docker rm -f kong-gateway 2>/dev/null || true"
+    
+    # Clean up networks
+    execute_remote "docker network prune -f"
+    
+    # Start Kong with fresh state
+    execute_remote "docker-compose -f docker-compose.server.yml up -d kong"
     
     # Wait for Kong to be ready
-    sleep 15
+    print_status "Waiting for Kong to be ready..."
+    sleep 20
     
     # Check health
+    health_attempts=0
+    max_attempts=30
+    
+    while [[ $health_attempts -lt $max_attempts ]]; do
+        if execute_remote "curl -s http://localhost:9546/status > /dev/null 2>&1"; then
+            print_success "Kong is healthy"
+            break
+        fi
+        
+        print_status "Waiting for Kong health check... (attempt $((health_attempts + 1))/$max_attempts)"
+        sleep 3
+        ((health_attempts++))
+    done
+    
+    if [[ $health_attempts -eq $max_attempts ]]; then
+        print_error "Kong failed to become healthy"
+        execute_remote "docker logs kong-gateway --tail 20"
+        return 1
+    fi
+    
+    # Show Kong status
     execute_remote "curl -s http://localhost:9546/status | jq '.server'"
     
     # Verify routes
@@ -88,10 +121,31 @@ deploy_config() {
     
     if [[ "$route_count" -gt 0 ]]; then
         print_success "Configuration deployed successfully! Found $route_count routes."
+        
+        # Show route details
+        print_status "Route details:"
+        execute_remote "curl -s http://localhost:9546/routes | jq '.data[].name'"
+        
+        # Show service details
+        print_status "Service details:"
+        execute_remote "curl -s http://localhost:9546/services | jq '.data[].name'"
+        
     else
         print_error "Configuration deployment failed! No routes found."
         return 1
     fi
+}
+
+# Function to deploy config with cache cleaning
+deploy_with_cache_clean() {
+    print_status "Deploying Kong configuration with cache cleaning..."
+    
+    # Copy kong.yml to server
+    copy_to_server "config/kong.yml" "$SERVER_DIR/config/kong.yml"
+    
+    # Use the dedicated cache fix script
+    print_status "Using cache fix script for clean deployment..."
+    execute_remote "./scripts/fix-kong-cache.sh deploy"
 }
 
 # Function to add service to kong.yml
@@ -204,6 +258,7 @@ show_help() {
     echo "  show                              - Show current configuration"
     echo "  backup                            - Backup current configuration"
     echo "  deploy                            - Deploy configuration to Kong"
+    echo "  deploy-clean                      - Deploy configuration with cache cleaning"
     echo "  add-service <name> <url> <path> [methods] - Add service to kong.yml"
     echo "  remove-service <name>             - Remove service from kong.yml"
     echo ""
@@ -213,6 +268,7 @@ show_help() {
     echo "  $0 add-service my-api http://backend:3000 /api/users GET,POST"
     echo "  $0 remove-service my-api"
     echo "  $0 deploy"
+    echo "  $0 deploy-clean"
 }
 
 # Main execution
@@ -228,6 +284,9 @@ main() {
             ;;
         "deploy")
             deploy_config
+            ;;
+        "deploy-clean")
+            deploy_with_cache_clean
             ;;
         "add-service")
             add_service "$2" "$3" "$4" "$5"
