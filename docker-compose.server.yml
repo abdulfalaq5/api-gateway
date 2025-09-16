@@ -13,6 +13,8 @@ services:
       KONG_PG_DATABASE: kong
     command: kong migrations bootstrap
     restart: "no"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   kong:
     image: kong:3.4
@@ -45,3 +47,5 @@ services:
       timeout: 10s
       retries: 10
     restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
