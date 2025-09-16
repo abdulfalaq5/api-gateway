@@ -34,6 +34,15 @@ services:
       KONG_PROXY_ERROR_LOG: /dev/stderr
       KONG_ADMIN_ERROR_LOG: /dev/stderr
       KONG_ADMIN_GUI_ERROR_LOG: /dev/stderr
+      # Timeout settings
+      KONG_PROXY_CONNECT_TIMEOUT: 60000
+      KONG_PROXY_SEND_TIMEOUT: 60000
+      KONG_PROXY_READ_TIMEOUT: 60000
+      KONG_UPSTREAM_CONNECT_TIMEOUT: 60000
+      KONG_UPSTREAM_SEND_TIMEOUT: 60000
+      KONG_UPSTREAM_READ_TIMEOUT: 60000
+      # Declarative config
+      KONG_DECLARATIVE_CONFIG: /usr/local/kong/kong.yml
     depends_on:
       kong-migrations:
         condition: service_completed_successfully
@@ -41,6 +50,8 @@ services:
       - "9545:9545"
       - "9546:9546"
       - "9547:9547"
+    volumes:
+      - ./config/kong.yml:/usr/local/kong/kong.yml:ro
     healthcheck:
       test: ["CMD", "kong", "health"]
       interval: 10s
