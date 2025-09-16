@@ -2,6 +2,37 @@
 
 ## 🚨 Masalah Umum dan Solusi
 
+### Masalah: SSO Service Timeout
+
+**Gejala:**
+- SSO API bekerja langsung: `https://api-gate.motorsights.com/api/auth/sso/login`
+- SSO API gagal melalui Kong: `https://services.motorsights.com/api/auth/sso/login`
+- Log Kong menunjukkan: `upstream timed out (110: Connection timed out)`
+- Error duplicate key: `duplicate key value violates unique constraint`
+
+**Solusi Cepat:**
+```bash
+# Jalankan script fix otomatis
+./scripts/fix-kong-sso-issues.sh
+```
+
+**Solusi Manual:**
+```bash
+# 1. Test connectivity ke SSO service
+./scripts/test-sso-connectivity.sh
+
+# 2. Clean database dari konfigurasi duplikat
+./scripts/clean-kong-database.sh
+
+# 3. Fix upstream configuration
+./scripts/fix-sso-upstream.sh
+```
+
+**Root Cause:**
+- Upstream URL tidak accessible dari container Kong
+- Konfigurasi duplikat di database Kong
+- Timeout settings terlalu rendah
+
 ### Masalah: Curl Gagal di Server
 
 **Gejala:**

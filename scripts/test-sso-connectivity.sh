@@ -1,62 +1,118 @@
 #!/bin/bash
 
-# Script untuk testing connectivity ke SSO service
-# Author: Kong API Gateway Team
-# Description: Test konektivitas ke SSO service dari Kong container
+# Script untuk test connectivity ke SSO service
+# File: scripts/test-sso-connectivity.sh
 
-echo "=== Testing SSO Service Connectivity ==="
-echo "Timestamp: $(date)"
-echo
+set -e
 
-# Test dari host machine
-echo "1. Testing dari host machine ke SSO service..."
-echo "   Target: http://172.17.0.1:9588/api/auth/sso/login"
-echo
+echo "🧪 Testing SSO Service Connectivity..."
 
-# Test dengan curl
-echo "   Testing dengan curl:"
-curl -v --connect-timeout 10 --max-time 30 \
-  -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"test": "connectivity"}' \
-  http://172.17.0.1:9588/api/auth/sso/login 2>&1 | head -20
+# Fungsi untuk test endpoint
+test_endpoint() {
+    local url=$1
+    local name=$2
+    local timeout=${3:-10}
+    
+    echo "   Testing $name: $url"
+    
+    if curl -s --connect-timeout $timeout --max-time $timeout "$url" > /dev/null 2>&1; then
+        echo "     ✅ Accessible"
+        return 0
+    else
+        echo "     ❌ Not accessible"
+        return 1
+    fi
+}
 
-echo
-echo "   Testing dengan telnet:"
-timeout 10 telnet 172.17.0.1 9588 2>&1 | head -5
+# Test endpoints yang mungkin
+echo "🔍 Testing possible SSO endpoints..."
 
-echo
-echo "2. Testing dari Kong container..."
-echo "   Executing test dari dalam Kong container..."
+endpoints=(
+    "https://api-gate.motorsights.com/api/auth/sso/login|Direct API Gateway"
+    "http://localhost:9588/api/auth/sso/login|Localhost:9588"
+    "http://host.docker.internal:9588/api/auth/sso/login|Docker Host Internal:9588"
+    "http://172.17.0.1:9588/api/auth/sso/login|Docker Bridge:9588"
+    "http://localhost:3000/api/auth/sso/login|Localhost:3000"
+    "http://localhost:8080/api/auth/sso/login|Localhost:8080"
+)
 
-# Test dari dalam Kong container
-docker exec kong-gateway sh -c "
-  echo '   Testing dengan curl dari Kong container:'
-  curl -v --connect-timeout 10 --max-time 30 \
-    -X POST \
-    -H 'Content-Type: application/json' \
-    -d '{\"test\": \"connectivity\"}' \
-    http://172.17.0.1:9588/api/auth/sso/login 2>&1 | head -20
-  
-  echo
-  echo '   Testing dengan telnet dari Kong container:'
-  timeout 10 telnet 172.17.0.1 9588 2>&1 | head -5
-"
+accessible_endpoints=()
 
-echo
-echo "3. Checking Kong service configuration..."
-echo "   Checking Kong services:"
-docker exec kong-gateway kong config db_export 2>/dev/null | grep -A 10 -B 5 "sso-service" || echo "   Service tidak ditemukan dalam database"
+for endpoint_info in "${endpoints[@]}"; do
+    IFS='|' read -r url name <<< "$endpoint_info"
+    if test_endpoint "$url" "$name"; then
+        accessible_endpoints+=("$url|$name")
+    fi
+done
 
-echo
-echo "4. Checking Kong routes..."
-echo "   Checking Kong routes:"
-docker exec kong-gateway kong config db_export 2>/dev/null | grep -A 10 -B 5 "sso-login-routes" || echo "   Route tidak ditemukan dalam database"
+echo ""
+echo "📊 Connectivity Test Results:"
+echo "   Total endpoints tested: ${#endpoints[@]}"
+echo "   Accessible endpoints: ${#accessible_endpoints[@]}"
 
-echo
-echo "=== Test Complete ==="
-echo "Jika semua test gagal, kemungkinan masalah:"
-echo "1. SSO service tidak berjalan di 172.17.0.1:9588"
-echo "2. Firewall memblokir koneksi"
-echo "3. Network configuration tidak benar"
-echo "4. SSO service tidak merespons dengan benar"
+if [ ${#accessible_endpoints[@]} -eq 0 ]; then
+    echo ""
+    echo "❌ Tidak ada endpoint SSO yang accessible!"
+    echo ""
+    echo "💡 Troubleshooting steps:"
+    echo "   1. Pastikan SSO service sedang berjalan"
+    echo "   2. Cek firewall dan network configuration"
+    echo "   3. Verifikasi port yang digunakan SSO service"
+    echo "   4. Cek apakah SSO service menggunakan HTTPS atau HTTP"
+    echo ""
+    echo "🔧 Manual testing:"
+    echo "   curl -v https://api-gate.motorsights.com/api/auth/sso/login"
+    echo "   curl -v http://localhost:9588/api/auth/sso/login"
+    echo "   curl -v http://host.docker.internal:9588/api/auth/sso/login"
+    exit 1
+else
+    echo ""
+    echo "✅ Found accessible endpoints:"
+    for endpoint_info in "${accessible_endpoints[@]}"; do
+        IFS='|' read -r url name <<< "$endpoint_info"
+        echo "   - $name: $url"
+    done
+    
+    # Rekomendasikan endpoint terbaik
+    best_endpoint=$(echo "${accessible_endpoints[0]}" | cut -d'|' -f1)
+    best_name=$(echo "${accessible_endpoints[0]}" | cut -d'|' -f2)
+    
+    echo ""
+    echo "💡 Recommended upstream URL: $best_endpoint ($best_name)"
+    echo ""
+    echo "🔧 To use this endpoint, update config/env.sh:"
+    echo "   SSO_UPSTREAM_URL=\"$best_endpoint\""
+    echo ""
+    echo "🔄 Then run:"
+    echo "   ./scripts/fix-sso-upstream.sh"
+fi
+
+# Test Kong proxy jika Kong sedang berjalan
+echo ""
+echo "🧪 Testing Kong Proxy (if Kong is running)..."
+
+if docker-compose ps | grep -q "kong-gateway.*Up"; then
+    echo "   Kong is running, testing proxy endpoint..."
+    
+    # Test Kong proxy
+    if curl -s --connect-timeout 5 http://localhost:9545/ > /dev/null 2>&1; then
+        echo "   ✅ Kong proxy accessible at http://localhost:9545"
+        
+        # Test SSO endpoint melalui Kong
+        echo "   Testing SSO endpoint through Kong..."
+        if curl -s --connect-timeout 10 -X POST http://localhost:9545/api/auth/sso/login \
+          -H "Content-Type: application/json" \
+          -d '{"email":"test@test.com","password":"test","client_id":"test","redirect_uri":"test"}' > /dev/null 2>&1; then
+            echo "   ✅ SSO endpoint accessible through Kong"
+        else
+            echo "   ⚠️  SSO endpoint timeout through Kong (check upstream configuration)"
+        fi
+    else
+        echo "   ❌ Kong proxy not accessible"
+    fi
+else
+    echo "   Kong is not running"
+fi
+
+echo ""
+echo "✅ Connectivity test completed!"

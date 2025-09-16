@@ -17,6 +17,9 @@ services:
 
   - name: sso-service
     url: https://api-gate.motorsights.com
+    connect_timeout: 60000
+    write_timeout: 60000
+    read_timeout: 60000
     routes:
       - name: sso-login-routes
         paths:
