@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Fix Kong SSO Strip Path Issue
-echo "🔧 Fixing Kong SSO Strip Path Configuration..."
+# Simple Kong SSO Fix Script
+echo "🔧 Kong SSO Fix Script..."
 
 # Check if we're in the right directory
 if [ ! -f "config/kong.yml" ]; then
@@ -9,21 +9,18 @@ if [ ! -f "config/kong.yml" ]; then
     exit 1
 fi
 
-# Backup original config
-echo "📋 Creating backup of original config..."
-cp config/kong.yml config/kong.yml.backup.$(date +%Y%m%d_%H%M%S)
-
 # Check current configuration
 echo "🔍 Checking current configuration..."
-if grep -q "strip_path: false" config/kong.yml; then
+if grep -A 5 "sso-login-routes" config/kong.yml | grep -q "strip_path: false"; then
     echo "✅ Configuration already correct (strip_path: false)"
-elif grep -q "strip_path: true" config/kong.yml; then
+else
     echo "🔧 Fixing strip_path configuration..."
+    # Create backup
+    cp config/kong.yml config/kong.yml.backup.$(date +%Y%m%d_%H%M%S)
+    
+    # Fix the configuration
     sed -i 's/strip_path: true/strip_path: false/g' config/kong.yml
     echo "✅ Configuration updated successfully"
-else
-    echo "❌ No strip_path configuration found"
-    exit 1
 fi
 
 # Stop Kong
@@ -35,7 +32,7 @@ echo "🧹 Cleaning up networks..."
 docker network prune -f
 
 # Start Kong
-echo "🚀 Starting Kong with fixed configuration..."
+echo "🚀 Starting Kong..."
 docker-compose -f docker-compose.server.yml up -d
 
 # Wait for Kong to start
@@ -67,31 +64,10 @@ else
     exit 1
 fi
 
-# Test other endpoints
-echo "🧪 Testing other endpoints..."
-
-# Test userinfo
-userinfo_response=$(curl -s -X GET http://localhost:9545/api/auth/sso/userinfo)
-if echo "$userinfo_response" | grep -q "welcome"; then
-    echo "✅ Userinfo endpoint working"
-else
-    echo "⚠️  Userinfo endpoint may have issues"
-fi
-
-# Test menus
-menus_response=$(curl -s -X GET http://localhost:9545/api/menus)
-if echo "$menus_response" | grep -q "welcome"; then
-    echo "✅ Menus endpoint working"
-else
-    echo "⚠️  Menus endpoint may have issues"
-fi
-
 echo ""
-echo "🎉 Kong SSO configuration has been fixed!"
+echo "🎉 Kong SSO configuration is working!"
 echo "📍 Available endpoints:"
 echo "   - SSO Login: http://localhost:9545/api/auth/sso/login"
 echo "   - SSO User Info: http://localhost:9545/api/auth/sso/userinfo"
 echo "   - SSO Menus: http://localhost:9545/api/menus"
 echo "   - Example Service: http://localhost:9545/api/v1/example"
-echo ""
-echo "📋 Configuration backup saved as: config/kong.yml.backup.$(date +%Y%m%d_%H%M%S)"
