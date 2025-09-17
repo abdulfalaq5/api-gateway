@@ -51,6 +51,7 @@ services:
         methods:
           - GET
           - PUT
+          - OPTIONS
         strip_path: false
       - name: sso-menus-routes
         paths:
