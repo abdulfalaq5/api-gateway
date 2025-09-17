@@ -132,7 +132,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
-       - name: sso-role-has-menu-permissions-routes
+      - name: sso-role-has-menu-permissions-routes
         paths:
           - /api/role-has-menu-permissions
         methods:
