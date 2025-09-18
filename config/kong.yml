@@ -87,14 +87,14 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
-       - name: sso-companies-get-routes
+      - name: sso-companies-get-routes
         paths:
           - /api/companies/get
         methods:
           - POST
           - OPTIONS
         strip_path: false
-       - name: sso-companies-create-routes
+      - name: sso-companies-create-routes
         paths:
           - /api/companies/create
         methods:
