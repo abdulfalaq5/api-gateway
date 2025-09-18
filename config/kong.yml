@@ -207,6 +207,20 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      - name: sso-users-get-routes
+        paths:
+          - /api/users/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-users-create-routes
+        paths:
+          - /api/users/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
       - name: sso-menu-has-permissions-routes
         paths:
           - /api/menu-has-permissions
