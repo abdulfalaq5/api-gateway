@@ -221,6 +221,30 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+      - name: sso-titles-routes
+        paths:
+          - /api/titles
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+       - name: sso-titles-get-routes
+        paths:
+          - /api/titles/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+       - name: sso-titles-create-routes
+        paths:
+          - /api/titles/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
       - name: sso-menu-has-permissions-routes
         paths:
           - /api/menu-has-permissions
