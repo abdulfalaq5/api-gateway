@@ -63,6 +63,20 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      - name: sso-menus-get-routes
+        paths:
+          - /api/menus/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-menus-create-routes
+        paths:
+          - /api/menus/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
       - name: sso-companies-routes
         paths:
           - /api/companies
