@@ -231,14 +231,14 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
-       - name: sso-titles-get-routes
+      - name: sso-titles-get-routes
         paths:
           - /api/titles/get
         methods:
           - POST
           - OPTIONS
         strip_path: false
-       - name: sso-titles-create-routes
+      - name: sso-titles-create-routes
         paths:
           - /api/titles/create
         methods:
