@@ -135,6 +135,20 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      - name: sso-employees-get-routes
+        paths:
+          - /api/employees/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-employees-create-routes
+        paths:
+          - /api/employees/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
       - name: sso-roles-routes
         paths:
           - /api/roles
