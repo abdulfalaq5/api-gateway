@@ -87,6 +87,20 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+       - name: sso-companies-get-routes
+        paths:
+          - /api/companies/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+       - name: sso-companies-create-routes
+        paths:
+          - /api/companies/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
       - name: sso-departments-routes
         paths:
           - /api/departments
@@ -95,6 +109,20 @@ services:
           - POST
           - PUT
           - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: sso-departments-get-routes
+        paths:
+          - /api/departments/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-departments-create-routes
+        paths:
+          - /api/departments/create
+        methods:
+          - POST
           - OPTIONS
         strip_path: false
       - name: sso-employees-routes
