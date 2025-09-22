@@ -340,16 +340,16 @@ services:
           - POST
           - OPTIONS
         strip_path: false
-      - name: interview-departements-get-route
+      - name: interview-departments-get-route
         paths:
-          - /api/interview/departements/get
+          - /api/interview/departments/get
         methods:
           - POST
           - OPTIONS
         strip_path: false
-      - name: interview-departements-route
+      - name: interview-departments-route
         paths:
-          - /api/interview/departements
+          - /api/interview/departments
         methods:
           - POST
           - OPTIONS
