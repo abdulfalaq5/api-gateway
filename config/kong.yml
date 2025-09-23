@@ -536,6 +536,13 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      - name: interview-review-interviews-route
+        paths:
+          - /api/reviewInterview/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
 plugins:
   - name: rate-limiting
     config:
