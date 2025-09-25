@@ -320,6 +320,13 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      - name: power-bi-dashboards-route
+        paths:
+          - /api/powerbi/dashboard
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
   - name: interview-service
     url: https://api-interview.motorsights.com
     connect_timeout: 60000
