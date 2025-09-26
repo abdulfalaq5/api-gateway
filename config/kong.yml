@@ -4,6 +4,9 @@ _transform: true
 services:
   - name: example-service
     url: http://localhost:3000
+    connect_timeout: 60000
+    write_timeout: 60000
+    read_timeout: 60000
     routes:
       - name: example-route
         paths:
@@ -16,23 +19,41 @@ services:
         strip_path: true
 
   - name: sso-service
-    url: http://host.docker.internal:9518
+    url: https://api-gate.motorsights.com
+    connect_timeout: 60000
+    write_timeout: 60000
+    read_timeout: 60000
     routes:
-      - name: sso-login-routes
+      - name: sso-login-route
         paths:
           - /api/auth/sso/login
         methods:
           - POST
           - OPTIONS
         strip_path: false
-      - name: sso-userinfo-routes
+      - name: sso-logout-route
+        paths:
+          - /api/auth/sso/logout
+        methods:
+          - GET
+          - OPTIONS
+        strip_path: false
+      - name: sso-userinfo-route
         paths:
           - /api/auth/sso/userinfo
         methods:
           - GET
           - OPTIONS
-        strip_path: true
-      - name: sso-menus-routes
+        strip_path: false
+      - name: sso-profile-route
+        paths:
+          - /api/auth/sso/profil
+        methods:
+          - GET
+          - PUT
+          - OPTIONS
+        strip_path: false
+      - name: sso-menus-route
         paths:
           - /api/menus
         methods:
@@ -41,15 +62,500 @@ services:
           - PUT
           - DELETE
           - OPTIONS
-        strip_path: true
-    plugins:
-      - name: rate-limiting
-        config:
-          minute: 100
-          hour: 1000
-          policy: local
+        strip_path: false
+      - name: sso-menus-get-route
+        paths:
+          - /api/menus/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-menus-create-route
+        paths:
+          - /api/menus/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-companies-route
+        paths:
+          - /api/companies
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: sso-companies-get-route
+        paths:
+          - /api/companies/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-companies-create-route
+        paths:
+          - /api/companies/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-departments-route
+        paths:
+          - /api/departments
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: sso-departments-get-route
+        paths:
+          - /api/departments/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-departments-create-route
+        paths:
+          - /api/departments/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-employees-route
+        paths:
+          - /api/employees
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: sso-employees-get-route
+        paths:
+          - /api/employees/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-employees-create-route
+        paths:
+          - /api/employees/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-roles-route
+        paths:
+          - /api/roles
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: sso-roles-get-route
+        paths:
+          - /api/roles/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-roles-create-route
+        paths:
+          - /api/roles/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-permissions-route
+        paths:
+          - /api/permissions
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: sso-permissions-get-route
+        paths:
+          - /api/permissions/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-permissions-create-route
+        paths:
+          - /api/permissions/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-users-route
+        paths:
+          - /api/users
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: sso-users-get-route
+        paths:
+          - /api/users/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-users-create-route
+        paths:
+          - /api/users/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-titles-route
+        paths:
+          - /api/titles
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: sso-titles-get-route
+        paths:
+          - /api/titles/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-titles-create-route
+        paths:
+          - /api/titles/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-menu-has-permissions-route
+        paths:
+          - /api/menu-has-permissions
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: sso-role-has-menu-permissions-route
+        paths:
+          - /api/role-has-menu-permissions
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
 
+  - name: power-bi-service
+    url: https://api-report-management.motorsights.com
+    connect_timeout: 60000
+    write_timeout: 60000
+    read_timeout: 60000
+    routes:
+      - name: power-bi-categories-get-route
+        paths:
+          - /api/categories/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: power-bi-categories-create-route
+        paths:
+          - /api/categories/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: power-bi-categories-route
+        paths:
+          - /api/categories
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: power-bi-powerbi-get-route
+        paths:
+          - /api/powerbi/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: power-bi-powerbi-create-route
+        paths:
+          - /api/powerbi/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: power-bi-powerbi-route
+        paths:
+          - /api/powerbi
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: power-bi-dashboards-route
+        paths:
+          - /api/powerbi/dashboard
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+  - name: interview-service
+    url: https://api-interview.motorsights.com
+    connect_timeout: 60000
+    write_timeout: 60000
+    read_timeout: 60000
+    routes:
+      - name: interview-companies-get-route
+        paths:
+          - /api/interview/companies/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-companies-route
+        paths:
+          - /api/interview/companies
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-departments-get-route
+        paths:
+          - /api/interview/departments/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-departments-route
+        paths:
+          - /api/interview/departments
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-titles-get-route
+        paths:
+          - /api/interview/titles/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-titles-route
+        paths:
+          - /api/interview/titles
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-islands-get-route
+        paths:
+          - /api/interview/islands/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-islands-route
+        paths:
+          - /api/interview/islands
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-genders-get-route
+        paths:
+          - /api/interview/genders/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-genders-route
+        paths:
+          - /api/interview/genders
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-employees-get-route
+        paths:
+          - /api/interview/employees/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-employees-route
+        paths:
+          - /api/interview/employees
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-candidates-get-route
+        paths:
+          - /api/candidates/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-candidates-route
+        paths:
+          - /api/candidates
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: interview-notes-get-route
+        paths:
+          - /api/notes/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-notes-route
+        paths:
+          - /api/notes
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: interview-schedule-interviews-get-route
+        paths:
+          - /api/schedule-interviews/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-schedule-interviews-route
+        paths:
+          - /api/schedule-interviews
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: interview-interviews-get-route
+        paths:
+          - /api/interviews/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-interviews-route
+        paths:
+          - /api/interviews
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: interview-applicants-get-route
+        paths:
+          - /api/applicants/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-applicants-route
+        paths:
+          - /api/applicants
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: interview-public-applicants-get-route
+        paths:
+          - /api/public/applicants/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-background-checks-get-route
+        paths:
+          - /api/background-checks/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-background-checks-route
+        paths:
+          - /api/background-checks
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: interview-on-board-documents-get-route
+        paths:
+          - /api/on-board-documents/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-on-board-documents-route
+        paths:
+          - /api/on-board-documents
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: interview-review-interviews-route
+        paths:
+          - /api/reviewInterview/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
 plugins:
+  - name: rate-limiting
+    config:
+      minute: 100
+      hour: 1000
+      policy: local
   - name: cors
     config:
       origins:
