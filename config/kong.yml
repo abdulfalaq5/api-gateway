@@ -604,6 +604,174 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      - name: catalogs-catalogItems-get-route
+        paths:
+          - /api/catalogs/catalogItems/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-catalogItems-create-route
+        paths:
+          - /api/catalogs/catalogItems/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-catalogItems-route
+        paths:
+          - /api/catalogs/catalogItems
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-locations-get-route
+        paths:
+          - /api/catalogs/locations/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-locations-create-route
+        paths:
+          - /api/catalogs/locations/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-locations-route
+        paths:
+          - /api/catalogs/locations
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-driver_types-get-route
+        paths:
+          - /api/catalogs/driver_types/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-driver_types-create-route
+        paths:
+          - /api/catalogs/driver_types/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-driver_types-route
+        paths:
+          - /api/catalogs/driver_types
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-vehicle_weights-get-route
+        paths:
+          - /api/catalogs/vehicle_weights/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-vehicle_weights-create-route
+        paths:
+          - /api/catalogs/vehicle_weights/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-vehicle_weights-route
+        paths:
+          - /api/catalogs/vehicle_weights
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-brands-get-route
+        paths:
+          - /api/catalogs/brands/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-brands-create-route
+        paths:
+          - /api/catalogs/brands/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-brands-route
+        paths:
+          - /api/catalogs/brands
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-world_manufacturing_plants-get-route
+        paths:
+          - /api/catalogs/world_manufacturing_plants/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-world_manufacturing_plants-create-route
+        paths:
+          - /api/catalogs/world_manufacturing_plants/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-world_manufacturing_plants-route
+        paths:
+          - /api/catalogs/world_manufacturing_plants
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-productions-get-route
+        paths:
+          - /api/catalogs/productions/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-productions-create-route
+        paths:
+          - /api/catalogs/productions/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-productions-route
+        paths:
+          - /api/catalogs/productions
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
 plugins:
   - name: rate-limiting
     config:
