@@ -772,6 +772,13 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      - name: catalogs-sidebars-get-route
+        paths:
+          - /api/catalogs/sidebars/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
 plugins:
   - name: rate-limiting
     config:
