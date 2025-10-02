@@ -550,6 +550,60 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+  - name: ecatalogue-service
+    url: https://api-ecatalogue.motorsights.com
+    connect_timeout: 60000
+    write_timeout: 60000
+    read_timeout: 60000
+    routes:
+      - name: catalogs-categories-get-route
+        paths:
+          - /api/catalogs/categories/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-categories-create-route
+        paths:
+          - /api/catalogs/categories/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-categories-route
+        paths:
+          - /api/catalogs/categories
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-catalogs-get-route
+        paths:
+          - /api/catalogs/catalogs/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-catalogs-create-route
+        paths:
+          - /api/catalogs/catalogs/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-catalogs-route
+        paths:
+          - /api/catalogs/catalogs
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
 plugins:
   - name: rate-limiting
     config:
