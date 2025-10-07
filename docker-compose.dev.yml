@@ -36,4 +36,4 @@ services:
       retries: 10
     restart: unless-stopped
     extra_hosts:
-      - "host.docker.internal:host-gateway-dev"
+      - "host.docker.internal:host-gateway"
