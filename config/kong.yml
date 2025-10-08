@@ -779,6 +779,246 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+      - name: catalogs-type_cabine-get-route
+        paths:
+          - /api/catalogs/type_cabine/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-type_cabine-create-route
+        paths:
+          - /api/catalogs/type_cabine/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-type_cabine-route
+        paths:
+          - /api/catalogs/type_cabine
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-cabines-get-route
+        paths:
+          - /api/catalogs/cabines/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-cabines-create-route
+        paths:
+          - /api/catalogs/cabines/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-cabines-route
+        paths:
+          - /api/catalogs/cabines
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-type_engine-get-route
+        paths:
+          - /api/catalogs/type_engine/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-type_engine-create-route
+        paths:
+          - /api/catalogs/type_engine/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-type_engine-route
+        paths:
+          - /api/catalogs/type_engine
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-engines-get-route
+        paths:
+          - /api/catalogs/engines/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-engines-create-route
+        paths:
+          - /api/catalogs/engines/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-engines-route
+        paths:
+          - /api/catalogs/engines
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-type_transmission-get-route
+        paths:
+          - /api/catalogs/type_transmission/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-type_transmission-create-route
+        paths:
+          - /api/catalogs/type_transmission/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-type_transmission-route
+        paths:
+          - /api/catalogs/type_transmission
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-transmission-get-route
+        paths:
+          - /api/catalogs/transmission/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-transmission-create-route
+        paths:
+          - /api/catalogs/transmission/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-transmission-route
+        paths:
+          - /api/catalogs/transmission
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-type_axel-get-route
+        paths:
+          - /api/catalogs/type_axel/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-type_axel-create-route
+        paths:
+          - /api/catalogs/type_axel/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-type_axel-route
+        paths:
+          - /api/catalogs/type_axel
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-axel-get-route
+        paths:
+          - /api/catalogs/axel/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-axel-create-route
+        paths:
+          - /api/catalogs/axel/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-axel-route
+        paths:
+          - /api/catalogs/axel
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-type_steering-get-route
+        paths:
+          - /api/catalogs/type_steering/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-type_steering-create-route
+        paths:
+          - /api/catalogs/type_steering/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-type_steering-route
+        paths:
+          - /api/catalogs/type_steering
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-steering-get-route
+        paths:
+          - /api/catalogs/steering/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-steering-create-route
+        paths:
+          - /api/catalogs/steering/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-steering-route
+        paths:
+          - /api/catalogs/steering
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
 plugins:
   - name: rate-limiting
     config:
