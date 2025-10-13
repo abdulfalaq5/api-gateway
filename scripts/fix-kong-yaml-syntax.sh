@@ -98,29 +98,63 @@ fix_and_deploy() {
     print_success "Docker resources cleaned"
     echo ""
     
-    # Step 6: Verify DNS settings in docker-compose
-    print_status "6. Verifying DNS settings in docker-compose.server.yml..."
-    local dns_check=$(sshpass -p "$SERVER_PASS" ssh -o StrictHostKeyChecking=no "$SERVER_USER@$SERVER_IP" "cd $SERVER_DIR && grep -A 3 'dns:' docker-compose.server.yml | grep -c '8.8.8.8'")
+    # Step 6: Configure DNS settings - Force override Docker's internal resolver
+    print_status "6. Configuring DNS settings to bypass Docker internal resolver..."
     
-    if [[ "$dns_check" -gt 0 ]]; then
-        print_success "DNS settings already configured (8.8.8.8, 8.8.4.4, 1.1.1.1)"
-    else
-        print_warning "DNS settings not found, adding them..."
-        execute_remote "cp docker-compose.server.yml docker-compose.server.yml.backup.$timestamp"
-        
-        # Add DNS settings to docker-compose
-        execute_remote "cat > /tmp/dns_patch.yml << 'EOFPATCH'
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
-      - 1.1.1.1
-    dns_search: []
-EOFPATCH"
-        
-        # Insert DNS settings after volumes section
-        execute_remote "sed -i '/volumes:/a\\    dns:\\n      - 8.8.8.8\\n      - 8.8.4.4\\n      - 1.1.1.1\\n    dns_search: []' docker-compose.server.yml"
-        print_success "DNS settings added to docker-compose.server.yml"
-    fi
+    # Backup docker-compose
+    execute_remote "cp docker-compose.server.yml docker-compose.server.yml.backup.$timestamp"
+    
+    # Create custom resolv.conf
+    execute_remote "cat > /tmp/resolv.conf.kong << 'EOFRESOLV'
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+nameserver 1.1.1.1
+options ndots:0
+EOFRESOLV"
+    
+    # Copy to config directory
+    execute_remote "cp /tmp/resolv.conf.kong ./config/resolv.conf"
+    
+    # Update docker-compose to mount custom resolv.conf and set environment variables
+    execute_remote "cat > /tmp/update_dns.py << 'EOFPYTHON'
+import yaml
+import sys
+
+with open(\"docker-compose.server.yml\", \"r\") as f:
+    config = yaml.safe_load(f)
+
+# Add DNS configuration
+config[\"services\"][\"kong\"][\"dns\"] = [\"8.8.8.8\", \"8.8.4.4\", \"1.1.1.1\"]
+config[\"services\"][\"kong\"][\"dns_search\"] = []
+
+# Add Kong DNS resolver environment variable
+if \"environment\" not in config[\"services\"][\"kong\"]:
+    config[\"services\"][\"kong\"][\"environment\"] = {}
+
+config[\"services\"][\"kong\"][\"environment\"][\"KONG_DNS_RESOLVER\"] = \"8.8.8.8:53,8.8.4.4:53,1.1.1.1:53\"
+config[\"services\"][\"kong\"][\"environment\"][\"KONG_DNS_ORDER\"] = \"LAST,A,CNAME\"
+
+# Add resolv.conf volume mount
+if \"volumes\" not in config[\"services\"][\"kong\"]:
+    config[\"services\"][\"kong\"][\"volumes\"] = []
+
+# Check if resolv.conf mount already exists
+resolv_mount = \"./config/resolv.conf:/etc/resolv.conf:ro\"
+if resolv_mount not in config[\"services\"][\"kong\"][\"volumes\"]:
+    config[\"services\"][\"kong\"][\"volumes\"].append(resolv_mount)
+
+with open(\"docker-compose.server.yml\", \"w\") as f:
+    yaml.dump(config, f, default_flow_style=False, sort_keys=False)
+
+print(\"DNS configuration updated successfully\")
+EOFPYTHON"
+    
+    execute_remote "python3 /tmp/update_dns.py"
+    
+    print_success "DNS settings configured:"
+    print_success "  - DNS servers: 8.8.8.8, 8.8.4.4, 1.1.1.1"
+    print_success "  - Kong DNS resolver: KONG_DNS_RESOLVER"
+    print_success "  - Custom resolv.conf mounted"
     echo ""
     
     # Step 7: Start Kong with fixed configuration
@@ -157,15 +191,36 @@ EOFPATCH"
     echo ""
     
     # Step 9: Verify DNS resolution in Kong container
-    print_status "9. Verifying DNS resolution in Kong container..."
+    print_status "9. Verifying DNS configuration in Kong container..."
+    echo ""
     
-    # Check DNS resolution for backend services
+    # Check /etc/resolv.conf
+    print_status "Checking /etc/resolv.conf in Kong container:"
     execute_remote "docker exec kong-gateway cat /etc/resolv.conf"
+    echo ""
+    
+    # Check Kong DNS environment variables
+    print_status "Checking Kong DNS environment variables:"
+    execute_remote "docker exec kong-gateway env | grep KONG_DNS || echo 'KONG_DNS variables not found'"
+    echo ""
+    
+    # Verify DNS servers are accessible
+    print_status "Testing connectivity to DNS servers:"
+    execute_remote "docker exec kong-gateway sh -c 'nc -zv 8.8.8.8 53 2>&1' || echo 'Failed to reach 8.8.8.8:53'"
+    execute_remote "docker exec kong-gateway sh -c 'nc -zv 8.8.4.4 53 2>&1' || echo 'Failed to reach 8.8.4.4:53'"
+    execute_remote "docker exec kong-gateway sh -c 'nc -zv 1.1.1.1 53 2>&1' || echo 'Failed to reach 1.1.1.1:53'"
+    echo ""
+    
+    # Test DNS resolution for backend services
     print_status "Testing DNS resolution for backend.motorsightsystems.com..."
-    execute_remote "docker exec kong-gateway nslookup backend.motorsightsystems.com 2>&1 || true"
+    execute_remote "docker exec kong-gateway nslookup backend.motorsightsystems.com 2>&1 || echo 'DNS resolution failed'"
+    echo ""
+    
     print_status "Testing DNS resolution for sso.motorsightsystems.com..."
-    execute_remote "docker exec kong-gateway nslookup sso.motorsightsystems.com 2>&1 || true"
-    print_success "DNS resolution verified"
+    execute_remote "docker exec kong-gateway nslookup sso.motorsightsystems.com 2>&1 || echo 'DNS resolution failed'"
+    echo ""
+    
+    print_success "DNS verification completed"
     echo ""
     
     # Step 10: Final verification

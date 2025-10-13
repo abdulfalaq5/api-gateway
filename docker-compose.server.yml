@@ -23,12 +23,16 @@ services:
       KONG_UPSTREAM_CONNECT_TIMEOUT: 60000
       KONG_UPSTREAM_SEND_TIMEOUT: 60000
       KONG_UPSTREAM_READ_TIMEOUT: 60000
+      # DNS Configuration - Force Kong to use specific DNS servers
+      KONG_DNS_RESOLVER: "8.8.8.8:53,8.8.4.4:53,1.1.1.1:53"
+      KONG_DNS_ORDER: "LAST,A,CNAME"
     ports:
       - "9545:9545"
       - "9546:9546"
       - "9547:9547"
     volumes:
       - ./config/kong.yml:/kong/kong.yml:ro
+      - ./config/resolv.conf:/etc/resolv.conf:ro
     # DNS Configuration - Fix untuk backend connectivity issues
     # Bypass Docker's internal DNS resolver
     dns:
