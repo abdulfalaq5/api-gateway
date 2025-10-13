@@ -19,7 +19,7 @@ services:
         strip_path: true
 
   - name: sso-service
-    url: https://api-gate.motorsights.com
+    url: http://host.docker.internal:9518
     connect_timeout: 60000
     write_timeout: 60000
     read_timeout: 60000
@@ -267,7 +267,7 @@ services:
         strip_path: false
 
   - name: power-bi-service
-    url: https://api-report-management.motorsights.com
+    url: http://host.docker.internal:9544
     connect_timeout: 60000
     write_timeout: 60000
     read_timeout: 60000
@@ -331,7 +331,7 @@ services:
           - OPTIONS
         strip_path: false
   - name: interview-service
-    url: https://api-interview.motorsights.com
+    url: http://host.docker.internal:9502
     connect_timeout: 60000
     write_timeout: 60000
     read_timeout: 60000
@@ -569,7 +569,7 @@ services:
           - OPTIONS
         strip_path: false
   - name: ecatalogue-service
-    url: https://api-ecatalogue.motorsights.com
+    url: http://host.docker.internal:9550
     connect_timeout: 60000
     write_timeout: 60000
     read_timeout: 60000
