@@ -30,10 +30,12 @@ services:
     volumes:
       - ./config/kong.yml:/kong/kong.yml:ro
     # DNS Configuration - Fix untuk backend connectivity issues
+    # Bypass Docker's internal DNS resolver
     dns:
       - 8.8.8.8      # Google DNS Primary
       - 8.8.4.4      # Google DNS Secondary
       - 1.1.1.1      # Cloudflare DNS
+    dns_search: []   # Disable DNS search domain
     healthcheck:
       test: ["CMD", "kong", "health"]
       interval: 10s
