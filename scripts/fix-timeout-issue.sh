@@ -28,19 +28,19 @@ echo "Waiting for Kong to start (15 seconds)..."
 sleep 15
 
 # Check if Kong is up
-KONG_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8001/status 2>/dev/null)
+KONG_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:9546/status 2>/dev/null)
 if [ "$KONG_STATUS" = "200" ]; then
     echo -e "${GREEN}✅ Kong restarted successfully${NC}"
 else
-    echo -e "${RED}❌ Kong may not be fully started yet. Check with: docker logs kong${NC}"
+    echo -e "${RED}❌ Kong may not be fully started yet. Check with: docker logs kong-gateway${NC}"
 fi
 echo ""
 
 # Fix 2: Check loaded services
 echo "2️⃣  Verifying Configuration Loaded:"
 echo "================================================"
-SERVICE_COUNT=$(curl -s http://localhost:8001/services 2>/dev/null | jq '.data | length' 2>/dev/null)
-ROUTE_COUNT=$(curl -s http://localhost:8001/routes 2>/dev/null | jq '.data | length' 2>/dev/null)
+SERVICE_COUNT=$(curl -s http://localhost:9546/services 2>/dev/null | jq '.data | length' 2>/dev/null)
+ROUTE_COUNT=$(curl -s http://localhost:9546/routes 2>/dev/null | jq '.data | length' 2>/dev/null)
 
 if [ -z "$SERVICE_COUNT" ] || [ "$SERVICE_COUNT" = "0" ]; then
     echo -e "${RED}❌ No services loaded!${NC}"
@@ -64,7 +64,7 @@ echo "Testing if Kong can reach backend services..."
 
 # Test SSO backend
 echo -n "SSO Service (api-gate.motorsights.com) ... "
-BACKEND_TEST=$(docker exec kong curl -s -o /dev/null -w "%{http_code}" --max-time 5 https://api-gate.motorsights.com 2>/dev/null)
+BACKEND_TEST=$(docker exec kong-gateway curl -s -o /dev/null -w "%{http_code}" --max-time 5 https://api-gate.motorsights.com 2>/dev/null)
 if [ -z "$BACKEND_TEST" ] || [ "$BACKEND_TEST" = "000" ]; then
     echo -e "${RED}❌ UNREACHABLE${NC}"
     echo "   This is likely the issue! Kong cannot reach backend."
@@ -72,8 +72,8 @@ if [ -z "$BACKEND_TEST" ] || [ "$BACKEND_TEST" = "000" ]; then
     echo -e "${YELLOW}💡 Possible solutions:${NC}"
     echo "   1. Check if backend service is up"
     echo "   2. Check firewall rules on server"
-    echo "   3. Check DNS resolution: docker exec kong nslookup api-gate.motorsights.com"
-    echo "   4. Try ping from Kong container: docker exec kong ping -c 3 api-gate.motorsights.com"
+    echo "   3. Check DNS resolution: docker exec kong-gateway nslookup api-gate.motorsights.com"
+    echo "   4. Try ping from Kong container: docker exec kong-gateway ping -c 3 api-gate.motorsights.com"
 else
     echo -e "${GREEN}✅ Reachable (HTTP $BACKEND_TEST)${NC}"
 fi
@@ -88,7 +88,7 @@ ENDPOINT_TEST=$(curl -s -o /dev/null -w "%{http_code}|%{time_total}" \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{}' \
-    http://localhost:8000/api/menus 2>/dev/null)
+    http://localhost:9545/api/menus 2>/dev/null)
 
 HTTP_CODE=$(echo "$ENDPOINT_TEST" | cut -d'|' -f1)
 TIME=$(echo "$ENDPOINT_TEST" | cut -d'|' -f2)
@@ -97,7 +97,7 @@ if [ -z "$HTTP_CODE" ] || [ "$HTTP_CODE" = "000" ]; then
     echo -e "${RED}❌ TIMEOUT - Endpoint not responding${NC}"
     echo ""
     echo -e "${YELLOW}💡 Next steps:${NC}"
-    echo "   1. Check Kong logs: docker logs kong --tail 50"
+    echo "   1. Check Kong logs: docker logs kong-gateway --tail 50"
     echo "   2. Check if backend service is down"
     echo "   3. Try increasing timeout in kong.yml (currently 60 seconds)"
 elif [ "$HTTP_CODE" = "504" ]; then
@@ -128,7 +128,7 @@ DOMAINS=("api-gate.motorsights.com" "api-report-management.motorsights.com")
 
 for domain in "${DOMAINS[@]}"; do
     echo -n "Resolving $domain ... "
-    RESOLVED=$(docker exec kong nslookup "$domain" 2>/dev/null | grep "Address:" | tail -1)
+    RESOLVED=$(docker exec kong-gateway nslookup "$domain" 2>/dev/null | grep "Address:" | tail -1)
     if [ -z "$RESOLVED" ]; then
         echo -e "${RED}❌ FAILED${NC}"
         DNS_ISSUE=1
@@ -166,7 +166,7 @@ echo "  4. Endpoint tested"
 echo "  5. DNS resolution checked"
 echo ""
 echo -e "${BLUE}📝 If issue persists:${NC}"
-echo "  1. Check Kong logs:     docker logs kong -f"
+echo "  1. Check Kong logs:     docker logs kong-gateway -f"
 echo "  2. Check backend status manually"
 echo "  3. Run full diagnostic: ./scripts/diagnose-timeout-issue.sh"
 echo "  4. Check server resources: docker stats"

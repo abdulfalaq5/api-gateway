@@ -3,8 +3,8 @@
 # Script untuk debugging Kong routes
 # Usage: ./debug-kong-routes.sh [kong-admin-url]
 
-KONG_ADMIN_URL="${1:-http://localhost:8001}"
-KONG_PROXY_URL="${2:-http://localhost:8000}"
+KONG_ADMIN_URL="${1:-http://localhost:9546}"
+KONG_PROXY_URL="${2:-http://localhost:9545}"
 
 echo "================================================"
 echo "🔍 KONG ROUTE DEBUGGING TOOL"

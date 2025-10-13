@@ -18,18 +18,18 @@ NC='\033[0m' # No Color
 # 1. Check if Kong container is running
 echo "1️⃣  Checking Kong Container Status:"
 echo "================================================"
-KONG_RUNNING=$(docker ps --filter "name=kong" --format "{{.Names}}" 2>/dev/null)
+KONG_RUNNING=$(docker ps --filter "name=kong-gateway" --format "{{.Names}}" 2>/dev/null)
 if [ -z "$KONG_RUNNING" ]; then
     echo -e "${RED}❌ Kong container is NOT running!${NC}"
     echo "   Trying to find stopped containers..."
-    docker ps -a --filter "name=kong" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+    docker ps -a --filter "name=kong-gateway" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
     echo ""
     echo -e "${YELLOW}💡 SOLUTION: Start Kong container${NC}"
     echo "   docker-compose up -d"
     exit 1
 else
     echo -e "${GREEN}✅ Kong container is running: $KONG_RUNNING${NC}"
-    docker ps --filter "name=kong" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+    docker ps --filter "name=kong-gateway" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
 fi
 echo ""
 
@@ -37,7 +37,7 @@ echo ""
 echo "2️⃣  Checking Kong Logs (last 30 lines):"
 echo "================================================"
 echo "Looking for errors..."
-ERRORS=$(docker logs kong 2>&1 | tail -30 | grep -i "error\|failed\|timeout" || echo "No recent errors found")
+ERRORS=$(docker logs kong-gateway-gateway 2>&1 | tail -30 | grep -i "error\|failed\|timeout" || echo "No recent errors found")
 if [ "$ERRORS" != "No recent errors found" ]; then
     echo -e "${RED}Found errors:${NC}"
     echo "$ERRORS"
@@ -49,7 +49,7 @@ echo ""
 # 3. Check Kong health
 echo "3️⃣  Checking Kong Health Status:"
 echo "================================================"
-KONG_HEALTH=$(curl -s --max-time 5 http://localhost:8001/status 2>/dev/null)
+KONG_HEALTH=$(curl -s --max-time 5 http://localhost:9546/status 2>/dev/null)
 if [ $? -eq 0 ]; then
     echo -e "${GREEN}✅ Kong Admin API is responsive${NC}"
     echo "$KONG_HEALTH" | jq '.' 2>/dev/null || echo "$KONG_HEALTH"
@@ -61,8 +61,8 @@ echo ""
 # 4. Check if kong.yml is loaded
 echo "4️⃣  Checking Kong Configuration:"
 echo "================================================"
-SERVICE_COUNT=$(curl -s --max-time 5 http://localhost:8001/services 2>/dev/null | jq '.data | length' 2>/dev/null)
-ROUTE_COUNT=$(curl -s --max-time 5 http://localhost:8001/routes 2>/dev/null | jq '.data | length' 2>/dev/null)
+SERVICE_COUNT=$(curl -s --max-time 5 http://localhost:9546/services 2>/dev/null | jq '.data | length' 2>/dev/null)
+ROUTE_COUNT=$(curl -s --max-time 5 http://localhost:9546/routes 2>/dev/null | jq '.data | length' 2>/dev/null)
 
 if [ -z "$SERVICE_COUNT" ] || [ "$SERVICE_COUNT" = "0" ]; then
     echo -e "${RED}❌ No services loaded! Config might not be loaded.${NC}"
@@ -117,7 +117,7 @@ DOMAINS=(
 
 for domain in "${DOMAINS[@]}"; do
     echo -n "Resolving $domain ... "
-    RESOLVED=$(docker exec kong nslookup "$domain" 2>/dev/null | grep "Address:" | tail -1 | awk '{print $2}')
+    RESOLVED=$(docker exec kong-gateway nslookup "$domain" 2>/dev/null | grep "Address:" | tail -1 | awk '{print $2}')
     if [ -z "$RESOLVED" ]; then
         echo -e "${RED}❌ DNS RESOLUTION FAILED${NC}"
     else
@@ -130,7 +130,7 @@ echo ""
 echo "7️⃣  Checking Server Resources:"
 echo "================================================"
 echo "Docker Stats (1 second sample):"
-docker stats --no-stream --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.MemPerc}}" kong 2>/dev/null || echo "Cannot get docker stats"
+docker stats --no-stream --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.MemPerc}}" kong-gateway 2>/dev/null || echo "Cannot get docker stats"
 echo ""
 
 # 8. Test Kong proxy with timeout
@@ -151,7 +151,7 @@ for endpoint_method in "${TEST_ENDPOINTS[@]}"; do
         -X "$method" \
         -H "Content-Type: application/json" \
         -d '{}' \
-        "http://localhost:8000$endpoint" 2>/dev/null)
+        "http://localhost:9545$endpoint" 2>/dev/null)
     
     HTTP_CODE=$(echo "$RESPONSE" | cut -d'|' -f1)
     TIME=$(echo "$RESPONSE" | cut -d'|' -f2)
@@ -202,7 +202,7 @@ if [ $ISSUES -eq 0 ]; then
     echo -e "${GREEN}Quick fixes to try:${NC}"
     echo "1. Restart Kong: docker-compose restart kong"
     echo "2. Check backend services status"
-    echo "3. Check Kong logs: docker logs kong -f"
+    echo "3. Check Kong logs: docker logs kong-gateway -f"
     echo "4. Increase timeout values in kong.yml if needed"
 fi
 
@@ -212,9 +212,9 @@ echo "✅ Diagnostic Complete!"
 echo "================================================"
 echo ""
 echo "📝 Additional Commands:"
-echo "  View Kong logs:        docker logs kong -f"
+echo "  View Kong logs:        docker logs kong-gateway -f"
 echo "  Restart Kong:          docker-compose restart kong"
 echo "  Full restart:          docker-compose down && docker-compose up -d"
-echo "  Check config:          curl http://localhost:8001/services"
+echo "  Check config:          curl http://localhost:9546/services"
 echo ""
 
