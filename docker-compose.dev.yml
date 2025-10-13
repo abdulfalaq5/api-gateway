@@ -29,6 +29,11 @@ services:
       - "9543:9543"
     volumes:
       - ./config/kong.yml:/kong/kong.yml:ro
+    # DNS Configuration - Fix untuk backend connectivity issues
+    dns:
+      - 8.8.8.8      # Google DNS Primary
+      - 8.8.4.4      # Google DNS Secondary
+      - 1.1.1.1      # Cloudflare DNS
     healthcheck:
       test: ["CMD", "kong", "health"]
       interval: 10s

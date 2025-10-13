@@ -41,6 +41,11 @@ services:
       - "9545:9545"
       - "9546:9546"
       - "9547:9547"
+    # DNS Configuration - Fix untuk backend connectivity issues
+    dns:
+      - 8.8.8.8      # Google DNS Primary
+      - 8.8.4.4      # Google DNS Secondary
+      - 1.1.1.1      # Cloudflare DNS
     healthcheck:
       test: ["CMD", "kong", "health"]
       interval: 10s
