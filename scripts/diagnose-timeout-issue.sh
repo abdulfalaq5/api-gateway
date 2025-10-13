@@ -37,7 +37,7 @@ echo ""
 echo "2️⃣  Checking Kong Logs (last 30 lines):"
 echo "================================================"
 echo "Looking for errors..."
-ERRORS=$(docker logs kong-gateway-gateway 2>&1 | tail -30 | grep -i "error\|failed\|timeout" || echo "No recent errors found")
+ERRORS=$(docker logs kong-gateway 2>&1 | tail -30 | grep -i "error\|failed\|timeout" || echo "No recent errors found")
 if [ "$ERRORS" != "No recent errors found" ]; then
     echo -e "${RED}Found errors:${NC}"
     echo "$ERRORS"
