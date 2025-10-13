@@ -2,12 +2,11 @@ services:
   kong:
     image: kong:3.4
     container_name: kong-gateway
-    network_mode: host
     environment:
       # Use db-less mode for server deployment
       KONG_DATABASE: "off"
       KONG_DECLARATIVE_CONFIG: /kong/kong.yml
-      # Listen addresses (dengan host network, bind ke host directly)
+      # Listen addresses
       KONG_PROXY_LISTEN: 0.0.0.0:9545
       KONG_ADMIN_LISTEN: 0.0.0.0:9546
       KONG_ADMIN_GUI_LISTEN: 0.0.0.0:9547
@@ -24,15 +23,28 @@ services:
       KONG_UPSTREAM_CONNECT_TIMEOUT: 60000
       KONG_UPSTREAM_SEND_TIMEOUT: 60000
       KONG_UPSTREAM_READ_TIMEOUT: 60000
-      # DNS Configuration
+      # DNS Configuration - Force Kong to use specific DNS servers
       KONG_DNS_RESOLVER: "8.8.8.8:53,8.8.4.4:53,1.1.1.1:53"
       KONG_DNS_ORDER: "LAST,A,CNAME"
+    ports:
+      - "9545:9545"
+      - "9546:9546"
+      - "9547:9547"
     volumes:
       - ./config/kong.yml:/kong/kong.yml:ro
       - ./config/resolv.conf:/etc/resolv.conf:ro
+    # DNS Configuration - Fix untuk backend connectivity issues
+    # Bypass Docker's internal DNS resolver
+    dns:
+      - 8.8.8.8      # Google DNS Primary
+      - 8.8.4.4      # Google DNS Secondary
+      - 1.1.1.1      # Cloudflare DNS
+    dns_search: []   # Disable DNS search domain
     healthcheck:
       test: ["CMD", "kong", "health"]
       interval: 10s
       timeout: 10s
       retries: 10
     restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
