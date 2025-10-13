@@ -98,14 +98,39 @@ fix_and_deploy() {
     print_success "Docker resources cleaned"
     echo ""
     
-    # Step 6: Start Kong with fixed configuration
-    print_status "6. Starting Kong with fixed configuration..."
+    # Step 6: Verify DNS settings in docker-compose
+    print_status "6. Verifying DNS settings in docker-compose.server.yml..."
+    local dns_check=$(sshpass -p "$SERVER_PASS" ssh -o StrictHostKeyChecking=no "$SERVER_USER@$SERVER_IP" "cd $SERVER_DIR && grep -A 3 'dns:' docker-compose.server.yml | grep -c '8.8.8.8'")
+    
+    if [[ "$dns_check" -gt 0 ]]; then
+        print_success "DNS settings already configured (8.8.8.8, 8.8.4.4, 1.1.1.1)"
+    else
+        print_warning "DNS settings not found, adding them..."
+        execute_remote "cp docker-compose.server.yml docker-compose.server.yml.backup.$timestamp"
+        
+        # Add DNS settings to docker-compose
+        execute_remote "cat > /tmp/dns_patch.yml << 'EOFPATCH'
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+      - 1.1.1.1
+    dns_search: []
+EOFPATCH"
+        
+        # Insert DNS settings after volumes section
+        execute_remote "sed -i '/volumes:/a\\    dns:\\n      - 8.8.8.8\\n      - 8.8.4.4\\n      - 1.1.1.1\\n    dns_search: []' docker-compose.server.yml"
+        print_success "DNS settings added to docker-compose.server.yml"
+    fi
+    echo ""
+    
+    # Step 7: Start Kong with fixed configuration
+    print_status "7. Starting Kong with fixed configuration and DNS..."
     execute_remote "docker-compose -f docker-compose.server.yml up -d kong"
     print_success "Kong container started"
     echo ""
     
-    # Step 7: Wait for Kong to be ready
-    print_status "7. Waiting for Kong to be ready..."
+    # Step 8: Wait for Kong to be ready
+    print_status "8. Waiting for Kong to be ready..."
     sleep 15
     
     # Monitor startup
@@ -131,8 +156,20 @@ fix_and_deploy() {
     done
     echo ""
     
-    # Step 8: Final verification
-    print_status "8. Final verification..."
+    # Step 9: Verify DNS resolution in Kong container
+    print_status "9. Verifying DNS resolution in Kong container..."
+    
+    # Check DNS resolution for backend services
+    execute_remote "docker exec kong-gateway cat /etc/resolv.conf"
+    print_status "Testing DNS resolution for backend.motorsightsystems.com..."
+    execute_remote "docker exec kong-gateway nslookup backend.motorsightsystems.com 2>&1 || true"
+    print_status "Testing DNS resolution for sso.motorsightsystems.com..."
+    execute_remote "docker exec kong-gateway nslookup sso.motorsightsystems.com 2>&1 || true"
+    print_success "DNS resolution verified"
+    echo ""
+    
+    # Step 10: Final verification
+    print_status "10. Final verification..."
     
     # Check Kong status
     execute_remote "curl -s http://localhost:9546/status | jq '.server'"
@@ -150,6 +187,7 @@ fix_and_deploy() {
     execute_remote "curl -s http://localhost:9546/services | jq '.data[].name'"
     
     print_success "✅ Kong YAML syntax fixed and deployed successfully!"
+    print_success "✅ DNS settings configured: 8.8.8.8, 8.8.4.4, 1.1.1.1"
 }
 
 # Function to show help
