@@ -272,30 +272,15 @@ services:
     write_timeout: 60000
     read_timeout: 60000
     routes:
-      - name: power-bi-categories-get-route
+      # PowerBI Dashboard routes (most specific first)
+      - name: power-bi-dashboards-route
         paths:
-          - /api/categories/get
+          - /api/powerbi/dashboard
         methods:
           - POST
           - OPTIONS
         strip_path: false
-      - name: power-bi-categories-create-route
-        paths:
-          - /api/categories/create
-        methods:
-          - POST
-          - OPTIONS
-        strip_path: false
-      - name: power-bi-categories-route
-        paths:
-          - /api/categories
-        methods:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - OPTIONS
-        strip_path: false
+      # PowerBI routes (specific endpoints before general)
       - name: power-bi-powerbi-get-route
         paths:
           - /api/powerbi/get
@@ -320,11 +305,29 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
-      - name: power-bi-dashboards-route
+      # Categories routes (specific endpoints before general)
+      - name: power-bi-categories-get-route
         paths:
-          - /api/powerbi/dashboard
+          - /api/categories/get
         methods:
           - POST
+          - OPTIONS
+        strip_path: false
+      - name: power-bi-categories-create-route
+        paths:
+          - /api/categories/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: power-bi-categories-route
+        paths:
+          - /api/categories
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
           - OPTIONS
         strip_path: false
   - name: interview-service
@@ -333,6 +336,23 @@ services:
     write_timeout: 60000
     read_timeout: 60000
     routes:
+      # Review interviews route (most specific)
+      - name: interview-review-interviews-route
+        paths:
+          - /api/reviewInterview/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # Public applicants route (specific public endpoint)
+      - name: interview-public-applicants-get-route
+        paths:
+          - /api/public/applicants/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # Companies routes
       - name: interview-companies-get-route
         paths:
           - /api/interview/companies/get
@@ -347,6 +367,7 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+      # Departments routes
       - name: interview-departments-get-route
         paths:
           - /api/interview/departments/get
@@ -361,6 +382,7 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+      # Titles routes
       - name: interview-titles-get-route
         paths:
           - /api/interview/titles/get
@@ -375,6 +397,7 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+      # Islands routes
       - name: interview-islands-get-route
         paths:
           - /api/interview/islands/get
@@ -389,6 +412,7 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+      # Genders routes
       - name: interview-genders-get-route
         paths:
           - /api/interview/genders/get
@@ -403,6 +427,7 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+      # Employees routes
       - name: interview-employees-get-route
         paths:
           - /api/interview/employees/get
@@ -417,40 +442,7 @@ services:
           - POST
           - OPTIONS
         strip_path: false
-      - name: interview-candidates-get-route
-        paths:
-          - /api/candidates/get
-        methods:
-          - POST
-          - OPTIONS
-        strip_path: false
-      - name: interview-candidates-route
-        paths:
-          - /api/candidates
-        methods:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - OPTIONS
-        strip_path: false
-      - name: interview-notes-get-route
-        paths:
-          - /api/notes/get
-        methods:
-          - POST
-          - OPTIONS
-        strip_path: false
-      - name: interview-notes-route
-        paths:
-          - /api/notes
-        methods:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - OPTIONS
-        strip_path: false
+      # Schedule interviews routes (before interviews routes due to specificity)
       - name: interview-schedule-interviews-get-route
         paths:
           - /api/schedule-interviews/get
@@ -468,6 +460,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # Interviews routes
       - name: interview-interviews-get-route
         paths:
           - /api/interviews/get
@@ -485,47 +478,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
-      - name: interview-applicants-get-route
-        paths:
-          - /api/applicants/get
-        methods:
-          - POST
-          - OPTIONS
-        strip_path: false
-      - name: interview-applicants-route
-        paths:
-          - /api/applicants
-        methods:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - OPTIONS
-        strip_path: false
-      - name: interview-public-applicants-get-route
-        paths:
-          - /api/public/applicants/get
-        methods:
-          - POST
-          - OPTIONS
-        strip_path: false
-      - name: interview-background-checks-get-route
-        paths:
-          - /api/background-checks/get
-        methods:
-          - POST
-          - OPTIONS
-        strip_path: false
-      - name: interview-background-checks-route
-        paths:
-          - /api/background-checks
-        methods:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - OPTIONS
-        strip_path: false
+      # On board documents routes (before background-checks due to specificity)
       - name: interview-on-board-documents-get-route
         paths:
           - /api/on-board-documents/get
@@ -543,11 +496,76 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
-      - name: interview-review-interviews-route
+      # Background checks routes
+      - name: interview-background-checks-get-route
         paths:
-          - /api/reviewInterview/get
+          - /api/background-checks/get
         methods:
           - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-background-checks-route
+        paths:
+          - /api/background-checks
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      # Candidates routes
+      - name: interview-candidates-get-route
+        paths:
+          - /api/candidates/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-candidates-route
+        paths:
+          - /api/candidates
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      # Applicants routes
+      - name: interview-applicants-get-route
+        paths:
+          - /api/applicants/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-applicants-route
+        paths:
+          - /api/applicants
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      # Notes routes
+      - name: interview-notes-get-route
+        paths:
+          - /api/notes/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: interview-notes-route
+        paths:
+          - /api/notes
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
           - OPTIONS
         strip_path: false
   - name: ecatalogue-service
@@ -556,6 +574,7 @@ services:
     write_timeout: 60000
     read_timeout: 60000
     routes:
+      # Categories routes
       - name: catalogs-categories-get-route
         paths:
           - /api/catalogs/categories/get
@@ -580,6 +599,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # Catalogs routes
       - name: catalogs-catalogs-get-route
         paths:
           - /api/catalogs/catalogs/get
@@ -604,6 +624,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # Catalog Items routes
       - name: catalogs-catalogItems-get-route
         paths:
           - /api/catalogs/catalogItems/get
@@ -628,6 +649,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # Locations routes
       - name: catalogs-locations-get-route
         paths:
           - /api/catalogs/locations/get
@@ -652,6 +674,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # Driver Types routes
       - name: catalogs-driver_types-get-route
         paths:
           - /api/catalogs/driver_types/get
@@ -676,6 +699,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # Vehicle Weights routes
       - name: catalogs-vehicle_weights-get-route
         paths:
           - /api/catalogs/vehicle_weights/get
@@ -700,6 +724,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # Brands routes
       - name: catalogs-brands-get-route
         paths:
           - /api/catalogs/brands/get
@@ -724,6 +749,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # World Manufacturing Plants routes
       - name: catalogs-world_manufacturing_plants-get-route
         paths:
           - /api/catalogs/world_manufacturing_plants/get
@@ -748,6 +774,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # Productions routes
       - name: catalogs-productions-get-route
         paths:
           - /api/catalogs/productions/get
@@ -772,6 +799,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # Sidebars routes
       - name: catalogs-sidebars-get-route
         paths:
           - /api/catalogs/sidebars/get
@@ -779,6 +807,24 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+      - name: catalogs-sidebars-create-route
+        paths:
+          - /api/catalogs/sidebars/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: catalogs-sidebars-route
+        paths:
+          - /api/catalogs/sidebars
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      # Type cabine routes
       - name: catalogs-type_cabine-get-route
         paths:
           - /api/catalogs/type_cabine/get
@@ -803,6 +849,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # Cabines routes
       - name: catalogs-cabines-get-route
         paths:
           - /api/catalogs/cabines/get
@@ -827,6 +874,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # Type Engine routes
       - name: catalogs-type_engine-get-route
         paths:
           - /api/catalogs/type_engine/get
@@ -851,6 +899,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # Engines routes
       - name: catalogs-engines-get-route
         paths:
           - /api/catalogs/engines/get
@@ -875,6 +924,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # Type Transmission routes
       - name: catalogs-type_transmission-get-route
         paths:
           - /api/catalogs/type_transmission/get
@@ -899,6 +949,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # Transmission routes
       - name: catalogs-transmission-get-route
         paths:
           - /api/catalogs/transmission/get
@@ -923,6 +974,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # Type Axel routes
       - name: catalogs-type_axel-get-route
         paths:
           - /api/catalogs/type_axel/get
@@ -947,6 +999,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # Axel routes
       - name: catalogs-axel-get-route
         paths:
           - /api/catalogs/axel/get
@@ -971,6 +1024,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # Type Steering routes
       - name: catalogs-type_steering-get-route
         paths:
           - /api/catalogs/type_steering/get
@@ -995,6 +1049,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # Steering routes
       - name: catalogs-steering-get-route
         paths:
           - /api/catalogs/steering/get
