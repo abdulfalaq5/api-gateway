@@ -57,8 +57,7 @@ validate_local() {
     fi
     
     # Check for host.docker.internal (should be localhost for host network mode)
-    local has_docker_internal=$(grep -c "host\.docker\.internal" config/kong.yml || echo "0")
-    if [[ "$has_docker_internal" -gt 0 ]]; then
+    if grep -q "host\.docker\.internal" config/kong.yml 2>/dev/null; then
         print_warning "Found 'host.docker.internal' in kong.yml"
         print_warning "With network_mode: host, you should use 'localhost' instead"
         echo ""
