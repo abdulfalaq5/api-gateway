@@ -1349,17 +1349,17 @@ services:
     write_timeout: 60000
     read_timeout: 60000
     routes:
-      # quotation customers routes
-      - name: quotation-customers-get-route
+      # quotation customer routes
+      - name: quotation-customer-get-route
         paths:
-          - /api/quotation/customers/get
+          - /api/quotation/customer/get
         methods:
           - POST
           - OPTIONS
         strip_path: false
-      - name: quotation-customers-route
+      - name: quotation-customer-route
         paths:
-          - /api/quotation/customers
+          - /api/quotation/customer
         methods:
           - GET
           - POST
