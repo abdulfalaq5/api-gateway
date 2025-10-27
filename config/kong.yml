@@ -1343,6 +1343,66 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+  - name: quotation-service
+    url: http://localhost:9565
+    connect_timeout: 60000
+    write_timeout: 60000
+    read_timeout: 60000
+    routes:
+      # quotation customers routes
+      - name: quotation-customers-get-route
+        paths:
+          - /api/quotation/customers/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: quotation-customers-route
+        paths:
+          - /api/quotation/customers
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      # quotation sales routes
+      - name: quotation-sales-get-route
+        paths:
+          - /api/quotation/sales/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: quotation-sales-route
+        paths:
+          - /api/quotation/sales
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      # quotation bank-account routes
+      - name: quotation-bank-account-get-route
+        paths:
+          - /api/quotation/bank-account/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: quotation-bank-account-route
+        paths:
+          - /api/quotation/bank-account
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
       
     
 plugins:
