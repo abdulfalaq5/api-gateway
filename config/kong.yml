@@ -265,6 +265,54 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      - name: sso-customers-get-route
+        paths:
+          - /api/customers/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-customers-create-route
+        paths:
+          - /api/customers/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-customers-route
+        paths:
+          - /api/customers
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      - name: sso-bank_accounts-get-route
+        paths:
+          - /api/bank_accounts/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-bank_accounts-create-route
+        paths:
+          - /api/bank_accounts/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-bank_accounts-route
+        paths:
+          - /api/bank_accounts
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
 
   - name: power-bi-service
     url: http://localhost:9544
@@ -1295,6 +1343,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      
     
 plugins:
   - name: rate-limiting
