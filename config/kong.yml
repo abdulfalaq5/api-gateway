@@ -1268,6 +1268,13 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      - name: epc-item-category-dokumen-route
+        paths:
+          - /api/epc/item_category/dokumen
+        methods:
+          - GET
+          - OPTIONS
+        strip_path: false
       # epc products routes
       - name: epc-products-get-route
         paths:
@@ -1304,6 +1311,13 @@ services:
       - name: epc-dokumen-create-route
         paths:
           - /api/epc/dokumen/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: epc-dokumen-duplikat-route
+        paths:
+          - /api/epc/dokumen/duplikat
         methods:
           - POST
           - OPTIONS
