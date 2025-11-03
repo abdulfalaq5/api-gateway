@@ -1419,7 +1419,7 @@ services:
         strip_path: false
         # web mis service
   - name: web-mis-service
-    url: http://localhost:9513
+    url: http://localhost:9509
     connect_timeout: 60000
     write_timeout: 60000
     read_timeout: 60000
@@ -1427,7 +1427,18 @@ services:
       # public product routes
       - name: web-mis-public-product-route
         paths:
-          - /api/v1/public/product
+          - /api/public/product
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      # public product specification routes
+      - name: web-mis-public-specification-route
+        paths:
+          - /api/public/specification
         methods:
           - GET
           - POST
