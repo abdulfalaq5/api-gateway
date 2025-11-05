@@ -1417,6 +1417,24 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # quotation item_product routes
+      - name: quotation-item_product-get-route
+        paths:
+          - /api/quotation/item_product/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: quotation-item_product-route
+        paths:
+          - /api/quotation/item_product
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
         # web mis service
   - name: web-mis-service
     url: http://localhost:9509
