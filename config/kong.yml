@@ -1435,6 +1435,78 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # quotation manage-quotation routes
+      - name: quotation-manage-quotation-get-route
+        paths:
+          - /api/quotation/manage-quotation/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: quotation-manage-quotation-route
+        paths:
+          - /api/quotation/manage-quotation
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      # quotation term_content routes
+      - name: quotation-term_content-get-route
+        paths:
+          - /api/quotation/term_content/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: quotation-term_content-route
+        paths:
+          - /api/quotation/term_content
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      # quotation componen_product routes
+      - name: quotation-componen_product-get-route
+        paths:
+          - /api/quotation/componen_product/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: quotation-componen_product-route
+        paths:
+          - /api/quotation/componen_product
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      # quotation accessory routes
+      - name: quotation-accessory-get-route
+        paths:
+          - /api/quotation/accessory/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: quotation-accessory-route
+        paths:
+          - /api/quotation/accessory
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
         # web mis service
   - name: web-mis-service
     url: http://localhost:9509
