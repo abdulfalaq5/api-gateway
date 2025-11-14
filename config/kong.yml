@@ -1357,6 +1357,14 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # epc unit parts catalogs routes
+      - name: epc-parts-catalogs-get-route
+        paths:
+          - /api/epc/parts-catalogs/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
   - name: quotation-service
     url: http://localhost:9565
     connect_timeout: 60000
