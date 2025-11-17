@@ -1461,6 +1461,13 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      - name: quotation-manage-quotation-pdf-route
+        paths:
+          - /api/quotation/manage-quotation/pdf
+        methods:
+          - GET
+          - OPTIONS
+        strip_path: false
       # quotation term_content routes
       - name: quotation-term_content-get-route
         paths:
