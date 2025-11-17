@@ -1365,6 +1365,20 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+      - name: epc-parts-catalogs-get-by-type-category-id-route
+        paths:
+          - /api/epc/parts-catalogs/get-by-type-category-id
+        methods:
+          - GET
+          - OPTIONS
+        strip_path: false
+      - name: epc-parts-catalogs-get-by-item-category-id-route
+        paths:
+          - /api/epc/parts-catalogs/get-by-item-category-id
+        methods:
+          - GET
+          - OPTIONS
+        strip_path: false
   - name: quotation-service
     url: http://localhost:9565
     connect_timeout: 60000
