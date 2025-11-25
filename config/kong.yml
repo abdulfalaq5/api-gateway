@@ -313,6 +313,30 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      - name: sso-island-get-route
+        paths:
+          - /api/island/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-island-create-route
+        paths:
+          - /api/island/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      - name: sso-island-route
+        paths:
+          - /api/island
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
 
   - name: power-bi-service
     url: http://localhost:9544
