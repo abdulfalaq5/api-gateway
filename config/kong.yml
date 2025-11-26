@@ -1560,7 +1560,7 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
-        # web mis service
+  # web mis service
   - name: web-mis-service
     url: http://localhost:9509
     connect_timeout: 60000
@@ -1589,8 +1589,160 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
-      
-    
+  # calculate road service (ROA ROE routes)
+  - name: calculate-road-service
+    url: http://localhost:9576
+    connect_timeout: 60000
+    write_timeout: 60000
+    read_timeout: 60000
+    routes:
+      # road quotes get routes
+      - name: road-quotes-get-route
+        paths:
+          - /api/calculations/quotes/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # road quotes create routes
+      - name: road-quotes-create-route
+        paths:
+          - /api/calculations/quotes/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # road quotes routes
+      - name: road-quotes-route
+        paths:
+          - /api/calculations/quotes
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      # road finance net-income routes
+      - name: road-finance-net-income-route
+        paths:
+          - /api/calculations/finance/net-income
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # road finance equity routes
+      - name: road-finance-equity-route
+        paths:
+          - /api/calculations/finance/equity
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # road finance roa routes
+      - name: road-finance-roa-route
+        paths:
+          - /api/calculations/finance/roa
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # road finance roe routes
+      - name: road-finance-roe-route
+        paths:
+          - /api/calculations/finance/roe
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # road finance roa roe routes
+      - name: road-finance-roa-roe-route
+        paths:
+          - /api/calculations/finance/roa-roe
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # road quote defaults get routes
+      - name: road-quote-defaults-get-route
+        paths:
+          - /api/calculations/quote-defaults/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # road quote defaults create routes
+      - name: road-quote-defaults-create-route
+        paths:
+          - /api/calculations/quote-defaults/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # road quote defaults self routes
+      - name: road-quote-defaults-self-route
+        paths:
+          - /api/calculations/quote-defaults/self
+        methods:
+          - GET
+          - POST
+          - OPTIONS
+        strip_path: false
+      # road quote defaults routes
+      - name: road-quote-defaults-route
+        paths:
+          - /api/calculations/quote-defaults
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      # road quote unit-purchases get routes
+      - name: road-unit-purchases-get-route
+        paths:
+          - /api/calculations/unit-purchases/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # road quote unit-purchases create routes
+      - name: road-unit-purchases-create-route
+        paths:
+          - /api/calculations/unit-purchases/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # road quote unit-purchases quote all {quoteId} routes (most specific first)
+      - name: road-unit-purchases-quote-all-quote-id-route
+        paths:
+          - /api/calculations/unit-purchases/quote/all
+        methods:
+          - GET
+          - OPTIONS
+        strip_path: false
+      # road quote unit-purchases quote {quoteId} routes
+      - name: road-unit-purchases-quote-quote-id-route
+        paths:
+          - /api/calculations/unit-purchases/quote
+        methods:
+          - GET
+          - OPTIONS
+        strip_path: false
+      # road quote unit-purchases routes
+      - name: road-unit-purchases-route
+        paths:
+          - /api/calculations/unit-purchases
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+
 plugins:
   - name: rate-limiting
     config:
