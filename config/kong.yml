@@ -1550,6 +1550,14 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+      # quotation accessory by island routes
+      - name: quotation-accessory-get-data-by-id-island-route
+        paths:
+          - /api/quotation/accessory/get-data-by-id-island
+        methods:
+          - GET
+          - OPTIONS
+        strip_path: false
       - name: quotation-accessory-route
         paths:
           - /api/quotation/accessory
