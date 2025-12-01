@@ -1754,8 +1754,8 @@ services:
 plugins:
   - name: rate-limiting
     config:
-      minute: 100
-      hour: 1000
+      minute: 999999999
+      hour: 999999999
       policy: local
   - name: cors
     config:
