@@ -17,6 +17,12 @@ services:
           - PUT
           - DELETE
         strip_path: true
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
 
   - name: sso-service
     url: http://localhost:9518
@@ -31,6 +37,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 10
+              hour: 100
+              policy: local
       - name: sso-logout-route
         paths:
           - /api/auth/sso/logout
@@ -38,6 +50,12 @@ services:
           - GET
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-userinfo-route
         paths:
           - /api/auth/sso/userinfo
@@ -45,6 +63,12 @@ services:
           - GET
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-profile-route
         paths:
           - /api/auth/sso/profil
@@ -53,6 +77,12 @@ services:
           - PUT
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-menus-route
         paths:
           - /api/menus
@@ -63,6 +93,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-menus-get-route
         paths:
           - /api/menus/get
@@ -70,6 +106,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-menus-create-route
         paths:
           - /api/menus/create
@@ -77,6 +119,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-companies-route
         paths:
           - /api/companies
@@ -87,6 +135,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-companies-get-route
         paths:
           - /api/companies/get
@@ -94,6 +148,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-companies-create-route
         paths:
           - /api/companies/create
@@ -101,6 +161,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-departments-route
         paths:
           - /api/departments
@@ -111,6 +177,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-departments-get-route
         paths:
           - /api/departments/get
@@ -118,6 +190,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-departments-create-route
         paths:
           - /api/departments/create
@@ -125,6 +203,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-employees-route
         paths:
           - /api/employees
@@ -135,6 +219,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-employees-get-route
         paths:
           - /api/employees/get
@@ -142,6 +232,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-employees-create-route
         paths:
           - /api/employees/create
@@ -149,6 +245,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-roles-route
         paths:
           - /api/roles
@@ -159,6 +261,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-roles-get-route
         paths:
           - /api/roles/get
@@ -166,6 +274,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-roles-create-route
         paths:
           - /api/roles/create
@@ -173,6 +287,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-permissions-route
         paths:
           - /api/permissions
@@ -183,6 +303,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-permissions-get-route
         paths:
           - /api/permissions/get
@@ -190,6 +316,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-permissions-create-route
         paths:
           - /api/permissions/create
@@ -197,6 +329,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-users-route
         paths:
           - /api/users
@@ -207,6 +345,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-users-get-route
         paths:
           - /api/users/get
@@ -214,6 +358,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-users-create-route
         paths:
           - /api/users/create
@@ -221,6 +371,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-titles-route
         paths:
           - /api/titles
@@ -231,6 +387,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-titles-get-route
         paths:
           - /api/titles/get
@@ -238,6 +400,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-titles-create-route
         paths:
           - /api/titles/create
@@ -245,6 +413,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-menu-has-permissions-route
         paths:
           - /api/menu-has-permissions
@@ -255,6 +429,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-role-has-menu-permissions-route
         paths:
           - /api/role-has-menu-permissions
@@ -265,6 +445,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-customers-get-route
         paths:
           - /api/customers/get
@@ -272,6 +458,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-customers-create-route
         paths:
           - /api/customers/create
@@ -279,6 +471,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-customers-route
         paths:
           - /api/customers
@@ -289,6 +487,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-bank_accounts-get-route
         paths:
           - /api/bank_accounts/get
@@ -296,6 +500,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-bank_accounts-create-route
         paths:
           - /api/bank_accounts/create
@@ -303,6 +513,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-bank_accounts-route
         paths:
           - /api/bank_accounts
@@ -313,6 +529,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-island-get-route
         paths:
           - /api/island/get
@@ -320,6 +542,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-island-create-route
         paths:
           - /api/island/create
@@ -327,6 +555,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-island-route
         paths:
           - /api/island
@@ -337,6 +571,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
 
   - name: power-bi-service
     url: http://localhost:9544
@@ -352,6 +592,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # PowerBI routes (specific endpoints before general)
       - name: power-bi-powerbi-get-route
         paths:
@@ -360,6 +606,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: power-bi-powerbi-create-route
         paths:
           - /api/powerbi/create
@@ -367,6 +619,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: power-bi-powerbi-route
         paths:
           - /api/powerbi
@@ -377,6 +635,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Categories routes (specific endpoints before general)
       - name: power-bi-categories-get-route
         paths:
@@ -385,6 +649,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: power-bi-categories-create-route
         paths:
           - /api/categories/create
@@ -392,6 +662,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: power-bi-categories-route
         paths:
           - /api/categories
@@ -402,6 +678,13 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+
   - name: interview-service
     url: http://localhost:9502
     connect_timeout: 60000
@@ -416,6 +699,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Public applicants route (specific public endpoint)
       - name: interview-public-applicants-get-route
         paths:
@@ -424,6 +713,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Companies routes
       - name: interview-companies-get-route
         paths:
@@ -432,6 +727,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: interview-companies-route
         paths:
           - /api/interview/companies
@@ -439,6 +740,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Departments routes
       - name: interview-departments-get-route
         paths:
@@ -447,6 +754,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: interview-departments-route
         paths:
           - /api/interview/departments
@@ -454,6 +767,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Titles routes
       - name: interview-titles-get-route
         paths:
@@ -462,6 +781,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: interview-titles-route
         paths:
           - /api/interview/titles
@@ -469,6 +794,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Islands routes
       - name: interview-islands-get-route
         paths:
@@ -477,6 +808,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: interview-islands-route
         paths:
           - /api/interview/islands
@@ -484,6 +821,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Genders routes
       - name: interview-genders-get-route
         paths:
@@ -492,6 +835,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: interview-genders-route
         paths:
           - /api/interview/genders
@@ -499,6 +848,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Employees routes
       - name: interview-employees-get-route
         paths:
@@ -507,6 +862,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: interview-employees-route
         paths:
           - /api/interview/employees
@@ -514,6 +875,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Schedule interviews routes (before interviews routes due to specificity)
       - name: interview-schedule-interviews-get-route
         paths:
@@ -522,6 +889,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: interview-schedule-interviews-route
         paths:
           - /api/schedule-interviews
@@ -532,6 +905,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Interviews routes
       - name: interview-interviews-get-route
         paths:
@@ -540,6 +919,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: interview-interviews-route
         paths:
           - /api/interviews
@@ -550,6 +935,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # On board documents routes (before background-checks due to specificity)
       - name: interview-on-board-documents-get-route
         paths:
@@ -558,6 +949,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: interview-on-board-documents-route
         paths:
           - /api/on-board-documents
@@ -568,6 +965,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Background checks routes
       - name: interview-background-checks-get-route
         paths:
@@ -576,6 +979,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: interview-background-checks-route
         paths:
           - /api/background-checks
@@ -586,6 +995,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Candidates routes
       - name: interview-candidates-get-route
         paths:
@@ -594,6 +1009,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: interview-candidates-route
         paths:
           - /api/candidates
@@ -604,6 +1025,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Applicants routes
       - name: interview-applicants-get-route
         paths:
@@ -612,6 +1039,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: interview-applicants-route
         paths:
           - /api/applicants
@@ -622,6 +1055,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Notes routes
       - name: interview-notes-get-route
         paths:
@@ -630,6 +1069,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: interview-notes-route
         paths:
           - /api/notes
@@ -640,6 +1085,13 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+
   - name: ecatalogue-service
     url: http://localhost:9550
     connect_timeout: 60000
@@ -654,6 +1106,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-categories-create-route
         paths:
           - /api/catalogs/categories/create
@@ -661,6 +1119,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-categories-route
         paths:
           - /api/catalogs/categories
@@ -671,6 +1135,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Catalogs routes
       - name: catalogs-catalogs-get-route
         paths:
@@ -679,6 +1149,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-catalogs-create-route
         paths:
           - /api/catalogs/catalogs/create
@@ -686,6 +1162,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-catalogs-route
         paths:
           - /api/catalogs/catalogs
@@ -696,6 +1178,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Catalog Items routes
       - name: catalogs-catalogItems-get-route
         paths:
@@ -704,6 +1192,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-catalogItems-create-route
         paths:
           - /api/catalogs/catalogItems/create
@@ -711,6 +1205,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-catalogItems-route
         paths:
           - /api/catalogs/catalogItems
@@ -721,6 +1221,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Locations routes
       - name: catalogs-locations-get-route
         paths:
@@ -729,6 +1235,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-locations-create-route
         paths:
           - /api/catalogs/locations/create
@@ -736,6 +1248,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-locations-route
         paths:
           - /api/catalogs/locations
@@ -746,6 +1264,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Driver Types routes
       - name: catalogs-driver_types-get-route
         paths:
@@ -754,6 +1278,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-driver_types-create-route
         paths:
           - /api/catalogs/driver_types/create
@@ -761,6 +1291,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-driver_types-route
         paths:
           - /api/catalogs/driver_types
@@ -771,6 +1307,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Vehicle Weights routes
       - name: catalogs-vehicle_weights-get-route
         paths:
@@ -779,6 +1321,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-vehicle_weights-create-route
         paths:
           - /api/catalogs/vehicle_weights/create
@@ -786,6 +1334,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-vehicle_weights-route
         paths:
           - /api/catalogs/vehicle_weights
@@ -796,6 +1350,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Brands routes
       - name: catalogs-brands-get-route
         paths:
@@ -804,6 +1364,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-brands-create-route
         paths:
           - /api/catalogs/brands/create
@@ -811,6 +1377,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-brands-route
         paths:
           - /api/catalogs/brands
@@ -821,6 +1393,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # World Manufacturing Plants routes
       - name: catalogs-world_manufacturing_plants-get-route
         paths:
@@ -829,6 +1407,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-world_manufacturing_plants-create-route
         paths:
           - /api/catalogs/world_manufacturing_plants/create
@@ -836,6 +1420,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-world_manufacturing_plants-route
         paths:
           - /api/catalogs/world_manufacturing_plants
@@ -846,6 +1436,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Productions routes
       - name: catalogs-productions-get-route
         paths:
@@ -854,6 +1450,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-productions-create-route
         paths:
           - /api/catalogs/productions/create
@@ -861,6 +1463,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-productions-route
         paths:
           - /api/catalogs/productions
@@ -871,6 +1479,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Sidebars routes
       - name: catalogs-sidebars-get-route
         paths:
@@ -879,6 +1493,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-sidebars-create-route
         paths:
           - /api/catalogs/sidebars/create
@@ -886,6 +1506,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-sidebars-route
         paths:
           - /api/catalogs/sidebars
@@ -896,6 +1522,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Type cabine routes
       - name: catalogs-type_cabine-get-route
         paths:
@@ -904,6 +1536,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-type_cabine-create-route
         paths:
           - /api/catalogs/type_cabine/create
@@ -911,6 +1549,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-type_cabine-route
         paths:
           - /api/catalogs/type_cabine
@@ -921,6 +1565,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Cabines routes
       - name: catalogs-cabines-get-route
         paths:
@@ -929,6 +1579,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-cabines-create-route
         paths:
           - /api/catalogs/cabines/create
@@ -936,6 +1592,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-cabines-route
         paths:
           - /api/catalogs/cabines
@@ -946,6 +1608,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Type Engine routes
       - name: catalogs-type_engine-get-route
         paths:
@@ -954,6 +1622,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-type_engine-create-route
         paths:
           - /api/catalogs/type_engine/create
@@ -961,6 +1635,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-type_engine-route
         paths:
           - /api/catalogs/type_engine
@@ -971,6 +1651,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Engines routes
       - name: catalogs-engines-get-route
         paths:
@@ -979,6 +1665,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-engines-create-route
         paths:
           - /api/catalogs/engines/create
@@ -986,6 +1678,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-engines-route
         paths:
           - /api/catalogs/engines
@@ -996,6 +1694,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Type Transmission routes
       - name: catalogs-type_transmission-get-route
         paths:
@@ -1004,6 +1708,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-type_transmission-create-route
         paths:
           - /api/catalogs/type_transmission/create
@@ -1011,6 +1721,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-type_transmission-route
         paths:
           - /api/catalogs/type_transmission
@@ -1021,6 +1737,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Transmission routes
       - name: catalogs-transmission-get-route
         paths:
@@ -1029,6 +1751,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-transmission-create-route
         paths:
           - /api/catalogs/transmission/create
@@ -1036,6 +1764,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-transmission-route
         paths:
           - /api/catalogs/transmission
@@ -1046,6 +1780,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Type Axel routes
       - name: catalogs-type_axel-get-route
         paths:
@@ -1054,6 +1794,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-type_axel-create-route
         paths:
           - /api/catalogs/type_axel/create
@@ -1061,6 +1807,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-type_axel-route
         paths:
           - /api/catalogs/type_axel
@@ -1071,6 +1823,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Axel routes
       - name: catalogs-axel-get-route
         paths:
@@ -1079,6 +1837,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-axel-create-route
         paths:
           - /api/catalogs/axel/create
@@ -1086,6 +1850,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-axel-route
         paths:
           - /api/catalogs/axel
@@ -1096,6 +1866,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Type Steering routes
       - name: catalogs-type_steering-get-route
         paths:
@@ -1104,6 +1880,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-type_steering-create-route
         paths:
           - /api/catalogs/type_steering/create
@@ -1111,6 +1893,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-type_steering-route
         paths:
           - /api/catalogs/type_steering
@@ -1121,6 +1909,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # Steering routes
       - name: catalogs-steering-get-route
         paths:
@@ -1129,6 +1923,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-steering-create-route
         paths:
           - /api/catalogs/steering/create
@@ -1136,6 +1936,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-steering-route
         paths:
           - /api/catalogs/steering
@@ -1146,6 +1952,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # all items catalogs routes
       - name: catalogs-all-item-catalogs-get-route
         paths:
@@ -1154,6 +1966,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-all-item-catalogs-create-route
         paths:
           - /api/catalogs/all-item-catalogs/create
@@ -1161,6 +1979,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-all-item-catalogs-download-route
         paths:
           - /api/catalogs/all-item-catalogs/download-template
@@ -1168,6 +1992,12 @@ services:
           - GET
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: catalogs-all-item-catalogs-route
         paths:
           - /api/catalogs/all-item-catalogs
@@ -1178,6 +2008,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # all master pdf routes
       - name: catalogs-master-pdf-get-route
         paths:
@@ -1186,6 +2022,13 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+
   - name: epc-service
     url: http://localhost:9566
     connect_timeout: 60000
@@ -1200,6 +2043,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: epc-master-category-create-route
         paths:
           - /api/epc/master_category/create
@@ -1207,6 +2056,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: epc-master-category-route
         paths:
           - /api/epc/master_category
@@ -1217,6 +2072,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # epc categories routes
       - name: epc-categories-get-route
         paths:
@@ -1225,6 +2086,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: epc-categories-create-route
         paths:
           - /api/epc/categories/create
@@ -1232,6 +2099,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: epc-categories-route
         paths:
           - /api/epc/categories
@@ -1242,6 +2115,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # epc type category routes
       - name: epc-type-category-get-route
         paths:
@@ -1250,6 +2129,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: epc-type-category-create-route
         paths:
           - /api/epc/type_category/create
@@ -1257,6 +2142,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: epc-type-category-route
         paths:
           - /api/epc/type_category
@@ -1267,6 +2158,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # epc item category routes
       - name: epc-item-category-get-route
         paths:
@@ -1275,6 +2172,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: epc-item-category-create-route
         paths:
           - /api/epc/item_category/create
@@ -1282,6 +2185,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: epc-item-category-route
         paths:
           - /api/epc/item_category
@@ -1292,6 +2201,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: epc-item-category-dokumen-route
         paths:
           - /api/epc/item_category/dokumen
@@ -1299,6 +2214,12 @@ services:
           - GET
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # epc products routes
       - name: epc-products-get-route
         paths:
@@ -1307,6 +2228,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: epc-products-create-route
         paths:
           - /api/epc/products/create
@@ -1314,6 +2241,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: epc-products-route
         paths:
           - /api/epc/products
@@ -1324,6 +2257,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # epc dokumen routes
       - name: epc-dokumen-get-route
         paths:
@@ -1332,6 +2271,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: epc-dokumen-create-route
         paths:
           - /api/epc/dokumen/create
@@ -1339,6 +2284,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: epc-dokumen-duplikat-route
         paths:
           - /api/epc/dokumen/duplikat
@@ -1346,6 +2297,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: epc-dokumen-route
         paths:
           - /api/epc/dokumen
@@ -1356,6 +2313,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # epc unit routes
       - name: epc-unit-get-route
         paths:
@@ -1364,6 +2327,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: epc-unit-create-route
         paths:
           - /api/epc/unit/create
@@ -1371,6 +2340,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: epc-unit-route
         paths:
           - /api/epc/unit
@@ -1381,6 +2356,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # epc unit parts catalogs routes
       - name: epc-parts-catalogs-get-route
         paths:
@@ -1389,6 +2370,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: epc-parts-catalogs-get-by-type-category-id-route
         paths:
           - /api/epc/parts-catalogs/get-by-type-category-id
@@ -1396,6 +2383,12 @@ services:
           - GET
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: epc-parts-catalogs-get-by-item-category-id-route
         paths:
           - /api/epc/parts-catalogs/get-by-item-category-id
@@ -1403,6 +2396,13 @@ services:
           - GET
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+
   - name: quotation-service
     url: http://localhost:9565
     connect_timeout: 60000
@@ -1417,6 +2417,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: quotation-customer-route
         paths:
           - /api/quotation/customer
@@ -1427,6 +2433,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # quotation sales routes
       - name: quotation-sales-get-route
         paths:
@@ -1435,6 +2447,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: quotation-sales-route
         paths:
           - /api/quotation/sales
@@ -1445,6 +2463,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # quotation bank-account routes
       - name: quotation-bank-account-get-route
         paths:
@@ -1453,6 +2477,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: quotation-bank-account-route
         paths:
           - /api/quotation/bank-account
@@ -1463,6 +2493,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # quotation item_product routes
       - name: quotation-item_product-get-route
         paths:
@@ -1471,6 +2507,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: quotation-item_product-route
         paths:
           - /api/quotation/item_product
@@ -1481,6 +2523,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # quotation manage-quotation routes
       - name: quotation-manage-quotation-get-route
         paths:
@@ -1489,6 +2537,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: quotation-manage-quotation-route
         paths:
           - /api/quotation/manage-quotation
@@ -1499,6 +2553,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: quotation-manage-quotation-pdf-route
         paths:
           - /api/quotation/manage-quotation/pdf
@@ -1506,6 +2566,12 @@ services:
           - GET
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # quotation term_content routes
       - name: quotation-term_content-get-route
         paths:
@@ -1514,6 +2580,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: quotation-term_content-route
         paths:
           - /api/quotation/term_content
@@ -1524,6 +2596,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # quotation componen_product routes
       - name: quotation-componen_product-get-route
         paths:
@@ -1532,6 +2610,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: quotation-componen_product-route
         paths:
           - /api/quotation/componen_product
@@ -1542,6 +2626,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # quotation accessory routes
       - name: quotation-accessory-get-route
         paths:
@@ -1550,6 +2640,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # quotation accessory by island routes
       - name: quotation-accessory-get-data-by-id-island-route
         paths:
@@ -1558,6 +2654,12 @@ services:
           - GET
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: quotation-accessory-route
         paths:
           - /api/quotation/accessory
@@ -1568,7 +2670,13 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
-  # web mis service
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # web mis service
   - name: web-mis-service
     url: http://localhost:9509
     connect_timeout: 60000
@@ -1586,6 +2694,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # public product specification routes
       - name: web-mis-public-specification-route
         paths:
@@ -1597,7 +2711,13 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
-  # calculate road service (ROA ROE routes)
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # calculate road service (ROA ROE routes)
   - name: calculate-road-service
     url: http://localhost:9576
     connect_timeout: 60000
@@ -1612,6 +2732,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # road quotes create routes
       - name: road-quotes-create-route
         paths:
@@ -1620,6 +2746,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # road quotes routes
       - name: road-quotes-route
         paths:
@@ -1631,6 +2763,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # road finance net-income routes
       - name: road-finance-net-income-route
         paths:
@@ -1639,6 +2777,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # road finance equity routes
       - name: road-finance-equity-route
         paths:
@@ -1647,6 +2791,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # road finance roa routes
       - name: road-finance-roa-route
         paths:
@@ -1655,6 +2805,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # road finance roe routes
       - name: road-finance-roe-route
         paths:
@@ -1663,6 +2819,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # road finance roa roe routes
       - name: road-finance-roa-roe-route
         paths:
@@ -1671,6 +2833,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # road quote defaults get routes
       - name: road-quote-defaults-get-route
         paths:
@@ -1679,6 +2847,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # road quote defaults create routes
       - name: road-quote-defaults-create-route
         paths:
@@ -1687,6 +2861,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # road quote defaults self routes
       - name: road-quote-defaults-self-route
         paths:
@@ -1696,6 +2876,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # road quote defaults routes
       - name: road-quote-defaults-route
         paths:
@@ -1707,6 +2893,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # road quote unit-purchases get routes
       - name: road-unit-purchases-get-route
         paths:
@@ -1715,6 +2907,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # road quote unit-purchases create routes
       - name: road-unit-purchases-create-route
         paths:
@@ -1723,6 +2921,12 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # road quote unit-purchases quote all {quoteId} routes (most specific first)
       - name: road-unit-purchases-quote-all-quote-id-route
         paths:
@@ -1731,6 +2935,12 @@ services:
           - GET
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # road quote unit-purchases quote {quoteId} routes
       - name: road-unit-purchases-quote-quote-id-route
         paths:
@@ -1739,6 +2949,12 @@ services:
           - GET
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # road quote unit-purchases routes
       - name: road-unit-purchases-route
         paths:
@@ -1750,6 +2966,46 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+  - name: bridge-service
+    url: http://localhost:9575
+    connect_timeout: 60000
+    write_timeout: 60000
+    read_timeout: 60000
+    routes:
+      # customer netsuite get routes
+      - name: customer-netsuite-get-route
+        paths:
+          - /api/v1/bridge/customers/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 1000
+              hour: 60000
+              policy: local
+      # vendor netsuite get routes
+      - name: vendor-netsuite-get-route
+        paths:
+          - /api/v1/bridge/vendors/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 1000
+              hour: 60000
+              policy: local
 
 plugins:
   - name: rate-limiting
