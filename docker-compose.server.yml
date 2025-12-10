@@ -26,10 +26,6 @@ services:
       # DNS Configuration
       KONG_DNS_RESOLVER: "8.8.8.8:53,8.8.4.4:53,1.1.1.1:53"
       KONG_DNS_ORDER: "LAST,A,CNAME"
-    ports:
-      - "9545:9545"
-      - "9546:9546"
-      - "9547:9547"
     volumes:
       - ./config/kong.yml:/kong/kong.yml:ro
       - ./config/resolv.conf:/etc/resolv.conf:ro
@@ -41,7 +37,39 @@ services:
     restart: unless-stopped
     networks:
       - traefik-network
+    labels:
+      # Enable Traefik
+      - "traefik.enable=true"
+      
+      # Router untuk Kong Proxy API (port 9545) - HTTP (Cloudflare handle HTTPS)
+      - "traefik.http.routers.kong-proxy.rule=Host(`kong-api.motorsights.com`)"
+      - "traefik.http.routers.kong-proxy.entrypoints=web"
+      - "traefik.http.routers.kong-proxy.service=kong-proxy"
+      - "traefik.http.services.kong-proxy.loadbalancer.server.port=9545"
+      
+      # Router untuk Kong Admin API (port 9546) - HTTP (Cloudflare handle HTTPS)
+      - "traefik.http.routers.kong-admin.rule=Host(`kong-admin.motorsights.com`)"
+      - "traefik.http.routers.kong-admin.entrypoints=web"
+      - "traefik.http.routers.kong-admin.service=kong-admin"
+      - "traefik.http.services.kong-admin.loadbalancer.server.port=9546"
+      
+      # Router untuk Kong Admin GUI (port 9547) - HTTP (Cloudflare handle HTTPS)
+      - "traefik.http.routers.kong-admin-gui.rule=Host(`kong-admin-gui.motorsights.com`)"
+      - "traefik.http.routers.kong-admin-gui.entrypoints=web"
+      - "traefik.http.routers.kong-admin-gui.service=kong-admin-gui"
+      - "traefik.http.services.kong-admin-gui.loadbalancer.server.port=9547"
+      
+      - "com.centurylinklabs.watchtower.enable=false"
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
 
 networks:
   traefik-network:
     external: true
+    name: traefik-network
