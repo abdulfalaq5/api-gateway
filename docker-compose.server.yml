@@ -42,7 +42,7 @@ services:
       - "traefik.enable=true"
       
       # Router untuk Kong Proxy API (port 9545) - HTTP (Cloudflare handle HTTPS)
-      - "traefik.http.routers.kong-proxy.rule=Host(`kong-api.motorsights.com`)"
+      - "traefik.http.routers.kong-proxy.rule=Host(`gateway.motorsights.com`)"
       - "traefik.http.routers.kong-proxy.entrypoints=web"
       - "traefik.http.routers.kong-proxy.service=kong-proxy"
       - "traefik.http.services.kong-proxy.loadbalancer.server.port=9545"
