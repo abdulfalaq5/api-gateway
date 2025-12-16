@@ -24,7 +24,9 @@ services:
       KONG_UPSTREAM_SEND_TIMEOUT: 60000
       KONG_UPSTREAM_READ_TIMEOUT: 60000
       # DNS Configuration
-      KONG_DNS_RESOLVER: "8.8.8.8:53,8.8.4.4:53,1.1.1.1:53"
+      # Gunakan Docker internal DNS (127.0.0.11) untuk resolve container names
+      # Fallback ke DNS eksternal untuk internet access
+      KONG_DNS_RESOLVER: "127.0.0.11:53,8.8.8.8:53,8.8.4.4:53"
       KONG_DNS_ORDER: "LAST,A,CNAME"
     volumes:
       - ./config/kong.yml:/kong/kong.yml:ro
