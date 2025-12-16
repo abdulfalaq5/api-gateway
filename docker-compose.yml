@@ -36,29 +36,8 @@ services:
       retries: 10
     restart: unless-stopped
     networks:
-      - traefik-network
+      - infra_net
     labels:
-      # Enable Traefik
-      - "traefik.enable=true"
-      
-      # Router untuk Kong Proxy API (port 9545) - HTTP (Cloudflare handle HTTPS)
-      - "traefik.http.routers.kong-proxy.rule=Host(`gateway.motorsights.com`)"
-      - "traefik.http.routers.kong-proxy.entrypoints=web"
-      - "traefik.http.routers.kong-proxy.service=kong-proxy"
-      - "traefik.http.services.kong-proxy.loadbalancer.server.port=9545"
-      
-      # Router untuk Kong Admin API (port 9546) - HTTP (Cloudflare handle HTTPS)
-      - "traefik.http.routers.kong-admin.rule=Host(`kong-admin.motorsights.com`)"
-      - "traefik.http.routers.kong-admin.entrypoints=web"
-      - "traefik.http.routers.kong-admin.service=kong-admin"
-      - "traefik.http.services.kong-admin.loadbalancer.server.port=9546"
-      
-      # Router untuk Kong Admin GUI (port 9547) - HTTP (Cloudflare handle HTTPS)
-      - "traefik.http.routers.kong-admin-gui.rule=Host(`kong-admin-gui.motorsights.com`)"
-      - "traefik.http.routers.kong-admin-gui.entrypoints=web"
-      - "traefik.http.routers.kong-admin-gui.service=kong-admin-gui"
-      - "traefik.http.services.kong-admin-gui.loadbalancer.server.port=9547"
-      
       - "com.centurylinklabs.watchtower.enable=false"
     deploy:
       resources:
@@ -70,6 +49,6 @@ services:
           memory: 128M
 
 networks:
-  traefik-network:
+  infra_net:
     external: true
-    name: traefik-network
+    name: infra_net
