@@ -3088,6 +3088,33 @@ services:
           - OPTIONS
         strip_path: false
 
+      # crm contractors get routes
+      - name: crm-contractors-get-route
+        paths:
+          - /api/crm/contractors/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm contractors create routes
+      - name: crm-contractors-create-route
+        paths:
+          - /api/crm/contractors/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm contractors routes
+      - name: crm-contractors-route
+        paths:
+          - /api/crm/contractors
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
 plugins:
   - name: rate-limiting
     config:
