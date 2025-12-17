@@ -3006,6 +3006,67 @@ services:
               minute: 1000
               hour: 60000
               policy: local
+  - name: crm-service
+    url: http://localhost:9568
+    connect_timeout: 60000
+    write_timeout: 60000
+    read_timeout: 60000
+    routes:
+      # crm territory get routes
+      - name: crm-territory-get-route
+        paths:
+          - /api/crm/territory/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm territory create routes
+      - name: crm-territory-create-route
+        paths:
+          - /api/crm/territory/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm territory routes
+      - name: crm-territory-route
+        paths:
+          - /api/crm/territory
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+
+      # crm employee data access get routes
+      - name: crm-employee-data-access-get-route
+        paths:
+          - /api/crm/employee-data-access/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm employee data access create routes
+      - name: crm-employee-data-access-create-route
+        paths:
+          - /api/crm/employee-data-access/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm employee data access routes
+      - name: crm-employee-data-access-route
+        paths:
+          - /api/crm/employee-data-access
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
 
 plugins:
   - name: rate-limiting
