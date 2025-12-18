@@ -3115,6 +3115,34 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+
+      # crm activities get routes
+      - name: crm-activities-get-route
+        paths:
+          - /api/crm/activities/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm activities create routes
+      - name: crm-activities-create-route
+        paths:
+          - /api/crm/activities/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm activities routes
+      - name: crm-activities-route
+        paths:
+          - /api/crm/activities
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
 plugins:
   - name: rate-limiting
     config:
