@@ -37,6 +37,10 @@ services:
       timeout: 10s
       retries: 10
     restart: unless-stopped
+    ports:
+      - "127.0.0.1:9545:9545"   # PROXY
+      - "127.0.0.1:9546:9546"   # ADMIN API
+      - "127.0.0.1:9547:9547"   # ADMIN GUI
     networks:
       - infra_net
     labels:
