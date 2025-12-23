@@ -1426,6 +1426,380 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        
+  - name: epc-service
+    url: http://epc-api:9566
+    connect_timeout: 60000
+    write_timeout: 60000
+    read_timeout: 60000
+    routes:
+      # epc master category routes
+      - name: epc-master-category-get-route
+        paths:
+          - /api/epc/master_category/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      - name: epc-master-category-create-route
+        paths:
+          - /api/epc/master_category/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      - name: epc-master-category-route
+        paths:
+          - /api/epc/master_category
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # epc categories routes
+      - name: epc-categories-get-route
+        paths:
+          - /api/epc/categories/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      - name: epc-categories-create-route
+        paths:
+          - /api/epc/categories/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      - name: epc-categories-route
+        paths:
+          - /api/epc/categories
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # epc type category routes
+      - name: epc-type-category-get-route
+        paths:
+          - /api/epc/type_category/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      - name: epc-type-category-create-route
+        paths:
+          - /api/epc/type_category/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      - name: epc-type-category-route
+        paths:
+          - /api/epc/type_category
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # epc item category routes
+      - name: epc-item-category-get-route
+        paths:
+          - /api/epc/item_category/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      - name: epc-item-category-create-route
+        paths:
+          - /api/epc/item_category/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      - name: epc-item-category-route
+        paths:
+          - /api/epc/item_category
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      - name: epc-item-category-dokumen-route
+        paths:
+          - /api/epc/item_category/dokumen
+        methods:
+          - GET
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # epc products routes
+      - name: epc-products-get-route
+        paths:
+          - /api/epc/products/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      - name: epc-products-create-route
+        paths:
+          - /api/epc/products/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      - name: epc-products-route
+        paths:
+          - /api/epc/products
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # epc dokumen routes
+      - name: epc-dokumen-get-route
+        paths:
+          - /api/epc/dokumen/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      - name: epc-dokumen-create-route
+        paths:
+          - /api/epc/dokumen/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      - name: epc-dokumen-duplikat-route
+        paths:
+          - /api/epc/dokumen/duplikat
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      - name: epc-dokumen-route
+        paths:
+          - /api/epc/dokumen
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # epc unit routes
+      - name: epc-unit-get-route
+        paths:
+          - /api/epc/unit/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      - name: epc-unit-create-route
+        paths:
+          - /api/epc/unit/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      - name: epc-unit-route
+        paths:
+          - /api/epc/unit
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # epc unit parts catalogs routes
+      - name: epc-parts-catalogs-get-route
+        paths:
+          - /api/epc/parts-catalogs/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      - name: epc-parts-catalogs-get-by-type-category-id-route
+        paths:
+          - /api/epc/parts-catalogs/get-by-type-category-id
+        methods:
+          - GET
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      - name: epc-parts-catalogs-get-by-item-category-id-route
+        paths:
+          - /api/epc/parts-catalogs/get-by-item-category-id
+        methods:
+          - GET
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
 
 plugins:
   - name: rate-limiting
