@@ -686,7 +686,7 @@ services:
               policy: local
 
   - name: quotation-service
-    url: http://localhost:9565
+    url: http://manage-quotation-api:9565
     connect_timeout: 60000
     write_timeout: 60000
     read_timeout: 60000
