@@ -1288,6 +1288,144 @@ services:
               minute: 1000
               hour: 60000
               policy: local
+            
+  - name: crm-service
+    url: http://crm-api:9568
+    connect_timeout: 60000
+    write_timeout: 60000
+    read_timeout: 60000
+    routes:
+      # crm territory get routes
+      - name: crm-territory-get-route
+        paths:
+          - /api/crm/territory/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm territory create routes
+      - name: crm-territory-create-route
+        paths:
+          - /api/crm/territory/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm territory routes
+      - name: crm-territory-route
+        paths:
+          - /api/crm/territory
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+
+      # crm employee data access get routes
+      - name: crm-employee-data-access-get-route
+        paths:
+          - /api/crm/employee-data-access/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm employee data access create routes
+      - name: crm-employee-data-access-create-route
+        paths:
+          - /api/crm/employee-data-access/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm employee data access routes
+      - name: crm-employee-data-access-route
+        paths:
+          - /api/crm/employee-data-access
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+
+      # crm iup management get routes
+      - name: crm-iup_management-get-route
+        paths:
+          - /api/crm/iup_management/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm employee data access routes
+      - name: crm-iup_management-route
+        paths:
+          - /api/crm/iup_management
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+
+      # crm contractors get routes
+      - name: crm-contractors-get-route
+        paths:
+          - /api/crm/contractors/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm contractors create routes
+      - name: crm-contractors-create-route
+        paths:
+          - /api/crm/contractors/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm contractors routes
+      - name: crm-contractors-route
+        paths:
+          - /api/crm/contractors
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+
+      # crm activities get routes
+      - name: crm-activities-get-route
+        paths:
+          - /api/crm/activities/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm activities create routes
+      - name: crm-activities-create-route
+        paths:
+          - /api/crm/activities/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm activities routes
+      - name: crm-activities-route
+        paths:
+          - /api/crm/activities
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
 
 plugins:
   - name: rate-limiting
