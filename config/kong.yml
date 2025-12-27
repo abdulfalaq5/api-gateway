@@ -1359,6 +1359,106 @@ services:
           - POST
           - OPTIONS
         strip_path: false
+
+      # crm iup management get routes
+      - name: crm-iup_management-create-route
+        paths:
+          - /api/crm/iup_management/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+
+      # crm iup segmentation get routes
+      - name: crm-segmentation-get-route
+        paths:
+          - /api/crm/segmentation/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+
+      # crm iup management create routes
+      - name: crm-management-create-route
+        paths:
+          - /api/crm/management/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+
+      # crm segmentation routes
+      - name: crm-segmentation-route
+        paths:
+          - /api/crm/segmentation
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+
+      # crm brand get routes
+      - name: crm-brand-get-route
+        paths:
+          - /api/crm/brand/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+
+      # crm iup brand create routes
+      - name: crm-brand-create-route
+        paths:
+          - /api/crm/brand/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+
+      # crm brand routes
+      - name: crm-brand-route
+        paths:
+          - /api/crm/brand
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+
+        # crm iup_customers get routes
+      - name: crm-iup_customers-get-route
+        paths:
+          - /api/crm/iup_customers/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+
+      # crm iup iup_customers create routes
+      - name: crm-iup_customers-create-route
+        paths:
+          - /api/crm/iup_customers/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+
+      # crm iup_customers routes
+      - name: crm-iup_customers-route
+        paths:
+          - /api/crm/iup_customers
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+
       # crm employee data access routes
       - name: crm-iup_management-route
         paths:
