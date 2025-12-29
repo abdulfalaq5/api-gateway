@@ -1360,7 +1360,7 @@ services:
           - OPTIONS
         strip_path: false
 
-      # crm iup management get routes
+      # crm iup management create routes
       - name: crm-iup_management-create-route
         paths:
           - /api/crm/iup_management/create
@@ -1608,7 +1608,35 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
-        
+
+      # crm brand get routes
+      - name: crm-brand-get-route
+        paths:
+          - /api/crm/brand/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm brand create routes
+      - name: crm-brand-create-route
+        paths:
+          - /api/crm/brand/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm brand routes
+      - name: crm-brand-route
+        paths:
+          - /api/crm/brand
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+
   - name: epc-service
     url: http://epc-api:9566
     connect_timeout: 60000
