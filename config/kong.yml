@@ -1555,34 +1555,6 @@ services:
           - OPTIONS
         strip_path: false
 
-      # crm segmentation get routes
-      - name: crm-segmentation-get-route
-        paths:
-          - /api/crm/segmentation/get
-        methods:
-          - POST
-          - OPTIONS
-        strip_path: false
-      # crm segmentation create routes
-      - name: crm-segmentation-create-route
-        paths:
-          - /api/crm/segmentation/create
-        methods:
-          - POST
-          - OPTIONS
-        strip_path: false
-      # crm segmentation routes
-      - name: crm-segmentation-route
-        paths:
-          - /api/crm/segmentation
-        methods:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - OPTIONS
-        strip_path: false
-
       # crm island get routes
       - name: crm-island-get-route
         paths:
