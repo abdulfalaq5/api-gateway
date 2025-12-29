@@ -1526,6 +1526,174 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+
+      # crm brand get routes
+      - name: crm-brand-get-route
+        paths:
+          - /api/crm/brand/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm brand create routes
+      - name: crm-brand-create-route
+        paths:
+          - /api/crm/brand/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm brand routes
+      - name: crm-brand-route
+        paths:
+          - /api/crm/brand
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+
+      # crm segmentation get routes
+      - name: crm-segmentation-get-route
+        paths:
+          - /api/crm/segmentation/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm segmentation create routes
+      - name: crm-segmentation-create-route
+        paths:
+          - /api/crm/segmentation/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm segmentation routes
+      - name: crm-segmentation-route
+        paths:
+          - /api/crm/segmentation
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+
+      # crm island get routes
+      - name: crm-island-get-route
+        paths:
+          - /api/crm/island/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm island create routes
+      - name: crm-island-create-route
+        paths:
+          - /api/crm/island/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm island routes
+      - name: crm-island-route
+        paths:
+          - /api/crm/island
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+
+      # crm group get routes
+      - name: crm-group-get-route
+        paths:
+          - /api/crm/group/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm group create routes
+      - name: crm-group-create-route
+        paths:
+          - /api/crm/group/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm group routes
+      - name: crm-group-route
+        paths:
+          - /api/crm/group
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+
+      # crm area get routes
+      - name: crm-area-get-route
+        paths:
+          - /api/crm/area/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm area create routes
+      - name: crm-area-create-route
+        paths:
+          - /api/crm/area/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm area routes
+      - name: crm-area-route
+        paths:
+          - /api/crm/area
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+
+       # crm iup_zone get routes
+      - name: crm-iup_zone-get-route
+        paths:
+          - /api/crm/iup_zone/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm iup_zone create routes
+      - name: crm-iup_zone-create-route
+        paths:
+          - /api/crm/iup_zone/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm iup_zone routes
+      - name: crm-iup_zone-route
+        paths:
+          - /api/crm/iup_zone
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
         
   - name: epc-service
     url: http://epc-api:9566
