@@ -1288,7 +1288,7 @@ services:
               minute: 1000
               hour: 60000
               policy: local
-            
+
   - name: crm-service
     url: http://crm-api:9568
     connect_timeout: 60000
@@ -1399,37 +1399,7 @@ services:
           - OPTIONS
         strip_path: false
 
-      # crm brand get routes
-      - name: crm-brand-get-route
-        paths:
-          - /api/crm/brand/get
-        methods:
-          - POST
-          - OPTIONS
-        strip_path: false
-
-      # crm iup brand create routes
-      - name: crm-brand-create-route
-        paths:
-          - /api/crm/brand/create
-        methods:
-          - POST
-          - OPTIONS
-        strip_path: false
-
-      # crm brand routes
-      - name: crm-brand-route
-        paths:
-          - /api/crm/brand
-        methods:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - OPTIONS
-        strip_path: false
-
-        # crm iup_customers get routes
+      # crm iup_customers get routes
       - name: crm-iup_customers-get-route
         paths:
           - /api/crm/iup_customers/get
@@ -1527,34 +1497,6 @@ services:
           - OPTIONS
         strip_path: false
 
-      # crm brand get routes
-      - name: crm-brand-get-route
-        paths:
-          - /api/crm/brand/get
-        methods:
-          - POST
-          - OPTIONS
-        strip_path: false
-      # crm brand create routes
-      - name: crm-brand-create-route
-        paths:
-          - /api/crm/brand/create
-        methods:
-          - POST
-          - OPTIONS
-        strip_path: false
-      # crm brand routes
-      - name: crm-brand-route
-        paths:
-          - /api/crm/brand
-        methods:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - OPTIONS
-        strip_path: false
-
       # crm island get routes
       - name: crm-island-get-route
         paths:
@@ -1639,7 +1581,7 @@ services:
           - OPTIONS
         strip_path: false
 
-       # crm iup_zone get routes
+      # crm iup_zone get routes
       - name: crm-iup_zone-get-route
         paths:
           - /api/crm/iup_zone/get
