@@ -2,28 +2,6 @@ _format_version: "3.0"
 _transform: true
 
 services:
-  - name: example-service
-    url: http://localhost:3000
-    connect_timeout: 60000
-    write_timeout: 60000
-    read_timeout: 60000
-    routes:
-      - name: example-route
-        paths:
-          - /api/v1/example
-        methods:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-        strip_path: true
-        plugins:
-          - name: rate-limiting
-            config:
-              minute: 999999999
-              hour: 999999999
-              policy: local
-
   - name: sso-service
     url: http://api-gate-sso:9601
     connect_timeout: 60000
