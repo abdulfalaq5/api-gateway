@@ -2012,7 +2012,7 @@ services:
               policy: local
 
   - name: ai-api-service
-    url: http://ai-api-service:9566
+    url: http://ai-api-service:9587
     connect_timeout: 60000
     write_timeout: 60000
     read_timeout: 60000
@@ -2034,7 +2034,7 @@ services:
       # api chat routes
       - name: api-ai-assistant-chat-route
         paths:
-          - /api/ai-assistant/chat
+          - /api/mosa/ai-assistant/chat
         methods:
           - POST
           - OPTIONS
