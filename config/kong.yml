@@ -2011,6 +2011,41 @@ services:
               hour: 999999999
               policy: local
 
+  - name: ai-api-service
+    url: http://ai-api-service:9566
+    connect_timeout: 60000
+    write_timeout: 60000
+    read_timeout: 60000
+    routes:
+      # api vakidasi routes
+      - name: api-mosa-customer-validation-validate-duplicate-route
+        paths:
+          - /api/mosa/customer-validation/validate-duplicate
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api chat routes
+      - name: api-ai-assistant-chat-route
+        paths:
+          - /api/ai-assistant/chat
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+
 plugins:
   - name: rate-limiting
     config:
