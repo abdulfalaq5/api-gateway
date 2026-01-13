@@ -1615,6 +1615,34 @@ services:
           - OPTIONS
         strip_path: false
 
+      # crm transactions get routes
+      - name: crm-transactions-get-route
+        paths:
+          - /api/crm/transactions/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm transactions create routes
+      - name: crm-transactions-create-route
+        paths:
+          - /api/crm/transactions/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+      # crm transactions routes
+      - name: crm-transactions-route
+        paths:
+          - /api/crm/transactions
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+
   - name: epc-service
     url: http://epc-api:9566
     connect_timeout: 60000
