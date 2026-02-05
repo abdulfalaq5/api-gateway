@@ -2098,6 +2098,23 @@ services:
               hour: 999999999
               policy: local
 
+      # api chat routes session
+      - name: api-ai-assistant-chat-session-route
+        paths:
+          - /api/mosa/ai-assistant/history
+        methods:
+          - GET
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+
+
 plugins:
   - name: rate-limiting
     config:
