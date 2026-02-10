@@ -285,3 +285,13 @@ curl -s http://localhost:9589/status | jq '.'  # Instance 2
 **Last Updated:** October 2025  
 **Status:** ✅ **NO CONFLICTS - Safe to Run Both Instances**  
 **Script Helper:** `./scripts/start-kong-instances.sh`
+
+
+
+
+
+
+python3 -c "import json, base64; payload = 'eyJ1c2VyX2lkIjoiZjBiNTcyNTgtNWYzMy00ZTAzLTgxZjctY2Q3MGQ4MzNiNWM1IiwiZW1wbG95ZWVfaWQiOiJmMGI1NzI1OC01ZjMzLTRlMDMtODFmNy1jZDcwZDgzM2I1YzUiLCJpYXQiOjE3NzAzNjY3MDIsImV4cCI6MTc3MDQ1MzEwMiwiYXVkIjoic3RyaW5nIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwIn0'; padding = len(payload) % 4; payload += '=' * padding; decoded = json.loads(base64.urlsafe_b64decode(payload).decode('utf-8')); print(json.dumps(decoded, indent=2)); print('Duration:', decoded['exp'] - decoded['iat'])"
+
+
+python3 -c "import json, base64; payload = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJ1c2VyX2lkIjoiZjBiNTcyNTgtNWYzMy00ZTAzLTgxZjctY2Q3MGQ4MzNiNWM1IiwiZW1wbG95ZWVfaWQiOiJmMGI1NzI1OC01ZjMzLTRlMDMtODFmNy1jZDcwZDgzM2I1YzUiLCJpYXQiOjE3NzAzNjcxNTIsImV4cCI6MTc3MDQ1MzU1MiwiYXVkIjoic3RyaW5nIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwIn0-jtHcsClGYNtEaAkA2GwGlUw7ujO8SFh2lQjHBWwpPE'; padding = len(payload) % 4; payload += '=' * padding; decoded = json.loads(base64.urlsafe_b64decode(payload).decode('utf-8')); print(json.dumps(decoded, indent=2)); print('Duration:', decoded['exp'] - decoded['iat'])"
