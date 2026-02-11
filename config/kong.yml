@@ -68,33 +68,6 @@ services:
           - OPTIONS
         strip_path: false
         plugins:
-          - name: jwt
-            config:
-              key_claim_name: iss
-              claims_to_verify:
-                - exp
-              run_on_preflight: false
-          - name: pre-function
-            config:
-              access:
-                - |
-                  local jwt_parser = require "kong.plugins.jwt.jwt_parser"
-                  local token = kong.request.get_header("Authorization")
-                  if token then
-                    local _, _, jwt_token = string.find(token, "Bearer%s+(.+)")
-                    if jwt_token then
-                      local jwt = jwt_parser:new(jwt_token)
-                      local claims = jwt.claims
-                      if claims then
-                        if claims.user_id then
-                          kong.service.request.set_header("X-User-Id", claims.user_id)
-                        end
-                        if claims.employee_id then
-                          kong.service.request.set_header("X-Employee-Id", claims.employee_id)
-                        end
-                      end
-                    end
-                  end
           - name: rate-limiting
             config:
               minute: 999999999
