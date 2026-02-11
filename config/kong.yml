@@ -6719,14 +6719,11 @@ services:
               hour: 999999999
               policy: local
 
-      - name: epc-vin-customer-route
+      - name: epc-vin-customer-create-route
         paths:
-          - /api/epc/vin_customer
+          - /api/epc/vin_customer/create
         methods:
-          - GET
           - POST
-          - PUT
-          - DELETE
           - OPTIONS
         strip_path: false
         plugins:
@@ -6766,11 +6763,15 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
-      - name: epc-vin-customer-create-route
+
+      - name: epc-vin-customer-route
         paths:
-          - /api/epc/vin_customer/create
+          - /api/epc/vin_customer
         methods:
+          - GET
           - POST
+          - PUT
+          - DELETE
           - OPTIONS
         strip_path: false
         plugins:
