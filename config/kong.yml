@@ -6699,6 +6699,7 @@ services:
         paths:
           - /api/epc/parts-catalogs/get-by-master-category-id
         methods:
+          - GET
           - POST
           - OPTIONS
         strip_path: false
