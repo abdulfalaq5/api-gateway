@@ -86,3 +86,7 @@ docker exec <nginx-container-name> nginx -t
 
 Lihat `docs/NGINX_CLOUDFLARE_SETUP.md` untuk dokumentasi lengkap.
 
+
+## untuk migrate ke database mode jalankan script migrate_to_db.sh
+./scripts/migrate_to_db.sh
+

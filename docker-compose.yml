@@ -1,13 +1,42 @@
 services:
+  postgres:
+    image: postgres:13
+    container_name: kong-database
+    environment:
+      POSTGRES_DB: kong
+      POSTGRES_USER: kong
+      POSTGRES_PASSWORD: kong
+    volumes:
+      - kong_data:/var/lib/postgresql/data
+    networks:
+      - infra_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kong"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+
   kong:
     image: kong:3.4
     container_name: kong-gateway
     env_file:
       - .env
     environment:
-      # Use db-less mode for server deployment
-      KONG_DATABASE: "off"
-      KONG_DECLARATIVE_CONFIG: /tmp/kong_configured.yml
+      # Database Mode
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: postgres
+      KONG_PG_USER: kong
+      KONG_PG_PASSWORD: kong
+      KONG_PG_DATABASE: kong
+      
       KONG_UNTRUSTED_LUA: "on"
       # Listen addresses
       KONG_PROXY_LISTEN: 0.0.0.0:9545
@@ -27,15 +56,14 @@ services:
       KONG_UPSTREAM_SEND_TIMEOUT: 60000
       KONG_UPSTREAM_READ_TIMEOUT: 60000
       # DNS Configuration
-      # Gunakan Docker internal DNS (127.0.0.11) untuk resolve container names
-      # Fallback ke DNS eksternal untuk internet access
       KONG_DNS_RESOLVER: "127.0.0.11:53,8.8.8.8:53,8.8.4.4:53"
       KONG_DNS_ORDER: "LAST,A,CNAME"
-    command: /scripts/entrypoint.sh
+    depends_on:
+      postgres:
+        condition: service_healthy
     volumes:
-      - ./config/kong.yml:/kong/kong.yml:ro
+      - ./config:/kong/config
       - ./config/resolv.conf:/etc/resolv.conf:ro
-      - ./scripts/entrypoint.sh:/scripts/entrypoint.sh:ro
     healthcheck:
       test: [ "CMD", "kong", "health" ]
       interval: 10s
@@ -58,6 +86,9 @@ services:
         reservations:
           cpus: '0.25'
           memory: 128M
+
+volumes:
+  kong_data:
 
 networks:
   infra_net:
