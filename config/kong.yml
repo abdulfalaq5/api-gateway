@@ -6047,6 +6047,129 @@ services:
                       end
                     end
                   end
+      # crm project_details get routes 
+      - name: crm-project_details-get-route
+        paths:
+          - /api/crm/project_details/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+          - name: pre-function
+            config:
+              access:
+                - |
+                  local jwt_parser = require "kong.plugins.jwt.jwt_parser"
+                  local token = kong.request.get_header("Authorization")
+                  if token then
+                    local _, _, jwt_token = string.find(token, "Bearer%s+(.+)")
+                    if jwt_token then
+                      local jwt = jwt_parser:new(jwt_token)
+                      local claims = jwt.claims
+                      if claims then
+                        -- VALIDATION: Restrict access to employees only
+                        if claims.is_customer == true then
+                           return kong.response.exit(403, { message = "Forbidden: Access denied. Employees only." })
+                        end
+                        if claims.user_id then
+                          kong.service.request.set_header("X-User-Id", claims.user_id)
+                        end
+                        if claims.employee_id then
+                          kong.service.request.set_header("X-Employee-Id", claims.employee_id)
+                        end
+                      end
+                    end
+                  end
+      # crm project_details create routes
+      - name: crm-project_details-create-route
+        paths:
+          - /api/crm/project_details/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+          - name: pre-function
+            config:
+              access:
+                - |
+                  local jwt_parser = require "kong.plugins.jwt.jwt_parser"
+                  local token = kong.request.get_header("Authorization")
+                  if token then
+                    local _, _, jwt_token = string.find(token, "Bearer%s+(.+)")
+                    if jwt_token then
+                      local jwt = jwt_parser:new(jwt_token)
+                      local claims = jwt.claims
+                      if claims then
+                        -- VALIDATION: Restrict access to employees only
+                        if claims.is_customer == true then
+                           return kong.response.exit(403, { message = "Forbidden: Access denied. Employees only." })
+                        end
+                        if claims.user_id then
+                          kong.service.request.set_header("X-User-Id", claims.user_id)
+                        end
+                        if claims.employee_id then
+                          kong.service.request.set_header("X-Employee-Id", claims.employee_id)
+                        end
+                      end
+                    end
+                  end
+      # crm project_details routes
+      - name: crm-project_details-route
+        paths:
+          - /api/crm/project_details
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+          - name: pre-function
+            config:
+              access:
+                - |
+                  local jwt_parser = require "kong.plugins.jwt.jwt_parser"
+                  local token = kong.request.get_header("Authorization")
+                  if token then
+                    local _, _, jwt_token = string.find(token, "Bearer%s+(.+)")
+                    if jwt_token then
+                      local jwt = jwt_parser:new(jwt_token)
+                      local claims = jwt.claims
+                      if claims then
+                        -- VALIDATION: Restrict access to employees only
+                        if claims.is_customer == true then
+                           return kong.response.exit(403, { message = "Forbidden: Access denied. Employees only." })
+                        end
+                        if claims.user_id then
+                          kong.service.request.set_header("X-User-Id", claims.user_id)
+                        end
+                        if claims.employee_id then
+                          kong.service.request.set_header("X-Employee-Id", claims.employee_id)
+                        end
+                      end
+                    end
+                  end
 
   - name: epc-service
     url: http://epc-api:9566
