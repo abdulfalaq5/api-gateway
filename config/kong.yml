@@ -7986,6 +7986,23 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-purchasing-order-routes
+      - name: netsuite-purchasing-order-routes
+        paths:
+          - /api/netsuite/purchasing-orders
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # api netsuite-components-get-list-route
       - name: netsuite-componen-get-list-route
         paths:
