@@ -8088,6 +8088,23 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-faktur-route
+      - name: netsuite-faktur-route
+        paths:
+          - /api/netsuite/faktur
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # api netsuite-reference-get-route
       - name: netsuite-reference-get-route
         paths:
