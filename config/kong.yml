@@ -8156,6 +8156,34 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-classes-get-route
+      - name: netsuite-classes-get-route
+        paths:
+          - /api/netsuite/classes/get-list
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-departments-get-route
+      - name: netsuite-departments-get-route
+        paths:
+          - /api/netsuite/departments/get-list
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
 
 
 plugins:
