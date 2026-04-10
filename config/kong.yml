@@ -8201,7 +8201,7 @@ services:
       # api netsuite-subsidiary-get-route
       - name: netsuite-subsidiary-get-route
         paths:
-          - /api/netsuite/subsidiary/get-list
+          - /api/netsuite/subsidiary/get
         methods:
           - POST
           - OPTIONS
