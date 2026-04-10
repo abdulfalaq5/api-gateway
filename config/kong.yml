@@ -8184,6 +8184,48 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-customers-create-route
+      - name: netsuite-customers-create-route
+        paths:
+          - /api/netsuite/customers/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-subsidiary-get-route
+      - name: netsuite-subsidiary-get-route
+        paths:
+          - /api/netsuite/subsidiary/get-list
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-purchasing-orders-update-route
+      - name: netsuite-purchasing-orders-update-route
+        paths:
+          - /api/netsuite/purchasing-orders/update
+        methods:
+          - PUT
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
 
 
 plugins:
