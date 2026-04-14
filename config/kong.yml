@@ -8226,10 +8226,10 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
-      # api netsuite-terms-get-route
-      - name: netsuite-term-get-route
+      # api netsuite-terms-get-list-route
+      - name: netsuite-terms-get-list-route
         paths:
-          - /api/netsuite/term/get
+          - /api/netsuite/terms/get-list
         methods:
           - POST
           - OPTIONS
