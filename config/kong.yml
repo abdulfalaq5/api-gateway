@@ -7986,6 +7986,21 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-purchasing-order-approval-sync-route
+      - name: netsuite-purchasing-order-approval-sync-route
+        paths:
+          - /api/netsuite/purchasing-orders/sync
+        methods:
+          - GET
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # api netsuite-purchasing-order-routes
       - name: netsuite-purchasing-order-routes
         paths:
@@ -8037,6 +8052,21 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-items-sync-route
+      - name: netsuite-items-sync-route
+        paths:
+          - /api/netsuite/items/sync
+        methods:
+          - GET
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # api netsuite-vendor-get-list-route
       - name: netsuite-vendor-get-list-route
         paths:
@@ -8054,6 +8084,21 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-vendor-sync-route
+      - name: netsuite-vendor-sync-route
+        paths:
+          - /api/netsuite/vendor/sync
+        methods:
+          - GET
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # api netsuite-locations-get-list-route
       - name: netsuite-locations-get-list-route
         paths:
@@ -8063,6 +8108,21 @@ services:
           - POST
           - PUT
           - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-locations-sync-route
+      - name: netsuite-locations-sync-route
+        paths:
+          - /api/netsuite/locations/sync
+        methods:
+          - GET
+          - POST
           - OPTIONS
         strip_path: false
         plugins:
@@ -8156,6 +8216,21 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-invoice-sales-order-sync-route
+      - name: netsuite-invoice-sales-orders-sync-route
+        paths:
+          - /api/netsuite/invoice-sales-orders/sync
+        methods:
+          - GET
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # api netsuite-classes-get-route
       - name: netsuite-classes-get-route
         paths:
@@ -8170,10 +8245,38 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-classes-sync-route
+      - name: netsuite-classes-sync-route
+        paths:
+          - /api/netsuite/classes/sync
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # api netsuite-departments-get-route
       - name: netsuite-departments-get-route
         paths:
           - /api/netsuite/departments/get-list
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-departments-sync-route
+      - name: netsuite-departments-sync-route
+        paths:
+          - /api/netsuite/departments/sync
         methods:
           - POST
           - OPTIONS
@@ -8230,6 +8333,20 @@ services:
       - name: netsuite-terms-get-list-route
         paths:
           - /api/netsuite/terms/get-list
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-terms-sync-route
+      - name: netsuite-terms-sync-route
+        paths:
+          - /api/netsuite/terms/sync
         methods:
           - POST
           - OPTIONS
