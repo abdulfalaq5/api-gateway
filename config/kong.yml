@@ -8385,6 +8385,78 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-sales-orders-get-route
+      - name: netsuite-sales-orders-get-route
+        paths:
+          - /api/netsuite/sales-orders/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-sales-orders-sync-route
+      - name: netsuite-sales-orders-sync-route
+        paths:
+          - /api/netsuite/sales-orders/sync
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-sales-orders-create-route
+      - name: netsuite-sales-orders-create-route
+        paths:
+          - /api/netsuite/sales-orders/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-sales-orders-update-route
+      - name: netsuite-sales-orders-update-route
+        paths:
+          - /api/netsuite/sales-orders/update
+        methods:
+          - PUT
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-sales-orders-route
+      - name: netsuite-sales-orders-route
+        paths:
+          - /api/netsuite/sales-orders
+        methods:
+          - GET
+          - POST
+          - PUT
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
 
 
 plugins:
