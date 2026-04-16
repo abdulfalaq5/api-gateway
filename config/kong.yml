@@ -8329,6 +8329,20 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-purchasing-orders-print-route
+      - name: netsuite-purchasing-orders-print-route
+        paths:
+          - /api/netsuite/purchasing-orders/print
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # api netsuite-terms-get-list-route
       - name: netsuite-terms-get-list-route
         paths:
