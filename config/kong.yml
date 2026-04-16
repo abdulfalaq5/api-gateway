@@ -8484,6 +8484,34 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-bank-get-route
+      - name: netsuite-bank-get-route
+        paths:
+          - /api/netsuite/bank/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-bank-sync-route
+      - name: netsuite-bank-sync-route
+        paths:
+          - /api/netsuite/bank/sync
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
 
 
 plugins:
