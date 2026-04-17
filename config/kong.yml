@@ -3875,102 +3875,19 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
-  - name: bridge-service
+  - name: bridge-netsuite-service
     url: http://localhost:9575
     connect_timeout: 60000
     write_timeout: 60000
     read_timeout: 60000
-    routes:
-      # customer netsuite get routes
-      - name: customer-netsuite-get-route
-        paths:
-          - /api/v1/bridge/customers/get
-        methods:
-          - POST
-          - OPTIONS
-        strip_path: false
-        plugins:
-          - name: jwt
-            config:
-              key_claim_name: iss
-              claims_to_verify:
-                - exp
-              run_on_preflight: false
-          - name: pre-function
-            config:
-              access:
-                - |
-                  local jwt_parser = require "kong.plugins.jwt.jwt_parser"
-                  local token = kong.request.get_header("Authorization")
-                  if token then
-                    local _, _, jwt_token = string.find(token, "Bearer%s+(.+)")
-                    if jwt_token then
-                      local jwt = jwt_parser:new(jwt_token)
-                      local claims = jwt.claims
-                      if claims then
-                        -- VALIDATION: Restrict access to employees only
-                        if claims.is_customer == true then
-                           return kong.response.exit(403, { message = "Forbidden: Access denied. Employees only." })
-                        end
-                        if claims.user_id then
-                          kong.service.request.set_header("X-User-Id", claims.user_id)
-                        end
-                        if claims.employee_id then
-                          kong.service.request.set_header("X-Employee-Id", claims.employee_id)
-                        end
-                      end
-                    end
-                  end
-          - name: rate-limiting
-            config:
-              minute: 1000
-              hour: 60000
-              policy: local
-      # vendor netsuite get routes
-      - name: vendor-netsuite-get-route
-        paths:
-          - /api/v1/bridge/vendors/get
-        methods:
-          - POST
-          - OPTIONS
-        strip_path: false
-        plugins:
-          - name: jwt
-            config:
-              key_claim_name: iss
-              claims_to_verify:
-                - exp
-              run_on_preflight: false
-          - name: pre-function
-            config:
-              access:
-                - |
-                  local jwt_parser = require "kong.plugins.jwt.jwt_parser"
-                  local token = kong.request.get_header("Authorization")
-                  if token then
-                    local _, _, jwt_token = string.find(token, "Bearer%s+(.+)")
-                    if jwt_token then
-                      local jwt = jwt_parser:new(jwt_token)
-                      local claims = jwt.claims
-                      if claims then
-                        -- VALIDATION: Restrict access to employees only
-                        if claims.is_customer == true then
-                           return kong.response.exit(403, { message = "Forbidden: Access denied. Employees only." })
-                        end
-                        if claims.user_id then
-                          kong.service.request.set_header("X-User-Id", claims.user_id)
-                        end
-                        if claims.employee_id then
-                          kong.service.request.set_header("X-Employee-Id", claims.employee_id)
-                        end
-                      end
-                    end
-                  end
-          - name: rate-limiting
-            config:
-              minute: 1000
-              hour: 60000
-              policy: local
+
+    plugins:
+    - name: rate-limiting
+      config:
+        second: 2
+        minute: 120
+        hour: 7200
+        policy: local
 
   - name: crm-service
     url: http://crm-api:9568
