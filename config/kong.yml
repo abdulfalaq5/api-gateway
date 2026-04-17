@@ -8293,6 +8293,48 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-purchasing-orders-receive-list-route
+      - name: netsuite-purchasing-orders-receive-list-route
+        paths:
+          - /api/netsuite/purchasing-orders/receive-list
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-purchasing-orders-receive-list-sync-route
+      - name: netsuite-purchasing-orders-receive-list-sync-route
+        paths:
+          - /api/netsuite/purchasing-orders/receive-list/sync
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-purchasing-orders-receive-item-route
+      - name: netsuite-purchasing-orders-receive-item-route
+        paths:
+          - /api/netsuite/purchasing-orders/receive-item
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # api netsuite-terms-get-list-route
       - name: netsuite-terms-get-list-route
         paths:
