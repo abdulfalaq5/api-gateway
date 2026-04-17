@@ -3889,6 +3889,12 @@ services:
         hour: 7200
         policy: local
 
+    routes:
+    - name: bridge-netsuite-route
+      paths:
+        - /api/v1/bridge
+      strip_path: false
+
   - name: crm-service
     url: http://crm-api:9568
     connect_timeout: 60000
