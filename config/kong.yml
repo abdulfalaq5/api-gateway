@@ -8293,10 +8293,10 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
-      # api netsuite-purchasing-orders-receive-list-route
-      - name: netsuite-purchasing-orders-receive-list-route
+      # api netsuite-purchasing-orders-receive-list-sync-route
+      - name: netsuite-purchasing-orders-receive-list-sync-route
         paths:
-          - /api/netsuite/purchasing-orders/receive-list
+          - /api/netsuite/purchasing-orders/receive-list/sync
         methods:
           - POST
           - OPTIONS
@@ -8307,11 +8307,12 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
-      # api netsuite-purchasing-orders-receive-list-sync-route
-      - name: netsuite-purchasing-orders-receive-list-sync-route
+      # api netsuite-purchasing-orders-receive-list-route
+      - name: netsuite-purchasing-orders-receive-list-route
         paths:
-          - /api/netsuite/purchasing-orders/receive-list/sync
+          - /api/netsuite/purchasing-orders/receive-list
         methods:
+          - GET
           - POST
           - OPTIONS
         strip_path: false
