@@ -8378,10 +8378,10 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
-      # api netsuite-sync-module-route
-      - name: netsuite-sync-module-route
+      # api netsuite-sync-modules-route
+      - name: netsuite-sync-modules-route
         paths:
-          - /api/netsuite/sync/module
+          - /api/netsuite/sync/modules
         methods:
           - POST
           - OPTIONS
