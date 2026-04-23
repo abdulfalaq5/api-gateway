@@ -8378,6 +8378,20 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-sync-module-route
+      - name: netsuite-sync-module-route
+        paths:
+          - /api/netsuite/sync/module
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # api netsuite-sales-orders-get-route
       - name: netsuite-sales-orders-get-route
         paths:
