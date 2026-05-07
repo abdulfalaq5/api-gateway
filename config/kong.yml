@@ -54,6 +54,33 @@ services:
           - OPTIONS
         strip_path: false
         plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+          - name: pre-function
+            config:
+              access:
+                - |
+                  local jwt_parser = require "kong.plugins.jwt.jwt_parser"
+                  local token = kong.request.get_header("Authorization")
+                  if token then
+                    local _, _, jwt_token = string.find(token, "Bearer%s+(.+)")
+                    if jwt_token then
+                      local jwt = jwt_parser:new(jwt_token)
+                      local claims = jwt.claims
+                      if claims then
+                        if claims.user_id then
+                          kong.service.request.set_header("X-User-Id", claims.user_id)
+                        end
+                        if claims.employee_id then
+                          kong.service.request.set_header("X-Employee-Id", claims.employee_id)
+                        end
+                      end
+                    end
+                  end
           - name: rate-limiting
             config:
               minute: 999999999
@@ -3848,102 +3875,163 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
-  - name: bridge-service
-    url: http://localhost:9575
+      # road hauling price routes
+      - name: road-hauling_prices-get-route
+        paths:
+          - /api/calculations/hauling_prices/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+          - name: pre-function
+            config:
+              access:
+                - |
+                  local jwt_parser = require "kong.plugins.jwt.jwt_parser"
+                  local token = kong.request.get_header("Authorization")
+                  if token then
+                    local _, _, jwt_token = string.find(token, "Bearer%s+(.+)")
+                    if jwt_token then
+                      local jwt = jwt_parser:new(jwt_token)
+                      local claims = jwt.claims
+                      if claims then
+                        -- VALIDATION: Restrict access to employees only
+                        if claims.is_customer == true then
+                           return kong.response.exit(403, { message = "Forbidden: Access denied. Employees only." })
+                        end
+                        if claims.user_id then
+                          kong.service.request.set_header("X-User-Id", claims.user_id)
+                        end
+                        if claims.employee_id then
+                          kong.service.request.set_header("X-Employee-Id", claims.employee_id)
+                        end
+                      end
+                    end
+                  end
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # road hauling_prices create routes
+      - name: road-hauling_prices-create-route
+        paths:
+          - /api/calculations/hauling_prices/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+          - name: pre-function
+            config:
+              access:
+                - |
+                  local jwt_parser = require "kong.plugins.jwt.jwt_parser"
+                  local token = kong.request.get_header("Authorization")
+                  if token then
+                    local _, _, jwt_token = string.find(token, "Bearer%s+(.+)")
+                    if jwt_token then
+                      local jwt = jwt_parser:new(jwt_token)
+                      local claims = jwt.claims
+                      if claims then
+                        -- VALIDATION: Restrict access to employees only
+                        if claims.is_customer == true then
+                           return kong.response.exit(403, { message = "Forbidden: Access denied. Employees only." })
+                        end
+                        if claims.user_id then
+                          kong.service.request.set_header("X-User-Id", claims.user_id)
+                        end
+                        if claims.employee_id then
+                          kong.service.request.set_header("X-Employee-Id", claims.employee_id)
+                        end
+                      end
+                    end
+                  end
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # road hauling_prices routes
+      - name: road-hauling_prices-route
+        paths:
+          - /api/calculations/hauling_prices
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+          - name: pre-function
+            config:
+              access:
+                - |
+                  local jwt_parser = require "kong.plugins.jwt.jwt_parser"
+                  local token = kong.request.get_header("Authorization")
+                  if token then
+                    local _, _, jwt_token = string.find(token, "Bearer%s+(.+)")
+                    if jwt_token then
+                      local jwt = jwt_parser:new(jwt_token)
+                      local claims = jwt.claims
+                      if claims then
+                        -- VALIDATION: Restrict access to employees only
+                        if claims.is_customer == true then
+                           return kong.response.exit(403, { message = "Forbidden: Access denied. Employees only." })
+                        end
+                        if claims.user_id then
+                          kong.service.request.set_header("X-User-Id", claims.user_id)
+                        end
+                        if claims.employee_id then
+                          kong.service.request.set_header("X-Employee-Id", claims.employee_id)
+                        end
+                      end
+                    end
+                  end
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+  - name: bridge-netsuite-service
+    url: http://api-bridge-msi:9570
     connect_timeout: 60000
     write_timeout: 60000
     read_timeout: 60000
+
+    plugins:
+    - name: rate-limiting
+      config:
+        second: 2
+        minute: 120
+        hour: 7200
+        policy: local
+
     routes:
-      # customer netsuite get routes
-      - name: customer-netsuite-get-route
-        paths:
-          - /api/v1/bridge/customers/get
-        methods:
-          - POST
-          - OPTIONS
-        strip_path: false
-        plugins:
-          - name: jwt
-            config:
-              key_claim_name: iss
-              claims_to_verify:
-                - exp
-              run_on_preflight: false
-          - name: pre-function
-            config:
-              access:
-                - |
-                  local jwt_parser = require "kong.plugins.jwt.jwt_parser"
-                  local token = kong.request.get_header("Authorization")
-                  if token then
-                    local _, _, jwt_token = string.find(token, "Bearer%s+(.+)")
-                    if jwt_token then
-                      local jwt = jwt_parser:new(jwt_token)
-                      local claims = jwt.claims
-                      if claims then
-                        -- VALIDATION: Restrict access to employees only
-                        if claims.is_customer == true then
-                           return kong.response.exit(403, { message = "Forbidden: Access denied. Employees only." })
-                        end
-                        if claims.user_id then
-                          kong.service.request.set_header("X-User-Id", claims.user_id)
-                        end
-                        if claims.employee_id then
-                          kong.service.request.set_header("X-Employee-Id", claims.employee_id)
-                        end
-                      end
-                    end
-                  end
-          - name: rate-limiting
-            config:
-              minute: 1000
-              hour: 60000
-              policy: local
-      # vendor netsuite get routes
-      - name: vendor-netsuite-get-route
-        paths:
-          - /api/v1/bridge/vendors/get
-        methods:
-          - POST
-          - OPTIONS
-        strip_path: false
-        plugins:
-          - name: jwt
-            config:
-              key_claim_name: iss
-              claims_to_verify:
-                - exp
-              run_on_preflight: false
-          - name: pre-function
-            config:
-              access:
-                - |
-                  local jwt_parser = require "kong.plugins.jwt.jwt_parser"
-                  local token = kong.request.get_header("Authorization")
-                  if token then
-                    local _, _, jwt_token = string.find(token, "Bearer%s+(.+)")
-                    if jwt_token then
-                      local jwt = jwt_parser:new(jwt_token)
-                      local claims = jwt.claims
-                      if claims then
-                        -- VALIDATION: Restrict access to employees only
-                        if claims.is_customer == true then
-                           return kong.response.exit(403, { message = "Forbidden: Access denied. Employees only." })
-                        end
-                        if claims.user_id then
-                          kong.service.request.set_header("X-User-Id", claims.user_id)
-                        end
-                        if claims.employee_id then
-                          kong.service.request.set_header("X-Employee-Id", claims.employee_id)
-                        end
-                      end
-                    end
-                  end
-          - name: rate-limiting
-            config:
-              minute: 1000
-              hour: 60000
-              policy: local
+    - name: bridge-netsuite-route
+      paths:
+        - /api/v1/bridge
+      strip_path: false
 
   - name: crm-service
     url: http://crm-api:9568
@@ -7986,6 +8074,21 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-purchasing-order-approval-sync-route
+      - name: netsuite-purchasing-order-approval-sync-route
+        paths:
+          - /api/netsuite/purchasing-orders/sync
+        methods:
+          - GET
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # api netsuite-purchasing-order-routes
       - name: netsuite-purchasing-order-routes
         paths:
@@ -8037,6 +8140,21 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-items-sync-route
+      - name: netsuite-items-sync-route
+        paths:
+          - /api/netsuite/items/sync
+        methods:
+          - GET
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # api netsuite-vendor-get-list-route
       - name: netsuite-vendor-get-list-route
         paths:
@@ -8054,6 +8172,21 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-vendor-sync-route
+      - name: netsuite-vendor-sync-route
+        paths:
+          - /api/netsuite/vendor/sync
+        methods:
+          - GET
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       # api netsuite-locations-get-list-route
       - name: netsuite-locations-get-list-route
         paths:
@@ -8063,6 +8196,21 @@ services:
           - POST
           - PUT
           - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-locations-sync-route
+      - name: netsuite-locations-sync-route
+        paths:
+          - /api/netsuite/locations/sync
+        methods:
+          - GET
+          - POST
           - OPTIONS
         strip_path: false
         plugins:
@@ -8148,6 +8296,333 @@ services:
           - POST
           - PUT
           - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-invoice-sales-order-sync-route
+      - name: netsuite-invoice-sales-orders-sync-route
+        paths:
+          - /api/netsuite/invoice-sales-orders/sync
+        methods:
+          - GET
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-classes-get-route
+      - name: netsuite-classes-get-route
+        paths:
+          - /api/netsuite/classes/get-list
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-classes-sync-route
+      - name: netsuite-classes-sync-route
+        paths:
+          - /api/netsuite/classes/sync
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-departments-get-route
+      - name: netsuite-departments-get-route
+        paths:
+          - /api/netsuite/departments/get-list
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-departments-sync-route
+      - name: netsuite-departments-sync-route
+        paths:
+          - /api/netsuite/departments/sync
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-customers-create-route
+      - name: netsuite-customers-create-route
+        paths:
+          - /api/netsuite/customers/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-subsidiary-get-route
+      - name: netsuite-subsidiary-get-route
+        paths:
+          - /api/netsuite/subsidiary/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-purchasing-orders-update-route
+      - name: netsuite-purchasing-orders-update-route
+        paths:
+          - /api/netsuite/purchasing-orders/update
+        methods:
+          - PUT
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-purchasing-orders-print-route
+      - name: netsuite-purchasing-orders-print-route
+        paths:
+          - /api/netsuite/purchasing-orders/print
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-purchasing-orders-receive-list-sync-route
+      - name: netsuite-purchasing-orders-receive-list-sync-route
+        paths:
+          - /api/netsuite/purchasing-orders/receive-list/sync
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-purchasing-orders-receive-list-route
+      - name: netsuite-purchasing-orders-receive-list-route
+        paths:
+          - /api/netsuite/purchasing-orders/receive-list
+        methods:
+          - GET
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-purchasing-orders-receive-item-route
+      - name: netsuite-purchasing-orders-receive-item-route
+        paths:
+          - /api/netsuite/purchasing-orders/receive-item
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-terms-get-list-route
+      - name: netsuite-terms-get-list-route
+        paths:
+          - /api/netsuite/terms/get-list
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-terms-sync-route
+      - name: netsuite-terms-sync-route
+        paths:
+          - /api/netsuite/terms/sync
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-sync-get-route
+      - name: netsuite-sync-get-route
+        paths:
+          - /api/netsuite/sync/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-sync-modules-route
+      - name: netsuite-sync-modules-route
+        paths:
+          - /api/netsuite/sync/modules
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-sales-orders-get-route
+      - name: netsuite-sales-orders-get-route
+        paths:
+          - /api/netsuite/sales-orders/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-sales-orders-sync-route
+      - name: netsuite-sales-orders-sync-route
+        paths:
+          - /api/netsuite/sales-orders/sync
+        methods:
+          - POST
+          - GET
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-sales-orders-create-route
+      - name: netsuite-sales-orders-create-route
+        paths:
+          - /api/netsuite/sales-orders/create
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-sales-orders-update-route
+      - name: netsuite-sales-orders-update-route
+        paths:
+          - /api/netsuite/sales-orders/update
+        methods:
+          - PUT
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-sales-orders-route
+      - name: netsuite-sales-orders-route
+        paths:
+          - /api/netsuite/sales-orders
+        methods:
+          - GET
+          - POST
+          - PUT
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-bank-get-route
+      - name: netsuite-bank-get-route
+        paths:
+          - /api/netsuite/bank/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-bank-sync-route
+      - name: netsuite-bank-sync-route
+        paths:
+          - /api/netsuite/bank/sync
+        methods:
+          - POST
           - OPTIONS
         strip_path: false
         plugins:
