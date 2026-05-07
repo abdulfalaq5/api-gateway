@@ -4015,9 +4015,9 @@ services:
               policy: local
   - name: bridge-netsuite-service
     url: http://api-bridge-msi:9570
-    connect_timeout: 60000
-    write_timeout: 60000
-    read_timeout: 60000
+    connect_timeout: 600000
+    write_timeout: 600000
+    read_timeout: 600000
 
     plugins:
     - name: rate-limiting
