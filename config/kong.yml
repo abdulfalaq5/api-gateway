@@ -8631,6 +8631,34 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-po-status-get-route
+      - name: netsuite-po-status-get-route
+        paths:
+          - /api/netsuite/po_status/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-approval-status-get-route
+      - name: netsuite-approval-status-get-route
+        paths:
+          - /api/netsuite/approval_status/get
+        methods:
+          - POST
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
 
 
 plugins:
