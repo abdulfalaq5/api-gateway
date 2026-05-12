@@ -8028,10 +8028,21 @@ services:
         paths:
           - /api/netsuite/purchasing-orders/get-list
         methods:
-          - GET
           - POST
-          - PUT
-          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api netsuite-purchasing-orders-get-list-items-route
+      - name: netsuite-purchasing-orders-get-items-route
+        paths:
+          - /api/netsuite/purchasing-orders/get-items
+        methods:
+          - POST
           - OPTIONS
         strip_path: false
         plugins:
@@ -8045,10 +8056,7 @@ services:
         paths:
           - /api/netsuite/purchasing-orders/create
         methods:
-          - GET
           - POST
-          - PUT
-          - DELETE
           - OPTIONS
         strip_path: false
         plugins:
@@ -8062,10 +8070,7 @@ services:
         paths:
           - /api/netsuite/purchasing-orders/approval
         methods:
-          - GET
           - POST
-          - PUT
-          - DELETE
           - OPTIONS
         strip_path: false
         plugins:
@@ -8112,9 +8117,6 @@ services:
           - /api/netsuite/componen/get-list
         methods:
           - GET
-          - POST
-          - PUT
-          - DELETE
           - OPTIONS
         strip_path: false
         plugins:
@@ -8128,10 +8130,7 @@ services:
         paths:
           - /api/netsuite/items/get-list
         methods:
-          - GET
           - POST
-          - PUT
-          - DELETE
           - OPTIONS
         strip_path: false
         plugins:
@@ -8160,10 +8159,7 @@ services:
         paths:
           - /api/netsuite/vendor/get-list
         methods:
-          - GET
           - POST
-          - PUT
-          - DELETE
           - OPTIONS
         strip_path: false
         plugins:
@@ -8192,10 +8188,7 @@ services:
         paths:
           - /api/netsuite/locations/get-list
         methods:
-          - GET
           - POST
-          - PUT
-          - DELETE
           - OPTIONS
         strip_path: false
         plugins:
@@ -8224,10 +8217,7 @@ services:
         paths:
           - /api/netsuite/customers/get-list
         methods:
-          - GET
           - POST
-          - PUT
-          - DELETE
           - OPTIONS
         strip_path: false
         plugins:
@@ -8241,10 +8231,7 @@ services:
         paths:
           - /api/netsuite/faktur/get
         methods:
-          - GET
           - POST
-          - PUT
-          - DELETE
           - OPTIONS
         strip_path: false
         plugins:
@@ -8275,10 +8262,7 @@ services:
         paths:
           - /api/netsuite/reference/get
         methods:
-          - GET
           - POST
-          - PUT
-          - DELETE
           - OPTIONS
         strip_path: false
         plugins:
@@ -8292,10 +8276,7 @@ services:
         paths:
           - /api/netsuite/invoice-sales-orders/get
         methods:
-          - GET
           - POST
-          - PUT
-          - DELETE
           - OPTIONS
         strip_path: false
         plugins:
