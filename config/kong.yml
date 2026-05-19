@@ -9401,10 +9401,6 @@ services:
                       local jwt = jwt_parser:new(jwt_token)
                       local claims = jwt.claims
                       if claims then
-                        -- VALIDATION: Restrict access to employees only
-                        -- if claims.is_customer == true then
-                        --    return kong.response.exit(403, { message = "Forbidden: Access denied. Employees only." })
-                        -- end
                         if claims.user_id then
                           kong.service.request.set_header("X-User-Id", claims.user_id)
                         end
@@ -9448,10 +9444,6 @@ services:
                       local jwt = jwt_parser:new(jwt_token)
                       local claims = jwt.claims
                       if claims then
-                        -- VALIDATION: Restrict access to employees only
-                        -- if claims.is_customer == true then
-                        --    return kong.response.exit(403, { message = "Forbidden: Access denied. Employees only." })
-                        -- end
                         if claims.user_id then
                           kong.service.request.set_header("X-User-Id", claims.user_id)
                         end
@@ -9498,10 +9490,6 @@ services:
                       local jwt = jwt_parser:new(jwt_token)
                       local claims = jwt.claims
                       if claims then
-                        -- VALIDATION: Restrict access to employees only
-                        -- if claims.is_customer == true then
-                        --    return kong.response.exit(403, { message = "Forbidden: Access denied. Employees only." })
-                        -- end
                         if claims.user_id then
                           kong.service.request.set_header("X-User-Id", claims.user_id)
                         end
