@@ -9367,6 +9367,37 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+  # route api energy consumtion
+  - name: energy-api-service
+    url: http://api-energy-consumption:9582
+    connect_timeout: 60000
+    write_timeout: 60000
+    read_timeout: 60000
+    routes:
+      # api energy_consumption-get-list-route
+      
+      - name: energy-energy_consumption-route
+        paths:
+          - /api/energy/energy_consumption
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
 
 
 plugins:
