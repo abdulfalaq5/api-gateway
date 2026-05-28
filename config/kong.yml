@@ -3890,31 +3890,6 @@ services:
               claims_to_verify:
                 - exp
               run_on_preflight: false
-          - name: pre-function
-            config:
-              access:
-                - |
-                  local jwt_parser = require "kong.plugins.jwt.jwt_parser"
-                  local token = kong.request.get_header("Authorization")
-                  if token then
-                    local _, _, jwt_token = string.find(token, "Bearer%s+(.+)")
-                    if jwt_token then
-                      local jwt = jwt_parser:new(jwt_token)
-                      local claims = jwt.claims
-                      if claims then
-                        -- VALIDATION: Restrict access to employees only
-                        if claims.is_customer == true then
-                           return kong.response.exit(403, { message = "Forbidden: Access denied. Employees only." })
-                        end
-                        if claims.user_id then
-                          kong.service.request.set_header("X-User-Id", claims.user_id)
-                        end
-                        if claims.employee_id then
-                          kong.service.request.set_header("X-Employee-Id", claims.employee_id)
-                        end
-                      end
-                    end
-                  end
           - name: rate-limiting
             config:
               minute: 999999999
@@ -4510,32 +4485,7 @@ services:
               claims_to_verify:
                 - exp
               run_on_preflight: false
-          - name: pre-function
-            config:
-              access:
-                - |
-                  local jwt_parser = require "kong.plugins.jwt.jwt_parser"
-                  local token = kong.request.get_header("Authorization")
-                  if token then
-                    local _, _, jwt_token = string.find(token, "Bearer%s+(.+)")
-                    if jwt_token then
-                      local jwt = jwt_parser:new(jwt_token)
-                      local claims = jwt.claims
-                      if claims then
-                        -- VALIDATION: Restrict access to employees only
-                        if claims.is_customer == true then
-                           return kong.response.exit(403, { message = "Forbidden: Access denied. Employees only." })
-                        end
-                        if claims.user_id then
-                          kong.service.request.set_header("X-User-Id", claims.user_id)
-                        end
-                        if claims.employee_id then
-                          kong.service.request.set_header("X-Employee-Id", claims.employee_id)
-                        end
-                      end
-                    end
-                  end
-
+              
       # crm iup iup_customers create routes
       - name: crm-iup_customers-create-route
         paths:
@@ -4639,31 +4589,6 @@ services:
               claims_to_verify:
                 - exp
               run_on_preflight: false
-          - name: pre-function
-            config:
-              access:
-                - |
-                  local jwt_parser = require "kong.plugins.jwt.jwt_parser"
-                  local token = kong.request.get_header("Authorization")
-                  if token then
-                    local _, _, jwt_token = string.find(token, "Bearer%s+(.+)")
-                    if jwt_token then
-                      local jwt = jwt_parser:new(jwt_token)
-                      local claims = jwt.claims
-                      if claims then
-                        -- VALIDATION: Restrict access to employees only
-                        if claims.is_customer == true then
-                           return kong.response.exit(403, { message = "Forbidden: Access denied. Employees only." })
-                        end
-                        if claims.user_id then
-                          kong.service.request.set_header("X-User-Id", claims.user_id)
-                        end
-                        if claims.employee_id then
-                          kong.service.request.set_header("X-Employee-Id", claims.employee_id)
-                        end
-                      end
-                    end
-                  end
 
       # crm contractors get routes
       - name: crm-contractors-get-route
