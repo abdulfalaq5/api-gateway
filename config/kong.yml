@@ -3543,9 +3543,12 @@ services:
       # api netsuite-items-get-list-route
       - name: netsuite-items-get-list-route
         paths:
-          - /api/netsuite/items/get-list
+          - /api/netsuite/items
         methods:
           - POST
+          - GET
+          - PUT
+          - DELETE
           - OPTIONS
         strip_path: false
         plugins:
