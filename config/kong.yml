@@ -2563,8 +2563,7 @@ services:
                         end
                       end
                     end
-                  end
-                  
+                  end         
       # crm work orders routes
       - name: crm-work-orders-route
         paths:
