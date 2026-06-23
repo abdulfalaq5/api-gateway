@@ -2575,6 +2575,12 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+        plugins:
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
 
   - name: epc-service
     url: http://epc-api:9566
