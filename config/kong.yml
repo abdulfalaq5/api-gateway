@@ -2567,7 +2567,7 @@ services:
       # crm work orders routes
       - name: crm-work-orders-route
         paths:
-          - /api/crm/work-orders
+          - /api/crm/work_order
         methods:
           - GET
           - POST
