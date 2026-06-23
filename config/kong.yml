@@ -2564,6 +2564,18 @@ services:
                       end
                     end
                   end
+                  
+      # crm work orders routes
+      - name: crm-work-orders-route
+        paths:
+          - /api/crm/work-orders
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
 
   - name: epc-service
     url: http://epc-api:9566
