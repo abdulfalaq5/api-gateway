@@ -4435,6 +4435,17 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # api netsuite-item type-route
+      - name: netsuite-item_type-route
+        paths:
+          - /api/netsuite/item_type
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
   # route api energy consumtion
   - name: energy-api-service
     url: http://api-energy-consumption:9582
