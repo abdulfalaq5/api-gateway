@@ -4502,7 +4502,7 @@ services:
 
 # route api hrm
   - name: hrm-api-service
-    url: http://api-hrm:9582
+    url: http://api-hrm:9583
     connect_timeout: 60000
     write_timeout: 60000
     read_timeout: 60000
