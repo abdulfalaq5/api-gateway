@@ -2585,7 +2585,25 @@ services:
                         end
                       end
                     end
-                  end         
+                  end 
+      # crm daily_task_activity routes
+      - name: crm-daily_task_activity-route
+        paths:
+          - /api/crm/daily_task_activity
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false        
       # crm work orders routes
       - name: crm-work-orders-route
         paths:
