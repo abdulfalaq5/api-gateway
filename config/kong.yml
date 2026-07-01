@@ -2604,6 +2604,17 @@ services:
               claims_to_verify:
                 - exp
               run_on_preflight: false        
+      # crm project_sales_activity routes
+      - name: crm-project_sales_activity-route
+        paths:
+          - /api/crm/project_sales_activity
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false       
       # crm work orders routes
       - name: crm-work-orders-route
         paths:
