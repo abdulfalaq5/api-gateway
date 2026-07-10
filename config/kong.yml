@@ -3564,6 +3564,17 @@ services:
     write_timeout: 60000
     read_timeout: 60000
     routes:
+      # api netsuite-attach_file-routes
+      - name: netsuite-attach_file-routes
+        paths:
+          - /api/netsuite/attach_file
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
       # api netsuite-purchasing-order-routes
       - name: netsuite-purchasing-order-routes
         paths:
