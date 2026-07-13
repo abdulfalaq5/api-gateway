@@ -2649,7 +2649,72 @@ services:
               key_claim_name: iss
               claims_to_verify:
                 - exp
-              run_on_preflight: false  
+              run_on_preflight: false
+      # crm iup_brand_unit routes
+      - name: crm-iup_brand_unit-route
+        paths:
+          - /api/crm/iup_brand_unit
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false 
+      # crm iup_rkab routes
+      - name: crm-iup_rkab-route
+        paths:
+          - /api/crm/iup_rkab
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false   
+      # crm iup_zona_site routes
+      - name: crm-iup_zona_site-route
+        paths:
+          - /api/crm/iup_zona_site
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false 
+      # crm iup_visit_history routes
+      - name: crm-iup_visit_history-route
+        paths:
+          - /api/crm/iup_visit_history
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
 
   - name: epc-service
     url: http://epc-api:9566
