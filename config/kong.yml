@@ -122,6 +122,28 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      - name: sso-group-route
+        paths:
+          - /api/sso/group
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
       - name: sso-companies-route
         paths:
           - /api/companies
@@ -2563,7 +2585,36 @@ services:
                         end
                       end
                     end
-                  end         
+                  end 
+      # crm daily_task_activity routes
+      - name: crm-daily_task_activity-route
+        paths:
+          - /api/crm/daily_task_activity
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false        
+      # crm project_sales_activity routes
+      - name: crm-project_sales_activity-route
+        paths:
+          - /api/crm/project_sales_activity
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false       
       # crm work orders routes
       - name: crm-work-orders-route
         paths:
@@ -2581,6 +2632,172 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
+      # crm iup_selection routes
+      - name: crm-iup_selection-route
+        paths:
+          - /api/crm/iup_selection
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+      # crm iup_brand_unit routes
+      - name: crm-iup_brand_unit-route
+        paths:
+          - /api/crm/iup_brand_unit
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false 
+      # crm iup_rkab routes
+      - name: crm-iup_rkab-route
+        paths:
+          - /api/crm/iup_rkab
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false   
+      # crm iup_zona_site routes
+      - name: crm-iup_zona_site-route
+        paths:
+          - /api/crm/iup_zona_site
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false 
+      # crm iup_visit_history routes
+      - name: crm-iup_visit_history-route
+        paths:
+          - /api/crm/iup_visit_history
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      # crm iup_visit routes
+      - name: crm-iup_visit-route
+        paths:
+          - /api/crm/iup_visit
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+      # crm sales stage routes
+      - name: crm-sales-stage-route
+        paths:
+          - /api/crm/sales-stage
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+      # crm opportunity_sub_task routes
+      - name: crm-opportunity_sub_task-route
+        paths:
+          - /api/crm/opportunity_sub_task
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+      # crm opportunity_assignment_solution routes
+      - name: crm-opportunity_assignment_solution-route
+        paths:
+          - /api/crm/opportunity_assignment_solution
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+      # crm opportunity_review_hypercare routes
+      - name: crm-opportunity_review_hypercare-route
+        paths:
+          - /api/crm/opportunity_review_hypercare
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
 
   - name: epc-service
     url: http://epc-api:9566
@@ -3495,6 +3712,17 @@ services:
     write_timeout: 60000
     read_timeout: 60000
     routes:
+      # api netsuite-attach_file-routes
+      - name: netsuite-attach_file-routes
+        paths:
+          - /api/netsuite/attach_file
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
       # api netsuite-purchasing-order-routes
       - name: netsuite-purchasing-order-routes
         paths:
@@ -4458,6 +4686,152 @@ services:
       - name: energy-energy_consumption-route
         paths:
           - /api/energy/energy_consumption
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+
+# route api hrm
+  - name: hrm-api-service
+    url: http://api-hrm:9583
+    connect_timeout: 60000
+    write_timeout: 60000
+    read_timeout: 60000
+    routes:
+      # api candidates-route
+      - name: api-hrm-candidates-route
+        paths:
+          - /api/hrm/candidates
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api schedule_interview-route
+      - name: api-hrm-schedule_interview-route
+        paths:
+          - /api/hrm/schedule_interview
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api interviews-route
+      - name: api-hrm-interviews-route
+        paths:
+          - /api/hrm/interviews
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api background_check-route
+      - name: api-hrm-background_check-route
+        paths:
+          - /api/hrm/background_check
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api on_board_document-route
+      - name: api-hrm-on_board_document-route
+        paths:
+          - /api/hrm/on_board_document
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss
+              claims_to_verify:
+                - exp
+              run_on_preflight: false
+          - name: rate-limiting
+            config:
+              minute: 999999999
+              hour: 999999999
+              policy: local
+      # api note-route
+      - name: api-hrm-note-route
+        paths:
+          - /api/hrm/note
         methods:
           - GET
           - POST
