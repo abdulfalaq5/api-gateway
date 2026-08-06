@@ -2820,6 +2820,17 @@ services:
           - DELETE
           - OPTIONS
         strip_path: false
+      # crm master_iup_zone_site routes
+      - name: crm-master_iup_zone_site-route
+        paths:
+          - /api/crm/master_iup_zone_site
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
 
   - name: epc-service
     url: http://epc-api:9566
