@@ -4629,7 +4629,7 @@ services:
       # api project-segmentations route
       - name: project-segmentations-route
         paths:
-          - /api/project-segmentations
+          - /api/netsuite/project-segmentations
         methods:
           - GET
           - POST
