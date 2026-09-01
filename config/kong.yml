@@ -1,7 +1,6 @@
 _format_version: "3.0"
 _transform: true
 
-
 consumers:
   - username: sso-issuer
     jwt_secrets:
@@ -1738,18 +1737,18 @@ services:
     read_timeout: 600000
 
     plugins:
-    - name: rate-limiting
-      config:
-        second: 2
-        minute: 120
-        hour: 7200
-        policy: local
+      - name: rate-limiting
+        config:
+          second: 2
+          minute: 120
+          hour: 7200
+          policy: local
 
     routes:
-    - name: bridge-netsuite-route
-      paths:
-        - /api/v1/bridge
-      strip_path: false
+      - name: bridge-netsuite-route
+        paths:
+          - /api/v1/bridge
+        strip_path: false
 
   - name: crm-service
     url: http://crm-api:9568
@@ -1757,7 +1756,6 @@ services:
     write_timeout: 60000
     read_timeout: 60000
     routes:
-  
       # crm territory routes
       - name: crm-territory-route
         paths:
@@ -2585,7 +2583,7 @@ services:
                         end
                       end
                     end
-                  end 
+                  end
       # crm daily_task_activity routes
       - name: crm-daily_task_activity-route
         paths:
@@ -2603,7 +2601,7 @@ services:
               key_claim_name: iss
               claims_to_verify:
                 - exp
-              run_on_preflight: false        
+              run_on_preflight: false
       # crm project_sales_activity routes
       - name: crm-project_sales_activity-route
         paths:
@@ -2614,7 +2612,7 @@ services:
           - PUT
           - DELETE
           - OPTIONS
-        strip_path: false       
+        strip_path: false
       # crm work orders routes
       - name: crm-work-orders-route
         paths:
@@ -2667,7 +2665,7 @@ services:
               key_claim_name: iss
               claims_to_verify:
                 - exp
-              run_on_preflight: false 
+              run_on_preflight: false
       # crm iup_rkab routes
       - name: crm-iup_rkab-route
         paths:
@@ -2685,7 +2683,7 @@ services:
               key_claim_name: iss
               claims_to_verify:
                 - exp
-              run_on_preflight: false   
+              run_on_preflight: false
       # crm iup_zona_site routes
       - name: crm-iup_zona_site-route
         paths:
@@ -2703,7 +2701,7 @@ services:
               key_claim_name: iss
               claims_to_verify:
                 - exp
-              run_on_preflight: false 
+              run_on_preflight: false
       # crm iup_visit_history routes
       - name: crm-iup_visit_history-route
         paths:
@@ -4693,7 +4691,7 @@ services:
     read_timeout: 60000
     routes:
       # api energy_consumption-get-list-route
-      
+
       - name: energy-energy_consumption-route
         paths:
           - /api/energy/energy_consumption
@@ -4717,7 +4715,7 @@ services:
               hour: 999999999
               policy: local
 
-# route api hrm
+  # route api hrm
   - name: hrm-api-service
     url: http://api-hrm:9583
     connect_timeout: 60000
@@ -4862,7 +4860,24 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
-
+  # route api notifikasi
+  - name: notification-api-service
+    url: http://api-notification:9521
+    connect_timeout: 60000
+    write_timeout: 60000
+    read_timeout: 60000
+    routes:
+      # api candidates-route
+      - name: api-notification-logs
+        paths:
+          - /api/notification/logs
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        strip_path: false
 
 plugins:
   - name: rate-limiting
