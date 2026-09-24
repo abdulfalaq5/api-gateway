@@ -4683,7 +4683,7 @@ services:
               minute: 999999999
               hour: 999999999
               policy: local
-       # api netsuite-inventory_adjustments-route
+        # api netsuite-inventory_adjustments-route
       - name: netsuite-inventory_adjustments-route
         paths:
           - /api/netsuite/inventory_adjustments
@@ -5127,6 +5127,7 @@ services:
   # route api career
   - name: career-api-service
     url: http://api-career:9585
+    #  url: https://career-api.motorsights.com
     connect_timeout: 60000
     write_timeout: 60000
     read_timeout: 60000
